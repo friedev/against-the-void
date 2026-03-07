@@ -52,15 +52,15 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ts572"]
-radius = 7.0
-height = 31.0
+radius = 3.5
+height = 15.5
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tb146"]
-radius = 23.0
-height = 99.0
+radius = 11.5
+height = 49.5
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_e7lu8"]
-radius = 31.503967
+radius = 15.75
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_mlv6i"]
 normal = Vector2(1, 0)
@@ -74,16 +74,15 @@ normal = Vector2(-1, 0)
 script = ExtResource("1_rlaii")
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=305687847 node_paths=PackedStringArray("sprite", "sword_area", "attack_sound", "jump_sound", "camera")]
-position = Vector2(1, -550)
-scale = Vector2(2, 2)
+position = Vector2(1, -139)
 collision_mask = 2
 script = ExtResource("1_eewff")
-max_speed = Vector2(650, 1000)
-jump_speed = 650.0
-recoil_speed = 600.0
-acceleration = 5000.0
-deceleration = 10000.0
-fast_fall_acceleration = 2000.0
+max_speed = Vector2(162.5, 250)
+jump_speed = 162.5
+recoil_speed = 150.0
+acceleration = 1250.0
+deceleration = 2500.0
+fast_fall_acceleration = 500.0
 attack_duration = 0.1
 attack_cooldown = 0.2
 air_jumps = 2
@@ -94,13 +93,11 @@ jump_sound = NodePath("JumpSound")
 camera = NodePath("ShakeCamera")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="Player" unique_id=1711341869]
-position = Vector2(0, 32)
-scale = Vector2(2, 2)
+position = Vector2(0, 16)
 sprite_frames = SubResource("SpriteFrames_5q4o7")
 animation = &"idle_0"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=972111300]
-position = Vector2(1, 1.5)
 shape = SubResource("CapsuleShape2D_ts572")
 
 [node name="SwordArea" type="Area2D" parent="Player" unique_id=1753714991]
@@ -110,11 +107,11 @@ monitoring = false
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/SwordArea" unique_id=572079674]
-position = Vector2(0, 40.5)
+position = Vector2(0, 20.25)
 shape = SubResource("CapsuleShape2D_tb146")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Player/SwordArea" unique_id=944467009]
-position = Vector2(0, 22.5)
+position = Vector2(0, 11.25)
 shape = SubResource("CircleShape2D_e7lu8")
 
 [node name="AttackSound" type="AudioStreamPlayer2D" parent="Player" unique_id=2001106003]
@@ -126,28 +123,29 @@ stream = ExtResource("8_uewes")
 script = ExtResource("7_uewes")
 
 [node name="ShakeCamera" type="Camera2D" parent="Player" unique_id=291887697]
+zoom = Vector2(4, 4)
 process_callback = 0
 limit_bottom = 0
 limit_smoothed = true
 position_smoothing_enabled = true
 script = ExtResource("9_kqbth")
 shake_rate = 1.0
-max_offset = 48.0
+max_offset = 24.0
 shake_reduction = 3.0
 
 [node name="EnemySpawner" parent="Player" unique_id=431051513 instance=ExtResource("12_mlv6i")]
-position = Vector2(-531.5, -417.5)
+position = Vector2(-265.75, -208.75)
 scale = Vector2(0.5, 0.5)
 spawn_time = 0.5
 
 [node name="EnemySpawner2" parent="Player" unique_id=1504014088 instance=ExtResource("12_mlv6i")]
-position = Vector2(531.5, -417.5)
+position = Vector2(265.75, -208.75)
 scale = Vector2(0.5, 0.5)
 enemy_speed_mod = -1.0
 spawn_time = 0.5
 
 [node name="LeftKillZone" type="Area2D" parent="Player" unique_id=634507289]
-position = Vector2(-1256.5, 0)
+position = Vector2(-628.25, 0)
 collision_layer = 0
 collision_mask = 3
 monitorable = false
@@ -157,7 +155,7 @@ script = ExtResource("3_5q4o7")
 shape = SubResource("WorldBoundaryShape2D_mlv6i")
 
 [node name="RightKillZone" type="Area2D" parent="Player" unique_id=942162257]
-position = Vector2(1256.5, 0)
+position = Vector2(628.25, 0)
 collision_layer = 0
 collision_mask = 3
 monitorable = false
@@ -167,7 +165,7 @@ script = ExtResource("3_5q4o7")
 shape = SubResource("WorldBoundaryShape2D_tb146")
 
 [node name="BottomKillZone" type="Area2D" parent="." unique_id=845912716]
-position = Vector2(0, 128)
+position = Vector2(0, 64)
 collision_layer = 0
 collision_mask = 3
 monitorable = false

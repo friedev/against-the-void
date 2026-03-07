@@ -16,6 +16,7 @@ class_name Player extends CharacterBody2D
 @export var attack_sound: SmartSound
 @export var jump_sound: SmartSound
 @export var camera: Camera2D
+@export var jump_particles: GPUParticles2D
 
 @onready var initial_position := position
 @onready var jumps_left := air_jumps
@@ -67,6 +68,7 @@ func jump() -> bool:
 	jumps_left -= 1
 	velocity.y = - jump_speed
 	jump_sound.play()
+	jump_particles.restart()
 	return true
 
 
@@ -88,13 +90,21 @@ func attack() -> void:
 
 
 func die() -> void:
-	var camera_position := camera.get_screen_center_position()
-	remove_child(camera)
-	SignalBus.node_spawned.emit(camera)
-	camera.global_position = camera_position
+	reparent_child(camera, camera.get_screen_center_position())
 	camera.reset_smoothing()
+	if jump_particles.emitting:
+		reparent_child(jump_particles)
+		jump_particles.finished.connect(jump_particles.queue_free)
 	queue_free()
 	SignalBus.game_over.emit()
+
+
+func reparent_child(child: Node2D, new_position := Vector2.INF) -> void:
+	if new_position == Vector2.INF:
+		new_position = (child as Node2D).global_position
+	remove_child(child)
+	SignalBus.node_spawned.emit(child)
+	child.global_position = new_position
 
 
 func try_hit(body: Node2D) -> void:

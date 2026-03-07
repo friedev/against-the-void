@@ -53,7 +53,7 @@ height = 114.868774
 script = ExtResource("1_rlaii")
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=305687847 node_paths=PackedStringArray("sprite", "sword_area", "attack_sound", "jump_sound")]
-position = Vector2(938, 111)
+position = Vector2(1, -550)
 scale = Vector2(2, 2)
 collision_mask = 2
 script = ExtResource("1_eewff")
@@ -99,8 +99,13 @@ script = ExtResource("7_uewes")
 stream = ExtResource("8_uewes")
 script = ExtResource("7_uewes")
 
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=291887697]
+process_callback = 0
+limit_bottom = 0
+limit_smoothed = true
+position_smoothing_enabled = true
+
 [node name="KillZone" type="Area2D" parent="." unique_id=845912716]
-position = Vector2(843, 1424)
 collision_layer = 0
 collision_mask = 3
 monitorable = false
@@ -110,7 +115,7 @@ script = ExtResource("3_5q4o7")
 shape = SubResource("WorldBoundaryShape2D_3cfgd")
 
 [node name="EnemySpawner" type="Node2D" parent="." unique_id=1299553253]
-position = Vector2(444, 713)
+position = Vector2(-1044, -174)
 script = ExtResource("6_5mrjc")
 enemy_scene = ExtResource("8_5mrjc")
 

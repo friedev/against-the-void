@@ -19,11 +19,12 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_rlaii"]
 radius = 17.0
 
-[node name="Enemy" type="Area2D" unique_id=444889010 node_paths=PackedStringArray("death_sound")]
+[node name="Enemy" type="Area2D" unique_id=444889010 node_paths=PackedStringArray("sprite", "death_sound")]
 scale = Vector2(2, 2)
 collision_layer = 2
 script = ExtResource("1_u7g3q")
-speed = 100.0
+speed = 400.0
+sprite = NodePath("Sprite2D")
 death_sound = NodePath("SmartSound")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=1721054349]

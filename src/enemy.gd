@@ -3,7 +3,13 @@ class_name Enemy extends Area2D
 @export var speed: float
 
 @export_group("Internal Nodes")
+@export var sprite: AnimatedSprite2D
 @export var death_sound: SmartSound
+
+
+func _ready() -> void:
+	if speed < 0.0:
+		sprite.flip_h = not sprite.flip_h
 
 
 func _physics_process(delta: float) -> void:

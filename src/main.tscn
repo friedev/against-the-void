@@ -6,13 +6,12 @@
 [ext_resource type="Texture2D" uid="uid://6i557rkqvxqi" path="res://assets/images/player_attack_1.png" id="3_tb146"]
 [ext_resource type="Texture2D" uid="uid://y6r86dn2pe5c" path="res://assets/images/player_attack_2.png" id="4_e7lu8"]
 [ext_resource type="Texture2D" uid="uid://cm7tqiur1h4e4" path="res://assets/images/player_idle_1.png" id="5_okx7f"]
-[ext_resource type="Script" uid="uid://e3kkgn3wnk4t" path="res://src/enemy_spawner.gd" id="6_5mrjc"]
 [ext_resource type="AudioStream" uid="uid://sfrh6uqm4l6x" path="res://assets/sounds/swish.wav" id="6_mgm53"]
 [ext_resource type="Texture2D" uid="uid://b2kpxra4dxk2b" path="res://assets/images/player_idle_2.png" id="6_sta5p"]
 [ext_resource type="Script" path="res://src/smart_sound.gd" id="7_uewes"]
-[ext_resource type="PackedScene" uid="uid://dcsjkgjjpmdst" path="res://src/enemy.tscn" id="8_5mrjc"]
 [ext_resource type="AudioStream" uid="uid://cf5wkx8chpjt1" path="res://assets/sounds/jump.wav" id="8_uewes"]
 [ext_resource type="Script" uid="uid://c841a3h3xkybc" path="res://src/shake_camera.gd" id="9_kqbth"]
+[ext_resource type="PackedScene" uid="uid://c8yt3kcn7b6fs" path="res://src/enemy_spawner.tscn" id="12_mlv6i"]
 [ext_resource type="Theme" uid="uid://cp2dw8jh1pmps" path="res://assets/styles/theme.tres" id="13_d3u4l"]
 [ext_resource type="Script" uid="uid://cwopu6is2c5wm" path="res://src/time_label.gd" id="13_srxbw"]
 [ext_resource type="FontFile" uid="uid://bu2eay6qumf2f" path="res://assets/fonts/FSEX302.ttf" id="14_mlv6i"]
@@ -130,6 +129,17 @@ shake_rate = 1.0
 max_offset = 48.0
 shake_reduction = 3.0
 
+[node name="EnemySpawner" parent="Player" unique_id=431051513 instance=ExtResource("12_mlv6i")]
+position = Vector2(-522.5, 188)
+scale = Vector2(0.5, 0.5)
+spawn_time = 0.5
+
+[node name="EnemySpawner2" parent="Player" unique_id=1504014088 instance=ExtResource("12_mlv6i")]
+position = Vector2(531.5, 188)
+scale = Vector2(0.5, 0.5)
+enemy_speed_mod = -1.0
+spawn_time = 0.5
+
 [node name="KillZone" type="Area2D" parent="." unique_id=845912716]
 collision_layer = 0
 collision_mask = 3
@@ -138,15 +148,6 @@ script = ExtResource("3_5q4o7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone" unique_id=269543840]
 shape = SubResource("WorldBoundaryShape2D_3cfgd")
-
-[node name="EnemySpawner" type="Node2D" parent="." unique_id=1299553253]
-position = Vector2(-1044, -174)
-script = ExtResource("6_5mrjc")
-enemy_scene = ExtResource("8_5mrjc")
-
-[node name="SpawnTimer" type="Timer" parent="EnemySpawner" unique_id=1032712725]
-wait_time = 1.5
-autostart = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1593020530]
 
@@ -174,4 +175,3 @@ script = ExtResource("13_srxbw")
 [connection signal="area_entered" from="Player/SwordArea" to="Player" method="_on_sword_area_area_entered"]
 [connection signal="body_entered" from="Player/SwordArea" to="Player" method="_on_sword_area_body_entered"]
 [connection signal="body_entered" from="KillZone" to="KillZone" method="_on_body_entered"]
-[connection signal="timeout" from="EnemySpawner/SpawnTimer" to="EnemySpawner" method="_on_spawn_timer_timeout"]

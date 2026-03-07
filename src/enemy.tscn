@@ -22,7 +22,8 @@ radius = 8.5
 [node name="Enemy" type="Area2D" unique_id=444889010 node_paths=PackedStringArray("sprite", "death_sound")]
 collision_layer = 2
 script = ExtResource("1_u7g3q")
-speed = 100.0
+min_speed = 50.0
+max_speed = 150.0
 sprite = NodePath("Sprite2D")
 death_sound = NodePath("SmartSound")
 

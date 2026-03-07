@@ -1,11 +1,13 @@
 class_name Enemy extends Area2D
 
-@export var speed: float
+@export var min_speed: float
+@export var max_speed: float
 
 @export_group("Internal Nodes")
 @export var sprite: AnimatedSprite2D
 @export var death_sound: SmartSound
 
+@onready var speed := randf_range(min_speed, max_speed)
 
 func _ready() -> void:
 	if speed < 0.0:

@@ -1,0 +1,110 @@
+[gd_scene format=3 uid="uid://px03diws0gc5"]
+
+[ext_resource type="Script" uid="uid://ussa75mhy2qk" path="res://src/player.gd" id="1_eewff"]
+[ext_resource type="Script" uid="uid://c65yticfyxrkh" path="res://src/main.gd" id="1_rlaii"]
+[ext_resource type="Texture2D" uid="uid://kql6x0tdfhss" path="res://assets/images/player_attack.png" id="2_3cfgd"]
+[ext_resource type="Texture2D" uid="uid://bk42ydfv0kmyw" path="res://assets/images/player.png" id="2_gh0ne"]
+[ext_resource type="Script" uid="uid://cxl8vpotvt0io" path="res://src/kill_zone.gd" id="3_5q4o7"]
+[ext_resource type="Texture2D" uid="uid://fy5jb6tbq2kg" path="res://assets/images/player_attack_recover.png" id="3_rlaii"]
+[ext_resource type="Script" uid="uid://e3kkgn3wnk4t" path="res://src/enemy_spawner.gd" id="6_5mrjc"]
+[ext_resource type="PackedScene" uid="uid://dcsjkgjjpmdst" path="res://src/enemy.tscn" id="8_5mrjc"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5q4o7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_3cfgd")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_rlaii")
+}],
+"loop": true,
+"name": &"attack_recover",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_gh0ne")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ts572"]
+radius = 7.0
+height = 36.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fyndt"]
+radius = 32.954315
+height = 114.868774
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3cfgd"]
+
+[node name="Main" type="Node2D" unique_id=793816073]
+script = ExtResource("1_rlaii")
+
+[node name="Player" type="CharacterBody2D" parent="." unique_id=305687847 node_paths=PackedStringArray("sprite", "sword_area")]
+position = Vector2(938, 111)
+scale = Vector2(2, 2)
+collision_mask = 2
+script = ExtResource("1_eewff")
+max_speed = Vector2(650, 1000)
+jump_speed = 600.0
+recoil_speed = 600.0
+acceleration = 5000.0
+deceleration = 10000.0
+fast_fall_acceleration = 1000.0
+attack_duration = 0.1
+attack_cooldown = 0.2
+air_jumps = 2
+sprite = NodePath("Sprite2D")
+sword_area = NodePath("SwordArea")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="Player" unique_id=1711341869]
+position = Vector2(4.343811, 7)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_5q4o7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=972111300]
+position = Vector2(1, -8)
+shape = SubResource("CapsuleShape2D_ts572")
+
+[node name="SwordArea" type="Area2D" parent="Player" unique_id=1753714991]
+collision_layer = 0
+collision_mask = 2
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/SwordArea" unique_id=572079674]
+position = Vector2(4.593505, 36.74813)
+rotation = -0.21510567
+shape = SubResource("CapsuleShape2D_fyndt")
+
+[node name="KillZone" type="Area2D" parent="." unique_id=845912716]
+position = Vector2(843, 1424)
+collision_layer = 0
+collision_mask = 3
+monitorable = false
+script = ExtResource("3_5q4o7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone" unique_id=269543840]
+shape = SubResource("WorldBoundaryShape2D_3cfgd")
+
+[node name="EnemySpawner" type="Node2D" parent="." unique_id=1299553253]
+position = Vector2(444, 713)
+script = ExtResource("6_5mrjc")
+enemy_scene = ExtResource("8_5mrjc")
+
+[node name="SpawnTimer" type="Timer" parent="EnemySpawner" unique_id=1032712725]
+wait_time = 1.5
+autostart = true
+
+[connection signal="body_entered" from="Player/SwordArea" to="Player" method="_on_sword_area_body_entered"]
+[connection signal="body_entered" from="KillZone" to="KillZone" method="_on_body_entered"]
+[connection signal="timeout" from="EnemySpawner/SpawnTimer" to="EnemySpawner" method="_on_spawn_timer_timeout"]

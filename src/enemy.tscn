@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://dcsjkgjjpmdst"]
+
+[ext_resource type="Script" uid="uid://crjitsgpjrp6e" path="res://src/enemy.gd" id="1_u7g3q"]
+[ext_resource type="Texture2D" uid="uid://c4p6dss8bel25" path="res://assets/images/enemy.png" id="2_c1w3u"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kmhfv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_c1w3u")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rlaii"]
+radius = 30.0
+
+[node name="Enemy" type="CharacterBody2D" unique_id=1090182484]
+collision_layer = 2
+script = ExtResource("1_u7g3q")
+speed = 100.0
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=1721054349]
+position = Vector2(0, -1)
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_kmhfv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=336696788]
+position = Vector2(1, 1)
+shape = SubResource("CircleShape2D_rlaii")

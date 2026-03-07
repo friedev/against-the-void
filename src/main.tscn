@@ -7,7 +7,10 @@
 [ext_resource type="Script" uid="uid://cxl8vpotvt0io" path="res://src/kill_zone.gd" id="3_5q4o7"]
 [ext_resource type="Texture2D" uid="uid://fy5jb6tbq2kg" path="res://assets/images/player_attack_recover.png" id="3_rlaii"]
 [ext_resource type="Script" uid="uid://e3kkgn3wnk4t" path="res://src/enemy_spawner.gd" id="6_5mrjc"]
+[ext_resource type="AudioStream" uid="uid://sfrh6uqm4l6x" path="res://assets/sounds/swish.wav" id="6_mgm53"]
+[ext_resource type="Script" path="res://src/smart_sound.gd" id="7_uewes"]
 [ext_resource type="PackedScene" uid="uid://dcsjkgjjpmdst" path="res://src/enemy.tscn" id="8_5mrjc"]
+[ext_resource type="AudioStream" uid="uid://cf5wkx8chpjt1" path="res://assets/sounds/jump.wav" id="8_uewes"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5q4o7"]
 animations = [{
@@ -49,7 +52,7 @@ height = 114.868774
 [node name="Main" type="Node2D" unique_id=793816073]
 script = ExtResource("1_rlaii")
 
-[node name="Player" type="CharacterBody2D" parent="." unique_id=305687847 node_paths=PackedStringArray("sprite", "sword_area")]
+[node name="Player" type="CharacterBody2D" parent="." unique_id=305687847 node_paths=PackedStringArray("sprite", "sword_area", "attack_sound", "jump_sound")]
 position = Vector2(938, 111)
 scale = Vector2(2, 2)
 collision_mask = 2
@@ -65,6 +68,8 @@ attack_cooldown = 0.2
 air_jumps = 2
 sprite = NodePath("Sprite2D")
 sword_area = NodePath("SwordArea")
+attack_sound = NodePath("AttackSound")
+jump_sound = NodePath("JumpSound")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="Player" unique_id=1711341869]
 position = Vector2(4.343811, 7)
@@ -85,6 +90,14 @@ monitorable = false
 position = Vector2(4.593505, 36.74813)
 rotation = -0.21510567
 shape = SubResource("CapsuleShape2D_fyndt")
+
+[node name="AttackSound" type="AudioStreamPlayer2D" parent="Player" unique_id=2001106003]
+stream = ExtResource("6_mgm53")
+script = ExtResource("7_uewes")
+
+[node name="JumpSound" type="AudioStreamPlayer2D" parent="Player" unique_id=1314048301]
+stream = ExtResource("8_uewes")
+script = ExtResource("7_uewes")
 
 [node name="KillZone" type="Area2D" parent="." unique_id=845912716]
 position = Vector2(843, 1424)

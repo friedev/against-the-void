@@ -13,7 +13,8 @@ class_name Player extends CharacterBody2D
 @export_group("Internal Nodes")
 @export var sprite: AnimatedSprite2D
 @export var sword_area: Area2D
-@export var animation_player: AnimationPlayer
+@export var attack_sound: SmartSound
+@export var jump_sound: SmartSound
 
 @onready var initial_position := position
 
@@ -27,9 +28,7 @@ func _physics_process(delta: float) -> void:
 
 	# Handle jump
 	if Input.is_action_just_pressed("jump"):
-		if jumps_left > 0:
-			jumps_left -= 1
-			velocity.y = - jump_speed
+		jump()
 	elif not Input.is_action_pressed("jump") and velocity.y < 0:
 		# Variable jump height: quickly stop going up if jump is released
 		velocity.y += fast_fall_acceleration * delta
@@ -56,18 +55,34 @@ func _physics_process(delta: float) -> void:
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("attack"):
-		if not is_attacking():
-			sprite.play("attack")
-			sword_area.monitoring = true
-			for body in sword_area.get_overlapping_bodies():
-				try_hit(body)
-			await get_tree().create_timer(attack_duration).timeout
-			sprite.play("attack_recover")
-			sword_area.monitoring = false
-			await get_tree().create_timer(attack_cooldown).timeout
-			sprite.play("default")
+		attack()
 	elif event.is_action_pressed("restart"):
 		die()
+
+
+func jump() -> bool:
+	if jumps_left == 0:
+		return false
+	jumps_left -= 1
+	velocity.y = - jump_speed
+	jump_sound.play()
+	return true
+
+
+func attack() -> bool:
+	if is_attacking():
+		return false
+	attack_sound.play()
+	sprite.play("attack")
+	sword_area.monitoring = true
+	for body in sword_area.get_overlapping_bodies():
+		try_hit(body)
+	await get_tree().create_timer(attack_duration).timeout
+	sprite.play("attack_recover")
+	sword_area.monitoring = false
+	await get_tree().create_timer(attack_cooldown).timeout
+	sprite.play("default")
+	return true
 
 
 func is_attacking() -> bool:
@@ -89,7 +104,7 @@ func try_hit(body: Node2D) -> void:
 
 
 func hit(enemy: Enemy) -> void:
-	enemy.queue_free()
+	enemy.die()
 	velocity.y = - recoil_speed
 	jumps_left = air_jumps
 

@@ -6,6 +6,7 @@ class_name Enemy extends Area2D
 @export_group("Internal Nodes")
 @export var sprite: AnimatedSprite2D
 @export var death_sound: SmartSound
+@export var death_particles: GPUParticles2D
 
 @onready var speed := randf_range(min_speed, max_speed)
 
@@ -19,7 +20,7 @@ func _physics_process(delta: float) -> void:
 
 
 func die() -> void:
-	death_sound.play()
+	death_sound.randomize_and_play()
 	SignalBus.screen_shake.emit(1.0)
 	queue_free()
 

@@ -11,26 +11,23 @@ class_name SmartSound extends AudioStreamPlayer2D
 ## when calling `randomize_and_play()`.
 @export var pitch_scale_range := 0.25
 
-@onready var base_pitch_scale := self.pitch_scale
+@onready var base_pitch_scale := pitch_scale
 
 func randomize_and_play(from_position := 0.0) -> void:
-	self.pitch_scale = (
-		self.base_pitch_scale
-		+ randf_range(-1.0, +1.0) * self.pitch_scale_range
-	)
+	pitch_scale = base_pitch_scale + randf_range(-1.0, +1.0) * pitch_scale_range
 	super.play(from_position)
 
 
 func _on_finished() -> void:
-	if self.free_when_finished:
-		self.queue_free()
+	if free_when_finished:
+		queue_free()
 
 
 func _exit_tree() -> void:
-	if self.finish_before_exiting and self.playing:
-		var previous_global_position := self.global_position
-		await self.get_parent().tree_exited
-		self.get_parent().remove_child(self)
-		SignalBus.node_spawned.emit(self)
-		self.global_position = previous_global_position
-		self.free_when_finished = true
+	if finish_before_exiting and playing:
+		var previous_global_position := global_position
+		await get_parent().tree_exited
+		get_parent().remove_child(self )
+		SignalBus.node_spawned.emit(self )
+		global_position = previous_global_position
+		free_when_finished = true

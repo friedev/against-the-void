@@ -8,12 +8,13 @@
 [ext_resource type="Texture2D" uid="uid://cm7tqiur1h4e4" path="res://assets/images/player_idle_1.png" id="5_okx7f"]
 [ext_resource type="AudioStream" uid="uid://sfrh6uqm4l6x" path="res://assets/sounds/swish.wav" id="6_mgm53"]
 [ext_resource type="Texture2D" uid="uid://b2kpxra4dxk2b" path="res://assets/images/player_idle_2.png" id="6_sta5p"]
-[ext_resource type="Script" path="res://src/smart_sound.gd" id="7_uewes"]
+[ext_resource type="Script" uid="uid://c64papim5fgn1" path="res://src/smart_sound.gd" id="7_uewes"]
 [ext_resource type="AudioStream" uid="uid://cf5wkx8chpjt1" path="res://assets/sounds/jump.wav" id="8_uewes"]
 [ext_resource type="Script" uid="uid://c841a3h3xkybc" path="res://src/shake_camera.gd" id="9_kqbth"]
 [ext_resource type="PackedScene" uid="uid://c8yt3kcn7b6fs" path="res://src/enemy_spawner.tscn" id="12_mlv6i"]
 [ext_resource type="Theme" uid="uid://cp2dw8jh1pmps" path="res://assets/styles/theme.tres" id="13_d3u4l"]
 [ext_resource type="Script" uid="uid://cwopu6is2c5wm" path="res://src/time_label.gd" id="13_srxbw"]
+[ext_resource type="PackedScene" uid="uid://2stt7v0hsnst" path="res://src/smart_particles.tscn" id="13_tb146"]
 [ext_resource type="FontFile" uid="uid://bu2eay6qumf2f" path="res://assets/fonts/FSEX302.ttf" id="14_mlv6i"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5q4o7"]
@@ -62,17 +63,11 @@ height = 49.5
 [sub_resource type="CircleShape2D" id="CircleShape2D_e7lu8"]
 radius = 15.75
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_mlv6i"]
-normal = Vector2(1, 0)
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tb146"]
-normal = Vector2(-1, 0)
-
 [sub_resource type="Curve" id="Curve_mlv6i"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.6256652, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_tb146"]
+[sub_resource type="CurveTexture" id="CurveTexture_e7lu8"]
 curve = SubResource("Curve_mlv6i")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_e7lu8"]
@@ -85,7 +80,13 @@ initial_velocity_max = 50.0
 gravity = Vector3(0, 49, 0)
 scale_min = 2.0
 scale_max = 4.0
-scale_curve = SubResource("CurveTexture_tb146")
+scale_curve = SubResource("CurveTexture_e7lu8")
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_mlv6i"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tb146"]
+normal = Vector2(-1, 0)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_e7lu8"]
 
@@ -137,10 +138,19 @@ shape = SubResource("CircleShape2D_e7lu8")
 [node name="AttackSound" type="AudioStreamPlayer2D" parent="Player" unique_id=2001106003]
 stream = ExtResource("6_mgm53")
 script = ExtResource("7_uewes")
+pitch_scale_range = 0.125
 
 [node name="JumpSound" type="AudioStreamPlayer2D" parent="Player" unique_id=1314048301]
 stream = ExtResource("8_uewes")
 script = ExtResource("7_uewes")
+pitch_scale_range = 0.125
+
+[node name="JumpParticles" parent="Player" unique_id=1168632659 instance=ExtResource("13_tb146")]
+emitting = false
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_e7lu8")
 
 [node name="ShakeCamera" type="Camera2D" parent="Player" unique_id=291887697]
 zoom = Vector2(4, 4)
@@ -183,15 +193,6 @@ script = ExtResource("3_5q4o7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/RightKillZone" unique_id=817306647]
 shape = SubResource("WorldBoundaryShape2D_tb146")
-
-[node name="JumpParticles" type="GPUParticles2D" parent="Player" unique_id=1908478903]
-z_index = -1
-position = Vector2(0.5, 5)
-emitting = false
-lifetime = 0.5
-one_shot = true
-explosiveness = 1.0
-process_material = SubResource("ParticleProcessMaterial_e7lu8")
 
 [node name="BottomKillZone" type="Area2D" parent="." unique_id=845912716]
 position = Vector2(0, 64)

@@ -3,7 +3,8 @@
 [ext_resource type="Script" uid="uid://crjitsgpjrp6e" path="res://src/enemy.gd" id="1_u7g3q"]
 [ext_resource type="Texture2D" uid="uid://c4p6dss8bel25" path="res://assets/images/enemy.png" id="2_c1w3u"]
 [ext_resource type="AudioStream" uid="uid://btlqkuh1mst78" path="res://assets/sounds/hit.wav" id="3_liqmj"]
-[ext_resource type="Script" path="res://src/smart_sound.gd" id="4_a17ok"]
+[ext_resource type="Script" uid="uid://c64papim5fgn1" path="res://src/smart_sound.gd" id="4_a17ok"]
+[ext_resource type="PackedScene" uid="uid://2stt7v0hsnst" path="res://src/smart_particles.tscn" id="5_a17ok"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_kmhfv"]
 animations = [{
@@ -19,13 +20,32 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_rlaii"]
 radius = 8.5
 
-[node name="Enemy" type="Area2D" unique_id=444889010 node_paths=PackedStringArray("sprite", "death_sound")]
+[sub_resource type="Curve" id="Curve_liqmj"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.6256652, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_a17ok"]
+curve = SubResource("Curve_liqmj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_a17ok"]
+lifetime_randomness = 0.25
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 25.0
+initial_velocity_max = 100.0
+gravity = Vector3(0, 98, 0)
+scale_min = 3.0
+scale_max = 6.0
+scale_curve = SubResource("CurveTexture_a17ok")
+
+[node name="Enemy" type="Area2D" unique_id=444889010 node_paths=PackedStringArray("sprite", "death_sound", "death_particles")]
 collision_layer = 2
 script = ExtResource("1_u7g3q")
 min_speed = 50.0
 max_speed = 150.0
 sprite = NodePath("Sprite2D")
-death_sound = NodePath("SmartSound")
+death_sound = NodePath("DeathSound")
+death_particles = NodePath("DeathParticles")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=1721054349]
 position = Vector2(0, -1)
@@ -35,8 +55,16 @@ sprite_frames = SubResource("SpriteFrames_kmhfv")
 position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_rlaii")
 
-[node name="SmartSound" type="AudioStreamPlayer2D" parent="." unique_id=3373551]
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="." unique_id=3373551]
 stream = ExtResource("3_liqmj")
 script = ExtResource("4_a17ok")
+
+[node name="DeathParticles" parent="." unique_id=1168632659 instance=ExtResource("5_a17ok")]
+emitting = false
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_a17ok")
+emit_when_exiting = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

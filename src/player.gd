@@ -67,7 +67,7 @@ func jump() -> bool:
 		return false
 	jumps_left -= 1
 	velocity.y = - jump_speed
-	jump_sound.play()
+	jump_sound.randomize_and_play()
 	jump_particles.restart()
 	return true
 
@@ -76,7 +76,7 @@ func attack() -> void:
 	if is_attacking:
 		return
 	is_attacking = true
-	attack_sound.play()
+	attack_sound.randomize_and_play()
 	sprite.play("attack_%d" % animation_state)
 	sword_area.monitoring = true
 	for body in sword_area.get_overlapping_areas():
@@ -92,9 +92,6 @@ func attack() -> void:
 func die() -> void:
 	reparent_child(camera, camera.get_screen_center_position())
 	camera.reset_smoothing()
-	if jump_particles.emitting:
-		reparent_child(jump_particles)
-		jump_particles.finished.connect(jump_particles.queue_free)
 	queue_free()
 	SignalBus.game_over.emit()
 

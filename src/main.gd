@@ -14,4 +14,9 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	
 
 func restart() -> void:
+	# Disconnect node_spawned signal before reloading scene. Otherwise,
+	# SmartSounds and SmartParticles try to reparent themselves to Main via
+	# node_spawned while the current tree is being unloaded, causing errors
+	# ("Parent node is busy setting up children, `add_child()` failed.").
+	SignalBus.node_spawned.disconnect(_on_node_spawned)
 	get_tree().reload_current_scene()

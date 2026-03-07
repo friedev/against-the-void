@@ -1,9 +1,8 @@
-[gd_scene format=3 uid="uid://c6gb25o6wk2xe"]
+[gd_scene format=3 uid="uid://dc6yhxt042ufq"]
 
-[ext_resource type="Script" path="res://src/smart_sound.gd" id="1_da7aj"]
+[ext_resource type="Script" uid="uid://c64papim5fgn1" path="res://src/smart_sound.gd" id="1_da7aj"]
 
-[node name="SmartSound" type="AudioStreamPlayer2D"]
-bus = &"Sound"
+[node name="SmartSound" type="AudioStreamPlayer2D" unique_id=1182294992]
 script = ExtResource("1_da7aj")
 
 [connection signal="finished" from="." to="." method="_on_finished"]

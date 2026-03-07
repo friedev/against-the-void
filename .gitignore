@@ -17,3 +17,4 @@ bin/
 
 # Krita backups
 *~
+*.kra-autosave.kra

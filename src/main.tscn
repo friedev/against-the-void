@@ -2,12 +2,13 @@
 
 [ext_resource type="Script" uid="uid://ussa75mhy2qk" path="res://src/player.gd" id="1_eewff"]
 [ext_resource type="Script" uid="uid://c65yticfyxrkh" path="res://src/main.gd" id="1_rlaii"]
-[ext_resource type="Texture2D" uid="uid://kql6x0tdfhss" path="res://assets/images/player_attack.png" id="2_3cfgd"]
-[ext_resource type="Texture2D" uid="uid://bk42ydfv0kmyw" path="res://assets/images/player.png" id="2_gh0ne"]
 [ext_resource type="Script" uid="uid://cxl8vpotvt0io" path="res://src/kill_zone.gd" id="3_5q4o7"]
-[ext_resource type="Texture2D" uid="uid://fy5jb6tbq2kg" path="res://assets/images/player_attack_recover.png" id="3_rlaii"]
+[ext_resource type="Texture2D" uid="uid://6i557rkqvxqi" path="res://assets/images/player_attack_1.png" id="3_tb146"]
+[ext_resource type="Texture2D" uid="uid://y6r86dn2pe5c" path="res://assets/images/player_attack_2.png" id="4_e7lu8"]
+[ext_resource type="Texture2D" uid="uid://cm7tqiur1h4e4" path="res://assets/images/player_idle_1.png" id="5_okx7f"]
 [ext_resource type="Script" uid="uid://e3kkgn3wnk4t" path="res://src/enemy_spawner.gd" id="6_5mrjc"]
 [ext_resource type="AudioStream" uid="uid://sfrh6uqm4l6x" path="res://assets/sounds/swish.wav" id="6_mgm53"]
+[ext_resource type="Texture2D" uid="uid://b2kpxra4dxk2b" path="res://assets/images/player_idle_2.png" id="6_sta5p"]
 [ext_resource type="Script" path="res://src/smart_sound.gd" id="7_uewes"]
 [ext_resource type="PackedScene" uid="uid://dcsjkgjjpmdst" path="res://src/enemy.tscn" id="8_5mrjc"]
 [ext_resource type="AudioStream" uid="uid://cf5wkx8chpjt1" path="res://assets/sounds/jump.wav" id="8_uewes"]
@@ -20,36 +21,47 @@
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_3cfgd")
+"texture": ExtResource("3_tb146")
 }],
 "loop": true,
-"name": &"attack",
+"name": &"attack_0",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_rlaii")
+"texture": ExtResource("4_e7lu8")
 }],
 "loop": true,
-"name": &"attack_recover",
+"name": &"attack_1",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_gh0ne")
+"texture": ExtResource("5_okx7f")
 }],
 "loop": true,
-"name": &"default",
+"name": &"idle_0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_sta5p")
+}],
+"loop": true,
+"name": &"idle_1",
 "speed": 5.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ts572"]
 radius = 7.0
-height = 36.0
+height = 31.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fyndt"]
-radius = 32.954315
-height = 114.868774
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tb146"]
+radius = 23.0
+height = 99.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e7lu8"]
+radius = 31.503967
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3cfgd"]
 
@@ -77,12 +89,13 @@ jump_sound = NodePath("JumpSound")
 camera = NodePath("ShakeCamera")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="Player" unique_id=1711341869]
-position = Vector2(4.343811, 7)
-scale = Vector2(0.5, 0.5)
+position = Vector2(0, 32)
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_5q4o7")
+animation = &"idle_0"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=972111300]
-position = Vector2(1, -8)
+position = Vector2(1, 1.5)
 shape = SubResource("CapsuleShape2D_ts572")
 
 [node name="SwordArea" type="Area2D" parent="Player" unique_id=1753714991]
@@ -92,9 +105,12 @@ monitoring = false
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/SwordArea" unique_id=572079674]
-position = Vector2(4.593505, 36.74813)
-rotation = -0.21510567
-shape = SubResource("CapsuleShape2D_fyndt")
+position = Vector2(0, 40.5)
+shape = SubResource("CapsuleShape2D_tb146")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Player/SwordArea" unique_id=944467009]
+position = Vector2(0, 22.5)
+shape = SubResource("CircleShape2D_e7lu8")
 
 [node name="AttackSound" type="AudioStreamPlayer2D" parent="Player" unique_id=2001106003]
 stream = ExtResource("6_mgm53")

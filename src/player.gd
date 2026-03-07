@@ -20,6 +20,9 @@ class_name Player extends CharacterBody2D
 @onready var initial_position := position
 @onready var jumps_left := air_jumps
 
+var is_attacking := false
+var animation_state := 0
+
 
 func _physics_process(delta: float) -> void:
 	# Add gravity
@@ -44,7 +47,7 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-	if not is_attacking():
+	if not is_attacking:
 		if input_direction < 0.0:
 			sprite.flip_h = true
 			sword_area.scale.x = -1.0
@@ -67,26 +70,23 @@ func jump() -> bool:
 	return true
 
 
-func attack() -> bool:
-	if is_attacking():
-		return false
+func attack() -> void:
+	if is_attacking:
+		return
+	is_attacking = true
 	attack_sound.play()
-	sprite.play("attack")
+	sprite.play("attack_%d" % animation_state)
 	sword_area.monitoring = true
 	for body in sword_area.get_overlapping_areas():
 		try_hit(body)
 	await get_tree().create_timer(attack_duration).timeout
-	sprite.play("attack_recover")
+	animation_state = (animation_state + 1) % 2
+	sprite.play("idle_%d" % animation_state)
 	sword_area.monitoring = false
 	await get_tree().create_timer(attack_cooldown).timeout
-	sprite.play("default")
-	return true
+	is_attacking = false
 
 
-func is_attacking() -> bool:
-	return sprite.animation == "attack" or sprite.animation == "attack_recover"
-
-	
 func die() -> void:
 	var camera_position := camera.get_screen_center_position()
 	remove_child(camera)

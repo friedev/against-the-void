@@ -94,6 +94,7 @@ func die() -> void:
 	camera.global_position = camera_position
 	camera.reset_smoothing()
 	queue_free()
+	SignalBus.game_over.emit()
 
 
 func try_hit(body: Node2D) -> void:

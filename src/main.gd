@@ -1,4 +1,4 @@
-class_name Main extends Node2D
+class_name Main extends Node
 
 func _ready() -> void:
 	SignalBus.node_spawned.connect(_on_node_spawned)

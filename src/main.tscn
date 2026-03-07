@@ -53,7 +53,7 @@ height = 114.868774
 [node name="Main" type="Node2D" unique_id=793816073]
 script = ExtResource("1_rlaii")
 
-[node name="Player" type="CharacterBody2D" parent="." unique_id=305687847 node_paths=PackedStringArray("sprite", "sword_area", "attack_sound", "jump_sound")]
+[node name="Player" type="CharacterBody2D" parent="." unique_id=305687847 node_paths=PackedStringArray("sprite", "sword_area", "attack_sound", "jump_sound", "camera")]
 position = Vector2(1, -550)
 scale = Vector2(2, 2)
 collision_mask = 2
@@ -71,6 +71,7 @@ sprite = NodePath("Sprite2D")
 sword_area = NodePath("SwordArea")
 attack_sound = NodePath("AttackSound")
 jump_sound = NodePath("JumpSound")
+camera = NodePath("ShakeCamera")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="Player" unique_id=1711341869]
 position = Vector2(4.343811, 7)

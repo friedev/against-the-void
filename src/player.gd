@@ -15,6 +15,7 @@ class_name Player extends CharacterBody2D
 @export var sword_area: Area2D
 @export var attack_sound: SmartSound
 @export var jump_sound: SmartSound
+@export var camera: Camera2D
 
 @onready var initial_position := position
 @onready var jumps_left := air_jumps
@@ -55,8 +56,6 @@ func _physics_process(delta: float) -> void:
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("attack"):
 		attack()
-	elif event.is_action_pressed("restart"):
-		die()
 
 
 func jump() -> bool:
@@ -89,12 +88,12 @@ func is_attacking() -> bool:
 
 	
 func die() -> void:
-	position = initial_position
-	jumps_left = air_jumps
-	velocity = Vector2.ZERO
-	#visible = false
-	#velocity = Vector2.ZERO
-	#process_mode = PROCESS_MODE_DISABLED
+	var camera_position := camera.get_screen_center_position()
+	remove_child(camera)
+	SignalBus.node_spawned.emit(camera)
+	camera.global_position = camera_position
+	camera.reset_smoothing()
+	queue_free()
 
 
 func try_hit(body: Node2D) -> void:

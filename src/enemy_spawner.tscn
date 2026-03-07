@@ -3,19 +3,11 @@
 [ext_resource type="Script" uid="uid://e3kkgn3wnk4t" path="res://src/enemy_spawner.gd" id="1_n27sx"]
 [ext_resource type="PackedScene" uid="uid://dcsjkgjjpmdst" path="res://src/enemy.tscn" id="2_ebymd"]
 
-[node name="EnemySpawner" type="Node2D" unique_id=431051513 node_paths=PackedStringArray("endpoint1", "endpoint2", "spawn_timer")]
+[node name="EnemySpawner" type="Node2D" unique_id=431051513 node_paths=PackedStringArray("spawn_timer")]
 script = ExtResource("1_n27sx")
 enemy_scene = ExtResource("2_ebymd")
-endpoint1 = NodePath("Endpoint1")
-endpoint2 = NodePath("Endpoint2")
 spawn_timer = NodePath("SpawnTimer")
 
 [node name="SpawnTimer" type="Timer" parent="." unique_id=1939794040]
-
-[node name="Endpoint1" type="Node2D" parent="." unique_id=2020784852]
-position = Vector2(0, -1473)
-
-[node name="Endpoint2" type="Node2D" parent="." unique_id=1556716815]
-position = Vector2(0, 49)
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

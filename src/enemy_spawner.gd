@@ -5,8 +5,6 @@ class_name EnemySpawner extends Node2D
 @export var spawn_time: float
 
 @export_group("Internal Nodes")
-@export var endpoint1: Node2D
-@export var endpoint2: Node2D
 @export var spawn_timer: Timer
 
 func _ready() -> void:
@@ -16,6 +14,6 @@ func _ready() -> void:
 
 func _on_spawn_timer_timeout() -> void:
 	var enemy: Enemy = enemy_scene.instantiate()
-	enemy.global_position = endpoint1.global_position.lerp(endpoint2.global_position, randf())
+	enemy.global_position = Vector2(global_position.x, lerpf(0.0, global_position.y, randf()))
 	enemy.speed *= enemy_speed_mod
 	SignalBus.node_spawned.emit(enemy)

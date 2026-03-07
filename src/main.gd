@@ -6,6 +6,3 @@ func _ready() -> void:
 
 func _on_node_spawned(node: Node) -> void:
 	add_child(node)
-
-func _on_sword_area_area_entered(area: Area2D) -> void:
-	pass # Replace with function body.

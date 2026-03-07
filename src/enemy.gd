@@ -12,6 +12,7 @@ func _physics_process(delta: float) -> void:
 
 func die() -> void:
 	death_sound.play()
+	SignalBus.screen_shake.emit(1.0)
 	queue_free()
 
 

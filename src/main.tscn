@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://src/smart_sound.gd" id="7_uewes"]
 [ext_resource type="PackedScene" uid="uid://dcsjkgjjpmdst" path="res://src/enemy.tscn" id="8_5mrjc"]
 [ext_resource type="AudioStream" uid="uid://cf5wkx8chpjt1" path="res://assets/sounds/jump.wav" id="8_uewes"]
+[ext_resource type="Script" uid="uid://c841a3h3xkybc" path="res://src/shake_camera.gd" id="9_kqbth"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5q4o7"]
 animations = [{
@@ -99,11 +100,15 @@ script = ExtResource("7_uewes")
 stream = ExtResource("8_uewes")
 script = ExtResource("7_uewes")
 
-[node name="Camera2D" type="Camera2D" parent="Player" unique_id=291887697]
+[node name="ShakeCamera" type="Camera2D" parent="Player" unique_id=291887697]
 process_callback = 0
 limit_bottom = 0
 limit_smoothed = true
 position_smoothing_enabled = true
+script = ExtResource("9_kqbth")
+shake_rate = 1.0
+max_offset = 48.0
+shake_reduction = 3.0
 
 [node name="KillZone" type="Area2D" parent="." unique_id=845912716]
 collision_layer = 0

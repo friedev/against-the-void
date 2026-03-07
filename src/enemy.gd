@@ -1,4 +1,4 @@
-class_name Enemy extends CharacterBody2D
+class_name Enemy extends Area2D
 
 @export var speed: float
 
@@ -6,11 +6,24 @@ class_name Enemy extends CharacterBody2D
 @export var death_sound: SmartSound
 
 
-func _physics_process(_delta: float) -> void:
-	velocity.x = speed
-	move_and_slide()
+func _physics_process(delta: float) -> void:
+	position.x += speed * delta
 
 
 func die() -> void:
 	death_sound.play()
 	queue_free()
+
+
+func try_hit_player(body: Node2D) -> void:
+	if body is Player:
+		var player: Player = body
+		hit_player(player)
+
+
+func hit_player(player: Player) -> void:
+	player.die()
+
+
+func _on_body_entered(body: Node2D) -> void:
+	try_hit_player(body)

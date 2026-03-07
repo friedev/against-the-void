@@ -17,7 +17,6 @@ class_name Player extends CharacterBody2D
 @export var jump_sound: SmartSound
 
 @onready var initial_position := position
-
 @onready var jumps_left := air_jumps
 
 
@@ -75,7 +74,7 @@ func attack() -> bool:
 	attack_sound.play()
 	sprite.play("attack")
 	sword_area.monitoring = true
-	for body in sword_area.get_overlapping_bodies():
+	for body in sword_area.get_overlapping_areas():
 		try_hit(body)
 	await get_tree().create_timer(attack_duration).timeout
 	sprite.play("attack_recover")
@@ -109,5 +108,5 @@ func hit(enemy: Enemy) -> void:
 	jumps_left = air_jumps
 
 
-func _on_sword_area_body_entered(body: Node2D) -> void:
-	try_hit(body)
+func _on_sword_area_area_entered(area: Area2D) -> void:
+	try_hit(area)

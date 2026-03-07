@@ -118,6 +118,7 @@ enemy_scene = ExtResource("8_5mrjc")
 wait_time = 1.5
 autostart = true
 
+[connection signal="area_entered" from="Player/SwordArea" to="Player" method="_on_sword_area_area_entered"]
 [connection signal="body_entered" from="Player/SwordArea" to="Player" method="_on_sword_area_body_entered"]
 [connection signal="body_entered" from="KillZone" to="KillZone" method="_on_body_entered"]
 [connection signal="timeout" from="EnemySpawner/SpawnTimer" to="EnemySpawner" method="_on_spawn_timer_timeout"]

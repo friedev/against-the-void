@@ -17,6 +17,8 @@
 [ext_resource type="PackedScene" uid="uid://2stt7v0hsnst" path="res://src/smart_particles.tscn" id="13_tb146"]
 [ext_resource type="FontFile" uid="uid://bu2eay6qumf2f" path="res://assets/fonts/FSEX302.ttf" id="14_mlv6i"]
 [ext_resource type="Script" uid="uid://y80b3e41s1fp" path="res://src/noise_sprite.gd" id="17_e7lu8"]
+[ext_resource type="AudioStream" uid="uid://cqf74nv8e4jhv" path="res://assets/sounds/ambience.ogg" id="18_okx7f"]
+[ext_resource type="AudioStream" uid="uid://bdlqf0u0m1wpy" path="res://assets/sounds/wind.ogg" id="19_sta5p"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5q4o7"]
 animations = [{
@@ -288,6 +290,15 @@ repeat_times = 3
 position = Vector2(768, 768)
 texture = SubResource("NoiseTexture2D_okx7f")
 script = ExtResource("17_e7lu8")
+
+[node name="DarkAmbience" type="AudioStreamPlayer" parent="." unique_id=402455208]
+stream = ExtResource("18_okx7f")
+autoplay = true
+
+[node name="WindAmbience" type="AudioStreamPlayer" parent="." unique_id=354364169]
+stream = ExtResource("19_sta5p")
+volume_db = -6.0
+autoplay = true
 
 [connection signal="area_entered" from="Player/SwordArea" to="Player" method="_on_sword_area_area_entered"]
 [connection signal="body_entered" from="Player/SwordArea" to="Player" method="_on_sword_area_body_entered"]

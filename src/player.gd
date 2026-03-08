@@ -5,7 +5,8 @@ static var instance: Player
 
 @export var max_speed: Vector2
 @export var jump_speed: float
-@export var recoil_speed: float
+@export var pogo_recoil_speed: float
+@export var non_pogo_recoil_speed: float
 @export var acceleration: float
 @export var deceleration: float
 @export var fast_fall_acceleration: float
@@ -60,10 +61,8 @@ func _physics_process(delta: float) -> void:
 	if not is_attacking:
 		if input_direction < 0.0:
 			sprite.flip_h = true
-			sword_area.scale.x = -1.0
 		elif input_direction > 0.0:
 			sprite.flip_h = false
-			sword_area.scale.x = +1.0
 
 
 func _unhandled_key_input(event: InputEvent) -> void:
@@ -86,14 +85,25 @@ func attack() -> void:
 		return
 	is_attacking = true
 	attack_sound.randomize_and_play()
-	sprite.play("attack_%d" % animation_state)
+
+	var attack_direction := Input.get_vector("aim_left", "aim_right", "aim_up", "aim_down")
+	if attack_direction.y != 0.0:
+		attack_direction.x = 0.0
+	if attack_direction == Vector2.ZERO:
+		attack_direction = Vector2.LEFT if sprite.flip_h else Vector2.RIGHT
+	attack_direction = attack_direction.normalized()
+
+	sword_area.rotation = attack_direction.angle()
+	sword_area.show()
+	animation_state = (animation_state + 1) % 2
+	sprite.play("idle_%d" % animation_state)
+
 	sword_area.monitoring = true
 	for body in sword_area.get_overlapping_areas():
 		try_hit(body)
 	await get_tree().create_timer(attack_duration).timeout
-	animation_state = (animation_state + 1) % 2
-	sprite.play("idle_%d" % animation_state)
 	sword_area.monitoring = false
+	sword_area.hide()
 	await get_tree().create_timer(attack_cooldown).timeout
 	is_attacking = false
 
@@ -123,8 +133,12 @@ func try_hit(body: Node2D) -> void:
 
 func hit(enemy: Enemy) -> void:
 	enemy.die()
-	velocity.y = - recoil_speed
-	jumps_left = air_jumps
+	var recoil_direction := Vector2(1, 0).rotated(sword_area.rotation)
+	if recoil_direction.y > 0:
+		velocity.y = - pogo_recoil_speed
+		jumps_left = air_jumps
+	else:
+		velocity -= recoil_direction * non_pogo_recoil_speed
 
 
 func _on_sword_area_area_entered(area: Area2D) -> void:

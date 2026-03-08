@@ -3,9 +3,8 @@
 [ext_resource type="Script" uid="uid://ussa75mhy2qk" path="res://src/player.gd" id="1_eewff"]
 [ext_resource type="Script" uid="uid://c65yticfyxrkh" path="res://src/main.gd" id="1_rlaii"]
 [ext_resource type="Script" uid="uid://cxl8vpotvt0io" path="res://src/kill_zone.gd" id="3_5q4o7"]
-[ext_resource type="Texture2D" uid="uid://6i557rkqvxqi" path="res://assets/images/player_attack_1.png" id="3_tb146"]
-[ext_resource type="Texture2D" uid="uid://y6r86dn2pe5c" path="res://assets/images/player_attack_2.png" id="4_e7lu8"]
 [ext_resource type="Texture2D" uid="uid://cm7tqiur1h4e4" path="res://assets/images/player_idle_1.png" id="5_okx7f"]
+[ext_resource type="Texture2D" uid="uid://b6kcdrbf4fnh2" path="res://assets/images/slash.png" id="5_tb146"]
 [ext_resource type="AudioStream" uid="uid://sfrh6uqm4l6x" path="res://assets/sounds/swish.wav" id="6_mgm53"]
 [ext_resource type="Texture2D" uid="uid://b2kpxra4dxk2b" path="res://assets/images/player_idle_2.png" id="6_sta5p"]
 [ext_resource type="Script" uid="uid://c64papim5fgn1" path="res://src/smart_sound.gd" id="7_uewes"]
@@ -17,26 +16,9 @@
 [ext_resource type="Script" uid="uid://cwopu6is2c5wm" path="res://src/time_label.gd" id="13_srxbw"]
 [ext_resource type="PackedScene" uid="uid://2stt7v0hsnst" path="res://src/smart_particles.tscn" id="13_tb146"]
 [ext_resource type="FontFile" uid="uid://bu2eay6qumf2f" path="res://assets/fonts/FSEX302.ttf" id="14_mlv6i"]
-[ext_resource type="PackedScene" uid="uid://btr2ewc6lv8ov" path="res://src/enemies/basic_enemy.tscn" id="14_okx7f"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5q4o7"]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_tb146")
-}],
-"loop": true,
-"name": &"attack_0",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("4_e7lu8")
-}],
-"loop": true,
-"name": &"attack_1",
-"speed": 5.0
-}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("5_okx7f")
@@ -57,6 +39,17 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ts572"]
 radius = 3.5
 height = 15.5
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e7lu8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_tb146")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tb146"]
 radius = 11.5
@@ -119,7 +112,8 @@ collision_mask = 2
 script = ExtResource("1_eewff")
 max_speed = Vector2(162.5, 250)
 jump_speed = 162.5
-recoil_speed = 150.0
+pogo_recoil_speed = 150.0
+non_pogo_recoil_speed = 50.0
 acceleration = 1250.0
 deceleration = 2500.0
 fast_fall_acceleration = 500.0
@@ -144,17 +138,24 @@ animation = &"idle_0"
 shape = SubResource("CapsuleShape2D_ts572")
 
 [node name="SwordArea" type="Area2D" parent="Player" unique_id=1753714991]
+visible = false
 collision_layer = 0
 collision_mask = 2
 monitoring = false
 monitorable = false
 
+[node name="SwordSprite" type="AnimatedSprite2D" parent="Player/SwordArea" unique_id=546328092]
+rotation = -1.5707964
+sprite_frames = SubResource("SpriteFrames_e7lu8")
+offset = Vector2(0, 16)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/SwordArea" unique_id=572079674]
-position = Vector2(0, 20.25)
+position = Vector2(20.25, 0)
+rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_tb146")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Player/SwordArea" unique_id=944467009]
-position = Vector2(0, 11.25)
+position = Vector2(11.25, 0)
 shape = SubResource("CircleShape2D_e7lu8")
 
 [node name="AttackSound" type="AudioStreamPlayer2D" parent="Player" unique_id=2001106003]
@@ -199,14 +200,12 @@ shake_reduction = 3.0
 [node name="LeftEnemySpawner" parent="Player" unique_id=431051513 instance=ExtResource("12_mlv6i")]
 position = Vector2(-265.75, -207.75)
 scale = Vector2(0.5, 0.5)
-enemy_scene = ExtResource("14_okx7f")
 spawn_time = 0.5
 
 [node name="RightEnemySpawner" parent="Player" unique_id=1504014088 instance=ExtResource("12_mlv6i")]
 position = Vector2(265.75, -208.75)
 scale = Vector2(0.5, 0.5)
 flip_h = true
-enemy_scene = ExtResource("14_okx7f")
 spawn_time = 0.5
 
 [node name="LeftKillZone" type="Area2D" parent="Player" unique_id=634507289]

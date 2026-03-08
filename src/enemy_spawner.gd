@@ -1,6 +1,6 @@
 class_name EnemySpawner extends Node2D
 
-@export var enemy_speed_mod := 1.0
+@export var flip_h: bool
 @export var enemy_scene: PackedScene
 @export var spawn_time: float
 
@@ -15,6 +15,6 @@ func _ready() -> void:
 func _on_spawn_timer_timeout() -> void:
 	var enemy: Enemy = enemy_scene.instantiate()
 	enemy.global_position = Vector2(global_position.x, lerpf(0.0, global_position.y, randf()))
-	enemy.min_speed *= enemy_speed_mod
-	enemy.max_speed *= enemy_speed_mod
+	if flip_h:
+		enemy.scale.x *= -1.0
 	SignalBus.node_spawned.emit(enemy)

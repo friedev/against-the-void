@@ -17,6 +17,7 @@
 [ext_resource type="Script" uid="uid://cwopu6is2c5wm" path="res://src/time_label.gd" id="13_srxbw"]
 [ext_resource type="PackedScene" uid="uid://2stt7v0hsnst" path="res://src/smart_particles.tscn" id="13_tb146"]
 [ext_resource type="FontFile" uid="uid://bu2eay6qumf2f" path="res://assets/fonts/FSEX302.ttf" id="14_mlv6i"]
+[ext_resource type="PackedScene" uid="uid://btr2ewc6lv8ov" path="res://src/enemies/basic_enemy.tscn" id="14_okx7f"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5q4o7"]
 animations = [{
@@ -83,12 +84,12 @@ scale_min = 2.0
 scale_max = 4.0
 scale_curve = SubResource("CurveTexture_e7lu8")
 
-[sub_resource type="Curve" id="Curve_tb146"]
+[sub_resource type="Curve" id="Curve_liqmj"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.6256652, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_a17ok"]
-curve = SubResource("Curve_tb146")
+[sub_resource type="CurveTexture" id="CurveTexture_5ku1l"]
+curve = SubResource("Curve_liqmj")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_okx7f"]
 lifetime_randomness = 0.25
@@ -99,7 +100,7 @@ initial_velocity_max = 100.0
 gravity = Vector3(0, 98, 0)
 scale_min = 3.0
 scale_max = 6.0
-scale_curve = SubResource("CurveTexture_a17ok")
+scale_curve = SubResource("CurveTexture_5ku1l")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_mlv6i"]
 normal = Vector2(1, 0)
@@ -195,15 +196,17 @@ shake_rate = 1.0
 max_offset = 32.0
 shake_reduction = 3.0
 
-[node name="EnemySpawner" parent="Player" unique_id=431051513 instance=ExtResource("12_mlv6i")]
-position = Vector2(-265.75, -208.75)
+[node name="LeftEnemySpawner" parent="Player" unique_id=431051513 instance=ExtResource("12_mlv6i")]
+position = Vector2(-265.75, -207.75)
 scale = Vector2(0.5, 0.5)
+enemy_scene = ExtResource("14_okx7f")
 spawn_time = 0.5
 
-[node name="EnemySpawner2" parent="Player" unique_id=1504014088 instance=ExtResource("12_mlv6i")]
+[node name="RightEnemySpawner" parent="Player" unique_id=1504014088 instance=ExtResource("12_mlv6i")]
 position = Vector2(265.75, -208.75)
 scale = Vector2(0.5, 0.5)
-enemy_speed_mod = -1.0
+flip_h = true
+enemy_scene = ExtResource("14_okx7f")
 spawn_time = 0.5
 
 [node name="LeftKillZone" type="Area2D" parent="Player" unique_id=634507289]

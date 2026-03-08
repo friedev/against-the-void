@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c8yt3kcn7b6fs"]
 
 [ext_resource type="Script" uid="uid://e3kkgn3wnk4t" path="res://src/enemy_spawner.gd" id="1_n27sx"]
-[ext_resource type="PackedScene" uid="uid://dcsjkgjjpmdst" path="res://src/enemy.tscn" id="2_ebymd"]
+[ext_resource type="PackedScene" uid="uid://dcsjkgjjpmdst" path="res://src/enemies/enemy.tscn" id="2_ebymd"]
 
 [node name="EnemySpawner" type="Node2D" unique_id=431051513 node_paths=PackedStringArray("spawn_timer")]
 script = ExtResource("1_n27sx")

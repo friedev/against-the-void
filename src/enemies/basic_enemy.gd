@@ -20,7 +20,15 @@ func _ready() -> void:
 	speed *= speed_mod
 
 
+func update_osc(delta: float) -> void:
+	osc_input += delta / osc_period
+
+
+func get_osc() -> float:
+	return sin(osc_input * TAU) * osc_amplitude
+
+
 func _physics_process(delta: float) -> void:
 	position.x += speed * delta
-	osc_input += delta / osc_period
-	position.y = initial_y + sin(osc_input * TAU) * osc_amplitude
+	update_osc(delta)
+	position.y = initial_y + get_osc()

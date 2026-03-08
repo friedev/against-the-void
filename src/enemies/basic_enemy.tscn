@@ -45,20 +45,20 @@ scale_curve = SubResource("CurveTexture_5ku1l")
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.6131628, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_ei7px"]
+[sub_resource type="CurveTexture" id="CurveTexture_6s2gs"]
 curve = SubResource("Curve_vrbx1")
 
 [sub_resource type="Gradient" id="Gradient_a17ok"]
 colors = PackedColorArray(0.53333336, 0.53333336, 0.53333336, 1, 0, 0, 0, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_vrbx1"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_wio8o"]
 gradient = SubResource("Gradient_a17ok")
 
 [sub_resource type="Curve" id="Curve_a17ok"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.6256652, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_vrbx1"]
+[sub_resource type="CurveTexture" id="CurveTexture_7lub6"]
 curve = SubResource("Curve_a17ok")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5ku1l"]
@@ -72,16 +72,16 @@ initial_velocity_max = 50.0
 gravity = Vector3(0, -98, 0)
 scale_min = 4.0
 scale_max = 8.0
-scale_curve = SubResource("CurveTexture_vrbx1")
+scale_curve = SubResource("CurveTexture_7lub6")
 color = Color(0.53333336, 0.53333336, 0.53333336, 1)
-color_ramp = SubResource("GradientTexture1D_vrbx1")
-alpha_curve = SubResource("CurveTexture_ei7px")
+color_ramp = SubResource("GradientTexture1D_wio8o")
+alpha_curve = SubResource("CurveTexture_6s2gs")
 
 [node name="BasicEnemy" unique_id=444889010 instance=ExtResource("1_u7v80")]
 script = ExtResource("2_hp671")
 min_speed = 50.0
 max_speed = 150.0
-min_osc_amplitude = 1.0
+min_osc_amplitude = 0.0
 max_osc_amplitude = 16.0
 min_osc_period = 1.0
 max_osc_period = 4.0

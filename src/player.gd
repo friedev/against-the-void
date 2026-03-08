@@ -1,5 +1,8 @@
 class_name Player extends CharacterBody2D
 
+## Singleton instance.
+static var instance: Player
+
 @export var max_speed: Vector2
 @export var jump_speed: float
 @export var recoil_speed: float
@@ -25,6 +28,10 @@ class_name Player extends CharacterBody2D
 
 var is_attacking := false
 var animation_state := 0
+
+func _enter_tree() -> void:
+	assert(instance == null)
+	instance = self
 
 
 func _physics_process(delta: float) -> void:

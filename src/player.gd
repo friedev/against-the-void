@@ -13,10 +13,12 @@ class_name Player extends CharacterBody2D
 @export_group("Internal Nodes")
 @export var sprite: AnimatedSprite2D
 @export var sword_area: Area2D
+@export var camera: Camera2D
 @export var attack_sound: SmartSound
 @export var jump_sound: SmartSound
-@export var camera: Camera2D
+@export var death_sound: SmartSound
 @export var jump_particles: GPUParticles2D
+@export var death_particles: GPUParticles2D
 
 @onready var initial_position := position
 @onready var jumps_left := air_jumps
@@ -90,6 +92,9 @@ func attack() -> void:
 
 
 func die() -> void:
+	death_particles.restart()
+	death_sound.randomize_and_play()
+	SignalBus.screen_shake.emit(1.0)
 	reparent_child(camera, camera.get_screen_center_position())
 	camera.reset_smoothing()
 	queue_free()

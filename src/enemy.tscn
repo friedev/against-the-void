@@ -24,7 +24,7 @@ radius = 8.5
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.6256652, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_a17ok"]
+[sub_resource type="CurveTexture" id="CurveTexture_5ku1l"]
 curve = SubResource("Curve_liqmj")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_a17ok"]
@@ -36,7 +36,7 @@ initial_velocity_max = 100.0
 gravity = Vector3(0, 98, 0)
 scale_min = 3.0
 scale_max = 6.0
-scale_curve = SubResource("CurveTexture_a17ok")
+scale_curve = SubResource("CurveTexture_5ku1l")
 
 [node name="Enemy" type="Area2D" unique_id=444889010 node_paths=PackedStringArray("sprite", "death_sound", "death_particles")]
 collision_layer = 2
@@ -65,6 +65,5 @@ lifetime = 0.5
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_a17ok")
-emit_when_exiting = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Gravity"
+config/name="Against the Void"
 config/version="v1.0.0-dev"
 run/main_scene="uid://px03diws0gc5"
 config/features=PackedStringArray("4.6", "GL Compatibility")
@@ -36,7 +36,7 @@ window/stretch/aspect="expand"
 
 [dotnet]
 
-project/assembly_name="Gravity"
+project/assembly_name="Against the Void"
 
 [input]
 

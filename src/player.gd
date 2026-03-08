@@ -127,7 +127,7 @@ func reparent_child(child: Node2D, new_position := Vector2.INF) -> void:
 	if new_position == Vector2.INF:
 		new_position = (child as Node2D).global_position
 	remove_child(child)
-	SignalBus.node_spawned.emit(child)
+	SignalBus.node_spawned.emit.call_deferred(child)
 	child.global_position = new_position
 
 

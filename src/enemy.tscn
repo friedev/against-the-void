@@ -38,6 +38,42 @@ scale_min = 3.0
 scale_max = 6.0
 scale_curve = SubResource("CurveTexture_5ku1l")
 
+[sub_resource type="Curve" id="Curve_vrbx1"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.6131628, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ei7px"]
+curve = SubResource("Curve_vrbx1")
+
+[sub_resource type="Gradient" id="Gradient_a17ok"]
+colors = PackedColorArray(0.53333336, 0.53333336, 0.53333336, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_vrbx1"]
+gradient = SubResource("Gradient_a17ok")
+
+[sub_resource type="Curve" id="Curve_a17ok"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.6256652, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_vrbx1"]
+curve = SubResource("Curve_a17ok")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5ku1l"]
+lifetime_randomness = 0.25
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 8.53
+direction = Vector3(-1, -1, 0)
+initial_velocity_min = 25.0
+initial_velocity_max = 50.0
+gravity = Vector3(0, -98, 0)
+scale_min = 4.0
+scale_max = 8.0
+scale_curve = SubResource("CurveTexture_vrbx1")
+color = Color(0.53333336, 0.53333336, 0.53333336, 1)
+color_ramp = SubResource("GradientTexture1D_vrbx1")
+alpha_curve = SubResource("CurveTexture_ei7px")
+
 [node name="Enemy" type="Area2D" unique_id=444889010 node_paths=PackedStringArray("sprite", "death_sound", "death_particles")]
 collision_layer = 2
 script = ExtResource("1_u7g3q")
@@ -48,11 +84,9 @@ death_sound = NodePath("DeathSound")
 death_particles = NodePath("DeathParticles")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=1721054349]
-position = Vector2(0, -1)
 sprite_frames = SubResource("SpriteFrames_kmhfv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=336696788]
-position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_rlaii")
 
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="." unique_id=3373551]
@@ -65,5 +99,10 @@ lifetime = 0.5
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_a17ok")
+
+[node name="SmokeParticles" parent="." unique_id=1466026813 instance=ExtResource("5_a17ok")]
+amount = 12
+visibility_rect = Rect2(-300, -100, 600, 200)
+process_material = SubResource("ParticleProcessMaterial_5ku1l")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

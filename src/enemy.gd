@@ -11,8 +11,7 @@ class_name Enemy extends Area2D
 @onready var speed := randf_range(min_speed, max_speed)
 
 func _ready() -> void:
-	if speed < 0.0:
-		sprite.flip_h = not sprite.flip_h
+	scale.x = signf(speed)
 
 
 func _physics_process(delta: float) -> void:

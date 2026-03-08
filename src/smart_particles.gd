@@ -14,7 +14,9 @@ func _on_finished() -> void:
 
 func _exit_tree() -> void:
 	if finish_before_exiting and emitting:
-		one_shot = true
+		if not one_shot:
+			emitting = false
+			one_shot = true
 		var previous_global_position := global_position
 		await get_parent().tree_exited
 		get_parent().remove_child(self )

@@ -27,6 +27,7 @@ static var instance: Player
 @onready var initial_position := position
 @onready var jumps_left := air_jumps
 
+var is_attack_buffered := false
 var is_attacking := false
 var animation_state := 0
 
@@ -82,6 +83,7 @@ func jump() -> bool:
 
 func attack() -> void:
 	if is_attacking:
+		is_attack_buffered = true
 		return
 	is_attacking = true
 	attack_sound.randomize_and_play()
@@ -106,6 +108,9 @@ func attack() -> void:
 	sword_area.hide()
 	await get_tree().create_timer(attack_cooldown).timeout
 	is_attacking = false
+	if is_attack_buffered:
+		is_attack_buffered = false
+		attack()
 
 
 func die() -> void:

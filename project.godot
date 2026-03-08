@@ -14,7 +14,7 @@ config/name="Against the Void"
 config/version="v1.0.0-dev"
 run/main_scene="uid://px03diws0gc5"
 config/features=PackedStringArray("4.6", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://cixyxs4ucu10t"
 
 [autoload]
 

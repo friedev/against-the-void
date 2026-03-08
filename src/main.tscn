@@ -16,6 +16,7 @@
 [ext_resource type="Script" uid="uid://cwopu6is2c5wm" path="res://src/time_label.gd" id="13_srxbw"]
 [ext_resource type="PackedScene" uid="uid://2stt7v0hsnst" path="res://src/smart_particles.tscn" id="13_tb146"]
 [ext_resource type="FontFile" uid="uid://bu2eay6qumf2f" path="res://assets/fonts/FSEX302.ttf" id="14_mlv6i"]
+[ext_resource type="Script" uid="uid://y80b3e41s1fp" path="res://src/noise_sprite.gd" id="17_e7lu8"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5q4o7"]
 animations = [{
@@ -103,7 +104,19 @@ normal = Vector2(-1, 0)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_e7lu8"]
 
-[node name="Main" type="Node" unique_id=920204499]
+[sub_resource type="Gradient" id="Gradient_tb146"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.38554215, 0.6927711)
+colors = PackedColorArray(0, 0, 0, 1, 0.09411765, 0.09411765, 0.09411765, 1, 0.1882353, 0.1882353, 0.1882353, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_e7lu8"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_okx7f"]
+noise = SubResource("FastNoiseLite_e7lu8")
+color_ramp = SubResource("Gradient_tb146")
+seamless = true
+
+[node name="Main" type="Node2D" unique_id=1753303902]
 script = ExtResource("1_rlaii")
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=305687847 node_paths=PackedStringArray("sprite", "sword_area", "camera", "attack_sound", "jump_sound", "death_sound", "jump_particles", "death_particles")]
@@ -113,7 +126,7 @@ script = ExtResource("1_eewff")
 max_speed = Vector2(162.5, 250)
 jump_speed = 162.5
 pogo_recoil_speed = 150.0
-non_pogo_recoil_speed = 50.0
+non_pogo_recoil_speed = 100.0
 acceleration = 1250.0
 deceleration = 2500.0
 fast_fall_acceleration = 500.0
@@ -238,9 +251,9 @@ script = ExtResource("3_5q4o7")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BottomKillZone" unique_id=269543840]
 shape = SubResource("WorldBoundaryShape2D_e7lu8")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1593020530]
+[node name="UICanvasLayer" type="CanvasLayer" parent="." unique_id=1593020530]
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer" unique_id=1198113072]
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer" unique_id=1198113072]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -252,7 +265,7 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="TimeLabel" type="Label" parent="CanvasLayer/MarginContainer" unique_id=2143769699]
+[node name="TimeLabel" type="Label" parent="UICanvasLayer/MarginContainer" unique_id=2143769699]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
@@ -260,6 +273,21 @@ theme_override_fonts/font = ExtResource("14_mlv6i")
 theme_override_font_sizes/font_size = 32
 text = "88:88.88"
 script = ExtResource("13_srxbw")
+
+[node name="ParallaxCanvasLayer" type="CanvasLayer" parent="." unique_id=824432241]
+layer = -1
+follow_viewport_enabled = true
+
+[node name="Parallax2D" type="Parallax2D" parent="ParallaxCanvasLayer" unique_id=1226314995]
+z_index = -5
+repeat_size = Vector2(512, 512)
+autoscroll = Vector2(32, 0)
+repeat_times = 3
+
+[node name="NoiseSprite" type="Sprite2D" parent="ParallaxCanvasLayer/Parallax2D" unique_id=1053513239]
+position = Vector2(768, 768)
+texture = SubResource("NoiseTexture2D_okx7f")
+script = ExtResource("17_e7lu8")
 
 [connection signal="area_entered" from="Player/SwordArea" to="Player" method="_on_sword_area_area_entered"]
 [connection signal="body_entered" from="Player/SwordArea" to="Player" method="_on_sword_area_body_entered"]
@@ -269,3 +297,4 @@ script = ExtResource("13_srxbw")
 [connection signal="body_entered" from="Player/RightKillZone" to="Player/RightKillZone" method="_on_body_entered"]
 [connection signal="area_entered" from="BottomKillZone" to="BottomKillZone" method="_on_area_entered"]
 [connection signal="body_entered" from="BottomKillZone" to="BottomKillZone" method="_on_body_entered"]
+[connection signal="texture_updated" from="ParallaxCanvasLayer/Parallax2D/NoiseSprite" to="." method="_on_noise_sprite_texture_updated"]

@@ -1,7 +1,9 @@
-class_name Main extends Node
+class_name Main extends Node2D
 
 func _ready() -> void:
 	SignalBus.node_spawned.connect(_on_node_spawned)
+	process_mode = Node.PROCESS_MODE_DISABLED
+	hide()
 	
 
 func _on_node_spawned(node: Node) -> void:
@@ -20,3 +22,8 @@ func restart() -> void:
 	# ("Parent node is busy setting up children, `add_child()` failed.").
 	SignalBus.node_spawned.disconnect(_on_node_spawned)
 	get_tree().reload_current_scene()
+
+
+func _on_noise_sprite_texture_updated() -> void:
+	show()
+	process_mode = Node.PROCESS_MODE_INHERIT

@@ -41,27 +41,21 @@ scale_min = 3.0
 scale_max = 6.0
 scale_curve = SubResource("CurveTexture_5ku1l")
 
-[sub_resource type="Curve" id="Curve_pv5kb"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.6131628, 0.0, 0, 0]
+[sub_resource type="Curve" id="Curve_vrbx1"]
+_data = [Vector2(0, 0.49438208), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.7268807, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_ei7px"]
-curve = SubResource("Curve_pv5kb")
+[sub_resource type="CurveTexture" id="CurveTexture_6s2gs"]
+curve = SubResource("Curve_vrbx1")
 
-[sub_resource type="Gradient" id="Gradient_svfy5"]
-colors = PackedColorArray(0.53333336, 0.53333336, 0.53333336, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_vrbx1"]
-gradient = SubResource("Gradient_svfy5")
-
-[sub_resource type="Curve" id="Curve_yqskc"]
+[sub_resource type="Curve" id="Curve_a17ok"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.6256652, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_vrbx1"]
-curve = SubResource("Curve_yqskc")
+[sub_resource type="CurveTexture" id="CurveTexture_7lub6"]
+curve = SubResource("Curve_a17ok")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_noblh"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pv5kb"]
 lifetime_randomness = 0.25
 particle_flag_disable_z = true
 emission_shape = 1
@@ -72,10 +66,9 @@ initial_velocity_max = 50.0
 gravity = Vector3(0, -98, 0)
 scale_min = 4.0
 scale_max = 8.0
-scale_curve = SubResource("CurveTexture_vrbx1")
+scale_curve = SubResource("CurveTexture_7lub6")
 color = Color(0.53333336, 0.53333336, 0.53333336, 1)
-color_ramp = SubResource("GradientTexture1D_vrbx1")
-alpha_curve = SubResource("CurveTexture_ei7px")
+alpha_curve = SubResource("CurveTexture_6s2gs")
 
 [node name="SeekerEnemy" unique_id=444889010 instance=ExtResource("1_1pe7x")]
 script = ExtResource("2_pv5kb")
@@ -105,4 +98,4 @@ process_material = SubResource("ParticleProcessMaterial_6h5vx")
 modulate = Color(1, 0.53333336, 0.53333336, 1)
 amount = 12
 visibility_rect = Rect2(-300, -100, 600, 200)
-process_material = SubResource("ParticleProcessMaterial_noblh")
+process_material = SubResource("ParticleProcessMaterial_pv5kb")

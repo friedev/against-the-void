@@ -10,5 +10,6 @@
 
 ## Fonts
 
-- [FixedSys Excelsior](https://github.com/kika/fixedsys) by [Darien Valentine](https://github.com/bathos) ([CC0](http://creativecommons.org/publicdomain/zero/1.0/))
+- [So Narrow](https://www.1001fonts.com/so-font.html) by [Apostrophic Labs](https://www.1001fonts.com/users/apostrophe/) ([1001Fonts FFC License](https://www.1001fonts.com/licenses/ffc.html))
 - [pixelFJ8pt](https://www.1001fonts.com/pixelfj8pt1-font.html) by [MBommeli](https://www.1001fonts.com/users/flashjunior/) ([1001Fonts FFC License](https://www.1001fonts.com/licenses/ffc.html))
+- [FixedSys Excelsior](https://github.com/kika/fixedsys) by [Darien Valentine](https://github.com/bathos) ([CC0](http://creativecommons.org/publicdomain/zero/1.0/))

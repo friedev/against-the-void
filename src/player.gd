@@ -36,6 +36,10 @@ func _enter_tree() -> void:
 	instance = self
 
 
+func _exit_tree() -> void:
+	instance = null
+
+
 func _physics_process(delta: float) -> void:
 	# Add gravity
 	velocity += get_gravity() * delta
@@ -69,6 +73,8 @@ func _physics_process(delta: float) -> void:
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("attack"):
 		attack()
+	elif event.is_action_pressed("die"):
+		die()
 
 
 func jump() -> bool:

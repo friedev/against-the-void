@@ -1,13 +1,14 @@
-class_name Main extends Node2D
+class_name Main extends Node
+
+@export var world_scene: PackedScene
+
+@export_group("Internal Nodes")
+@export var noise_sprite: NoiseSprite
+
+var world: World
 
 func _ready() -> void:
-	SignalBus.node_spawned.connect(_on_node_spawned)
-	process_mode = Node.PROCESS_MODE_DISABLED
-	hide()
-	
-
-func _on_node_spawned(node: Node) -> void:
-	add_child(node)
+	Options.setup()
 	
 
 func _unhandled_key_input(event: InputEvent) -> void:
@@ -16,14 +17,18 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	
 
 func restart() -> void:
-	# Disconnect node_spawned signal before reloading scene. Otherwise,
-	# SmartSounds and SmartParticles try to reparent themselves to Main via
-	# node_spawned while the current tree is being unloaded, causing errors
-	# ("Parent node is busy setting up children, `add_child()` failed.").
-	SignalBus.node_spawned.disconnect(_on_node_spawned)
-	get_tree().reload_current_scene()
+	SignalBus.game_loading.emit()
+	if world != null:
+		SignalBus.node_spawned.disconnect(world._on_node_spawned)
+		world.queue_free()
+		await world.tree_exited
+	world = world_scene.instantiate()
+	add_child(world)
+	if not noise_sprite.is_texture_updated:
+		await noise_sprite.texture_updated
+	SignalBus.game_loaded.emit()
+	Globals.start_ticks = Time.get_ticks_msec()
 
 
-func _on_noise_sprite_texture_updated() -> void:
-	show()
-	process_mode = Node.PROCESS_MODE_INHERIT
+func _on_main_menu_play_pressed() -> void:
+	restart()

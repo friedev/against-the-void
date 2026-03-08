@@ -1,0 +1,285 @@
+[gd_scene format=3 uid="uid://bxjdf1p7ppmjr"]
+
+[ext_resource type="Theme" uid="uid://cp2dw8jh1pmps" path="res://assets/styles/theme.tres" id="1_0sglw"]
+[ext_resource type="Script" uid="uid://bjf4uvk2ono4a" path="res://src/ui/main_menu.gd" id="2_wb0q5"]
+[ext_resource type="FontFile" uid="uid://cbcnlfeucl3vd" path="res://assets/fonts/SONARR__.ttf" id="3_0prml"]
+[ext_resource type="PackedScene" uid="uid://rasjftexmjht" path="res://src/ui/options/fullscreen_option.tscn" id="4_qnfpr"]
+[ext_resource type="Script" uid="uid://50onjg31221w" path="res://src/ui/quit_button.gd" id="5_8g5eo"]
+[ext_resource type="Script" uid="uid://5cl8to4dtw3o" path="res://src/ui/options_menu.gd" id="6_8g5eo"]
+[ext_resource type="PackedScene" uid="uid://c2ycrcbab4t57" path="res://src/ui/options/volume_option.tscn" id="7_otr3d"]
+[ext_resource type="Script" uid="uid://cvfji11bhhncx" path="res://src/ui/version_label.gd" id="7_x8sms"]
+[ext_resource type="PackedScene" uid="uid://dbbnhubut8hco" path="res://src/ui/options/slider_option.tscn" id="8_q85j6"]
+[ext_resource type="PackedScene" uid="uid://cgnmle83oa3at" path="res://src/ui/options/check_box_option.tscn" id="10_7suek"]
+[ext_resource type="Script" uid="uid://b6qdw17kc1ly0" path="res://src/ui/linked_label.gd" id="11_h4dpu"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_h4dpu"]
+allow_unpress = true
+
+[node name="MainMenu" type="MarginContainer" unique_id=654840502 node_paths=PackedStringArray("default_focus", "help_menu", "options_menu", "credits_menu")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_0sglw")
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+script = ExtResource("2_wb0q5")
+default_focus = NodePath("VBoxContainer2/HBoxContainer/VBoxContainer/PlayButton")
+submenu_button_group = SubResource("ButtonGroup_h4dpu")
+help_menu = NodePath("VBoxContainer2/HBoxContainer/HelpMenu")
+options_menu = NodePath("VBoxContainer2/HBoxContainer/OptionsMenu")
+credits_menu = NodePath("VBoxContainer2/HBoxContainer/CreditsMenu")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="." unique_id=465010869]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2" unique_id=952473490]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/separation = -32
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="VBoxContainer2/VBoxContainer" unique_id=550764034]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 0.26666668, 0.26666668, 1)
+theme_override_fonts/font = ExtResource("3_0prml")
+theme_override_font_sizes/font_size = 192
+text = "Against the Void"
+horizontal_alignment = 1
+
+[node name="VersionLabel" type="Label" parent="VBoxContainer2/VBoxContainer" unique_id=1631817745]
+layout_mode = 2
+size_flags_vertical = 8
+text = "vX.X.X"
+horizontal_alignment = 2
+script = ExtResource("7_x8sms")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2" unique_id=1412496860]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/HBoxContainer" unique_id=2108337521]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="PlayButton" type="Button" parent="VBoxContainer2/HBoxContainer/VBoxContainer" unique_id=1275283974]
+layout_mode = 2
+text = "Play"
+
+[node name="HelpButton" type="Button" parent="VBoxContainer2/HBoxContainer/VBoxContainer" unique_id=1253732577]
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_h4dpu")
+text = "How to Play"
+
+[node name="OptionsButton" type="Button" parent="VBoxContainer2/HBoxContainer/VBoxContainer" unique_id=1722604557]
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_h4dpu")
+text = "Options"
+
+[node name="CreditsButton" type="Button" parent="VBoxContainer2/HBoxContainer/VBoxContainer" unique_id=1763800558]
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_h4dpu")
+text = "Credits"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer2/HBoxContainer/VBoxContainer" unique_id=1334271972]
+layout_mode = 2
+text = "Quit"
+script = ExtResource("5_8g5eo")
+
+[node name="HelpMenu" type="PanelContainer" parent="VBoxContainer2/HBoxContainer" unique_id=293156691]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer2/HBoxContainer/HelpMenu" unique_id=998186284]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2/HBoxContainer/HelpMenu/MarginContainer" unique_id=725947505]
+layout_mode = 2
+
+[node name="ActionsLabel" type="Label" parent="VBoxContainer2/HBoxContainer/HelpMenu/MarginContainer/HBoxContainer" unique_id=1117019169]
+layout_mode = 2
+text = "Move:
+Jump:
+Attack:
+Restart:
+Quit:"
+horizontal_alignment = 2
+
+[node name="KeysLabel" type="Label" parent="VBoxContainer2/HBoxContainer/HelpMenu/MarginContainer/HBoxContainer" unique_id=1848551836]
+layout_mode = 2
+text = "Arrows/WASD
+Z/Space
+X/J
+R
+Exit"
+
+[node name="OptionsMenu" type="VBoxContainer" parent="VBoxContainer2/HBoxContainer" unique_id=2042605787]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("6_8g5eo")
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer2/HBoxContainer/OptionsMenu" unique_id=1109654372]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer2/HBoxContainer/OptionsMenu/PanelContainer" unique_id=1700164413]
+layout_mode = 2
+
+[node name="Options" type="GridContainer" parent="VBoxContainer2/HBoxContainer/OptionsMenu/PanelContainer/MarginContainer" unique_id=352666380]
+layout_mode = 2
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 2
+
+[node name="SoundOption" parent="VBoxContainer2/HBoxContainer/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=770892076 instance=ExtResource("7_otr3d")]
+custom_minimum_size = Vector2(128, 32)
+layout_mode = 2
+size_flags_horizontal = 8
+bus_name = &"Sound"
+default = 0.5
+
+[node name="SoundLabel" type="Label" parent="VBoxContainer2/HBoxContainer/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=17116501]
+layout_mode = 2
+text = "Sound"
+
+[node name="AmbienceOption" parent="VBoxContainer2/HBoxContainer/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=1545334335 instance=ExtResource("7_otr3d")]
+custom_minimum_size = Vector2(128, 32)
+layout_mode = 2
+size_flags_horizontal = 8
+bus_name = &"Ambience"
+default = 0.5
+
+[node name="AmbienceLabel" type="Label" parent="VBoxContainer2/HBoxContainer/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=1704971698]
+layout_mode = 2
+text = "Ambience"
+
+[node name="SliderOption" parent="VBoxContainer2/HBoxContainer/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=1147143404 instance=ExtResource("8_q85j6")]
+layout_mode = 2
+default = 0.3
+key = "screen_shake"
+
+[node name="ScreenShakeLabel" type="Label" parent="VBoxContainer2/HBoxContainer/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=1739501989]
+layout_mode = 2
+text = "Screen Shake"
+
+[node name="FullscreenOption" parent="VBoxContainer2/HBoxContainer/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=1687234724 instance=ExtResource("4_qnfpr")]
+layout_mode = 2
+size_flags_horizontal = 8
+default = true
+key = "fullscreen"
+
+[node name="FullscreenLabel" type="Label" parent="VBoxContainer2/HBoxContainer/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=1170520789]
+layout_mode = 2
+text = "Fullscreen"
+
+[node name="ShowTimerOption" parent="VBoxContainer2/HBoxContainer/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=1866285198 instance=ExtResource("10_7suek")]
+layout_mode = 2
+size_flags_horizontal = 8
+default = true
+key = "show_timer"
+
+[node name="ShowTimerLabel" type="Label" parent="VBoxContainer2/HBoxContainer/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=1904113437]
+layout_mode = 2
+text = "Show Timer"
+
+[node name="ShowFPSOption" parent="VBoxContainer2/HBoxContainer/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=1648799832 instance=ExtResource("10_7suek")]
+layout_mode = 2
+size_flags_horizontal = 8
+key = "show_fps"
+
+[node name="ShowFPSLabel" type="Label" parent="VBoxContainer2/HBoxContainer/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=789901050]
+layout_mode = 2
+text = "Show FPS"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2/HBoxContainer/OptionsMenu" unique_id=931134284]
+layout_mode = 2
+alignment = 1
+
+[node name="SaveButton" type="Button" parent="VBoxContainer2/HBoxContainer/OptionsMenu/HBoxContainer" unique_id=268453669]
+layout_mode = 2
+text = "Save"
+
+[node name="UndoButton" type="Button" parent="VBoxContainer2/HBoxContainer/OptionsMenu/HBoxContainer" unique_id=1686717031]
+layout_mode = 2
+text = "Undo"
+
+[node name="DefaultsButton" type="Button" parent="VBoxContainer2/HBoxContainer/OptionsMenu/HBoxContainer" unique_id=473304738]
+layout_mode = 2
+text = "Restore Defaults"
+
+[node name="CreditsMenu" type="PanelContainer" parent="VBoxContainer2/HBoxContainer" unique_id=1858878167]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer2/HBoxContainer/CreditsMenu" unique_id=555961281]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/HBoxContainer/CreditsMenu/MarginContainer" unique_id=1340930056]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer2/HBoxContainer/CreditsMenu/MarginContainer/VBoxContainer" unique_id=639864115]
+layout_mode = 2
+bbcode_enabled = true
+text = "Created by [url=https://frie.dev]Aaron Friesen[/url]
+Made in [url=https://godotengine.org]Godot Engine[/url]"
+fit_content = true
+horizontal_alignment = 1
+script = ExtResource("11_h4dpu")
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer2/HBoxContainer/CreditsMenu/MarginContainer/VBoxContainer" unique_id=1004182480]
+layout_mode = 2
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="VBoxContainer2/HBoxContainer/CreditsMenu/MarginContainer/VBoxContainer" unique_id=354376860]
+custom_minimum_size = Vector2(620, 0)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "Sounds:
+
+[ul]
+[url=https://freesound.org/people/TheDweebMan/sounds/277213/]8-Bit Hit[/url] by [url=https://freesound.org/people/TheDweebMan/]TheDweebMan[/url] ([url=http://creativecommons.org/publicdomain/zero/1.0/]CC0[/url])
+[url=https://opengameart.org/content/rpg-sound-pack]RPG Sound Pack[/url] by [url=https://opengameart.org/users/artisticdude]artisticdude[/url] ([url=http://creativecommons.org/publicdomain/zero/1.0/]CC0[/url])
+[url=https://opengameart.org/content/8-bit-platformer-sfx]8-bit platformer SFX[/url] by [url=https://opengameart.org/users/bart]bart[/url] ([url=http://creativecommons.org/licenses/by/3.0/]CC-BY 3.0[/url])
+[url=https://freesound.org/people/PatrickLieberkind/sounds/244961/]Dark Ambience[/url] by [url=https://freesound.org/people/PatrickLieberkind/]PatrickLieberkind[/url] ([url=https://creativecommons.org/licenses/by/4.0/]CC-BY 4.0[/url])
+[url=https://freesound.org/people/InspectorJ/sounds/376415/]Wind, Synthesized, A.wav[/url] by [url=http://www.jshaw.co.uk/]InspectorJ[/url] ([url=https://creativecommons.org/licenses/by/4.0/]CC-BY 4.0[/url])[/ul]
+
+Fonts:
+
+[ul]
+[url=https://www.1001fonts.com/so-font.html]So Narrow[/url] by [url=https://www.1001fonts.com/users/apostrophe/]Apostrophic Labs[/url] ([url=https://www.1001fonts.com/licenses/ffc.html]1001Fonts FFC License[/url])
+[url=https://www.1001fonts.com/pixelfj8pt1-font.html]pixelFJ8pt[/url] by [url=https://www.1001fonts.com/users/flashjunior/]MBommeli[/url] ([url=https://www.1001fonts.com/licenses/ffc.html]1001Fonts FFC License[/url])
+[url=https://github.com/kika/fixedsys]FixedSys Excelsior[/url] by [url=https://github.com/bathos]Darien Valentine[/url] ([url=http://creativecommons.org/publicdomain/zero/1.0/]CC0[/url])[/ul]
+"
+fit_content = true
+script = ExtResource("11_h4dpu")
+
+[connection signal="pressed" from="VBoxContainer2/HBoxContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="toggled" from="VBoxContainer2/HBoxContainer/VBoxContainer/HelpButton" to="." method="_on_help_button_toggled"]
+[connection signal="toggled" from="VBoxContainer2/HBoxContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_toggled"]
+[connection signal="toggled" from="VBoxContainer2/HBoxContainer/VBoxContainer/CreditsButton" to="." method="_on_credits_button_toggled"]
+[connection signal="pressed" from="VBoxContainer2/HBoxContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="VBoxContainer2/HBoxContainer/OptionsMenu/HBoxContainer/SaveButton" to="VBoxContainer2/HBoxContainer/OptionsMenu" method="_on_save_button_pressed"]
+[connection signal="pressed" from="VBoxContainer2/HBoxContainer/OptionsMenu/HBoxContainer/UndoButton" to="VBoxContainer2/HBoxContainer/OptionsMenu" method="_on_undo_button_pressed"]
+[connection signal="pressed" from="VBoxContainer2/HBoxContainer/OptionsMenu/HBoxContainer/DefaultsButton" to="VBoxContainer2/HBoxContainer/OptionsMenu" method="_on_defaults_button_pressed"]

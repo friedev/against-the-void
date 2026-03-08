@@ -1,110 +1,21 @@
 [gd_scene format=3 uid="uid://px03diws0gc5"]
 
-[ext_resource type="Script" uid="uid://ussa75mhy2qk" path="res://src/player.gd" id="1_eewff"]
 [ext_resource type="Script" uid="uid://c65yticfyxrkh" path="res://src/main.gd" id="1_rlaii"]
-[ext_resource type="Script" uid="uid://cxl8vpotvt0io" path="res://src/kill_zone.gd" id="3_5q4o7"]
-[ext_resource type="Texture2D" uid="uid://cm7tqiur1h4e4" path="res://assets/images/player_idle_1.png" id="5_okx7f"]
-[ext_resource type="Texture2D" uid="uid://b6kcdrbf4fnh2" path="res://assets/images/slash.png" id="5_tb146"]
-[ext_resource type="AudioStream" uid="uid://sfrh6uqm4l6x" path="res://assets/sounds/swish.wav" id="6_mgm53"]
-[ext_resource type="Texture2D" uid="uid://b2kpxra4dxk2b" path="res://assets/images/player_idle_2.png" id="6_sta5p"]
-[ext_resource type="Script" uid="uid://c64papim5fgn1" path="res://src/smart_sound.gd" id="7_uewes"]
-[ext_resource type="AudioStream" uid="uid://cf5wkx8chpjt1" path="res://assets/sounds/jump.wav" id="8_uewes"]
-[ext_resource type="Script" uid="uid://c841a3h3xkybc" path="res://src/shake_camera.gd" id="9_kqbth"]
-[ext_resource type="AudioStream" uid="uid://bqbcpjl5wrjf2" path="res://assets/sounds/death.wav" id="10_e7lu8"]
-[ext_resource type="PackedScene" uid="uid://c8yt3kcn7b6fs" path="res://src/enemy_spawner.tscn" id="12_mlv6i"]
+[ext_resource type="PackedScene" uid="uid://d2rlq5cmjnhf0" path="res://src/world.tscn" id="2_mgm53"]
+[ext_resource type="Script" uid="uid://bukjb0ut23m8s" path="res://src/temp_camera.gd" id="12_kqbth"]
 [ext_resource type="Theme" uid="uid://cp2dw8jh1pmps" path="res://assets/styles/theme.tres" id="13_d3u4l"]
-[ext_resource type="Script" uid="uid://cwopu6is2c5wm" path="res://src/time_label.gd" id="13_srxbw"]
-[ext_resource type="PackedScene" uid="uid://2stt7v0hsnst" path="res://src/smart_particles.tscn" id="13_tb146"]
+[ext_resource type="Script" uid="uid://b1yqq61yyo7il" path="res://src/loading_screen.gd" id="13_srxbw"]
 [ext_resource type="FontFile" uid="uid://bu2eay6qumf2f" path="res://assets/fonts/FSEX302.ttf" id="14_mlv6i"]
+[ext_resource type="Script" uid="uid://c37wgkgvlryk5" path="res://src/ui/timer_label.gd" id="16_ib8ht"]
+[ext_resource type="Script" uid="uid://uje3c8avendi" path="res://src/ui/high_score_label.gd" id="17_43aqp"]
 [ext_resource type="Script" uid="uid://y80b3e41s1fp" path="res://src/noise_sprite.gd" id="17_e7lu8"]
+[ext_resource type="PackedScene" uid="uid://bxjdf1p7ppmjr" path="res://src/ui/main_menu.tscn" id="17_sif16"]
+[ext_resource type="Script" uid="uid://dqmnuwy8dowof" path="res://src/ui/fps_label.gd" id="18_ocmcv"]
 [ext_resource type="AudioStream" uid="uid://cqf74nv8e4jhv" path="res://assets/sounds/ambience.ogg" id="18_okx7f"]
 [ext_resource type="AudioStream" uid="uid://bdlqf0u0m1wpy" path="res://assets/sounds/wind.ogg" id="19_sta5p"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_5q4o7"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("5_okx7f")
-}],
-"loop": true,
-"name": &"idle_0",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("6_sta5p")
-}],
-"loop": true,
-"name": &"idle_1",
-"speed": 5.0
-}]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ts572"]
-radius = 3.5
-height = 15.5
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_e7lu8"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("5_tb146")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tb146"]
-radius = 11.5
-height = 49.5
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_e7lu8"]
-radius = 15.75
-
-[sub_resource type="Curve" id="Curve_mlv6i"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.6256652, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_e7lu8"]
-curve = SubResource("Curve_mlv6i")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_e7lu8"]
-lifetime_randomness = 0.25
-particle_flag_disable_z = true
-spread = 30.0
-flatness = 1.0
-initial_velocity_min = -50.0
-initial_velocity_max = 50.0
-gravity = Vector3(0, 49, 0)
-scale_min = 2.0
-scale_max = 4.0
-scale_curve = SubResource("CurveTexture_e7lu8")
-
-[sub_resource type="Curve" id="Curve_liqmj"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.6256652, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_5ku1l"]
-curve = SubResource("Curve_liqmj")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_okx7f"]
-lifetime_randomness = 0.25
-particle_flag_disable_z = true
-spread = 180.0
-initial_velocity_min = 25.0
-initial_velocity_max = 100.0
-gravity = Vector3(0, 98, 0)
-scale_min = 3.0
-scale_max = 6.0
-scale_curve = SubResource("CurveTexture_5ku1l")
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_mlv6i"]
-normal = Vector2(1, 0)
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tb146"]
-normal = Vector2(-1, 0)
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_e7lu8"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_adv81"]
+allow_unpress = true
 
 [sub_resource type="Gradient" id="Gradient_tb146"]
 interpolation_mode = 1
@@ -118,144 +29,14 @@ noise = SubResource("FastNoiseLite_e7lu8")
 color_ramp = SubResource("Gradient_tb146")
 seamless = true
 
-[node name="Main" type="Node2D" unique_id=1753303902]
+[node name="Main" type="Node" unique_id=943047039 node_paths=PackedStringArray("noise_sprite")]
 script = ExtResource("1_rlaii")
+world_scene = ExtResource("2_mgm53")
+noise_sprite = NodePath("ParallaxLayer/Parallax2D/NoiseSprite")
 
-[node name="Player" type="CharacterBody2D" parent="." unique_id=305687847 node_paths=PackedStringArray("sprite", "sword_area", "camera", "attack_sound", "jump_sound", "death_sound", "jump_particles", "death_particles")]
-position = Vector2(1, -139)
-collision_mask = 2
-script = ExtResource("1_eewff")
-max_speed = Vector2(162.5, 250)
-jump_speed = 162.5
-pogo_recoil_speed = 150.0
-non_pogo_recoil_speed = 100.0
-acceleration = 1250.0
-deceleration = 2500.0
-fast_fall_acceleration = 500.0
-attack_duration = 0.1
-attack_cooldown = 0.2
-air_jumps = 2
-sprite = NodePath("Sprite2D")
-sword_area = NodePath("SwordArea")
-camera = NodePath("ShakeCamera")
-attack_sound = NodePath("AttackSound")
-jump_sound = NodePath("JumpSound")
-death_sound = NodePath("DeathSound")
-jump_particles = NodePath("JumpParticles")
-death_particles = NodePath("DeathParticles")
+[node name="UILayer" type="CanvasLayer" parent="." unique_id=1593020530]
 
-[node name="Sprite2D" type="AnimatedSprite2D" parent="Player" unique_id=1711341869]
-position = Vector2(0, 16)
-sprite_frames = SubResource("SpriteFrames_5q4o7")
-animation = &"idle_0"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=972111300]
-shape = SubResource("CapsuleShape2D_ts572")
-
-[node name="SwordArea" type="Area2D" parent="Player" unique_id=1753714991]
-visible = false
-collision_layer = 0
-collision_mask = 2
-monitoring = false
-monitorable = false
-
-[node name="SwordSprite" type="AnimatedSprite2D" parent="Player/SwordArea" unique_id=546328092]
-rotation = -1.5707964
-sprite_frames = SubResource("SpriteFrames_e7lu8")
-offset = Vector2(0, 16)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/SwordArea" unique_id=572079674]
-position = Vector2(20.25, 0)
-rotation = 1.5707964
-shape = SubResource("CapsuleShape2D_tb146")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Player/SwordArea" unique_id=944467009]
-position = Vector2(11.25, 0)
-shape = SubResource("CircleShape2D_e7lu8")
-
-[node name="AttackSound" type="AudioStreamPlayer2D" parent="Player" unique_id=2001106003]
-stream = ExtResource("6_mgm53")
-script = ExtResource("7_uewes")
-pitch_scale_range = 0.125
-
-[node name="JumpSound" type="AudioStreamPlayer2D" parent="Player" unique_id=1314048301]
-stream = ExtResource("8_uewes")
-script = ExtResource("7_uewes")
-pitch_scale_range = 0.125
-
-[node name="DeathSound" type="AudioStreamPlayer2D" parent="Player" unique_id=176270307]
-stream = ExtResource("10_e7lu8")
-script = ExtResource("7_uewes")
-
-[node name="JumpParticles" parent="Player" unique_id=1168632659 instance=ExtResource("13_tb146")]
-emitting = false
-lifetime = 0.5
-one_shot = true
-explosiveness = 1.0
-process_material = SubResource("ParticleProcessMaterial_e7lu8")
-
-[node name="DeathParticles" parent="Player" unique_id=1082587694 instance=ExtResource("13_tb146")]
-emitting = false
-lifetime = 0.5
-one_shot = true
-explosiveness = 1.0
-process_material = SubResource("ParticleProcessMaterial_okx7f")
-
-[node name="ShakeCamera" type="Camera2D" parent="Player" unique_id=291887697]
-zoom = Vector2(4, 4)
-process_callback = 0
-limit_bottom = 0
-limit_smoothed = true
-position_smoothing_enabled = true
-script = ExtResource("9_kqbth")
-shake_rate = 1.0
-max_offset = 32.0
-shake_reduction = 3.0
-
-[node name="LeftEnemySpawner" parent="Player" unique_id=431051513 instance=ExtResource("12_mlv6i")]
-position = Vector2(-265.75, -207.75)
-scale = Vector2(0.5, 0.5)
-spawn_time = 0.5
-
-[node name="RightEnemySpawner" parent="Player" unique_id=1504014088 instance=ExtResource("12_mlv6i")]
-position = Vector2(265.75, -208.75)
-scale = Vector2(0.5, 0.5)
-flip_h = true
-spawn_time = 0.5
-
-[node name="LeftKillZone" type="Area2D" parent="Player" unique_id=634507289]
-position = Vector2(-628.25, 0)
-collision_layer = 0
-collision_mask = 3
-monitorable = false
-script = ExtResource("3_5q4o7")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/LeftKillZone" unique_id=639320395]
-shape = SubResource("WorldBoundaryShape2D_mlv6i")
-
-[node name="RightKillZone" type="Area2D" parent="Player" unique_id=942162257]
-position = Vector2(628.25, 0)
-collision_layer = 0
-collision_mask = 3
-monitorable = false
-script = ExtResource("3_5q4o7")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/RightKillZone" unique_id=817306647]
-shape = SubResource("WorldBoundaryShape2D_tb146")
-
-[node name="BottomKillZone" type="Area2D" parent="." unique_id=845912716]
-position = Vector2(0, 64)
-collision_layer = 0
-collision_mask = 3
-monitorable = false
-script = ExtResource("3_5q4o7")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomKillZone" unique_id=269543840]
-shape = SubResource("WorldBoundaryShape2D_e7lu8")
-
-[node name="UICanvasLayer" type="CanvasLayer" parent="." unique_id=1593020530]
-
-[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer" unique_id=1198113072]
+[node name="MarginContainer" type="MarginContainer" parent="UILayer" unique_id=1198113072]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -267,26 +48,47 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="TimeLabel" type="Label" parent="UICanvasLayer/MarginContainer" unique_id=2143769699]
+[node name="TimerLabel" type="Label" parent="UILayer/MarginContainer" unique_id=2143769699]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("14_mlv6i")
 theme_override_font_sizes/font_size = 32
-text = "88:88.88"
-script = ExtResource("13_srxbw")
+text = "88:88.888"
+script = ExtResource("16_ib8ht")
 
-[node name="ParallaxCanvasLayer" type="CanvasLayer" parent="." unique_id=824432241]
+[node name="HighScoreLabel" type="Label" parent="UILayer/MarginContainer" unique_id=1652451691]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("14_mlv6i")
+theme_override_font_sizes/font_size = 32
+text = "Best: 88:88.888"
+script = ExtResource("17_43aqp")
+
+[node name="FPSLabel" type="Label" parent="UILayer/MarginContainer" unique_id=761692777]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("14_mlv6i")
+theme_override_font_sizes/font_size = 32
+text = "FPS: 88"
+script = ExtResource("18_ocmcv")
+
+[node name="MainMenu" parent="UILayer" unique_id=654840502 instance=ExtResource("17_sif16")]
+submenu_button_group = SubResource("ButtonGroup_adv81")
+
+[node name="ParallaxLayer" type="CanvasLayer" parent="." unique_id=824432241]
 layer = -1
 follow_viewport_enabled = true
 
-[node name="Parallax2D" type="Parallax2D" parent="ParallaxCanvasLayer" unique_id=1226314995]
+[node name="Parallax2D" type="Parallax2D" parent="ParallaxLayer" unique_id=1226314995]
 z_index = -5
 repeat_size = Vector2(512, 512)
 autoscroll = Vector2(32, 0)
 repeat_times = 3
 
-[node name="NoiseSprite" type="Sprite2D" parent="ParallaxCanvasLayer/Parallax2D" unique_id=1053513239]
+[node name="NoiseSprite" type="Sprite2D" parent="ParallaxLayer/Parallax2D" unique_id=1053513239]
 position = Vector2(768, 768)
 texture = SubResource("NoiseTexture2D_okx7f")
 script = ExtResource("17_e7lu8")
@@ -294,18 +96,50 @@ script = ExtResource("17_e7lu8")
 [node name="DarkAmbience" type="AudioStreamPlayer" parent="." unique_id=402455208]
 stream = ExtResource("18_okx7f")
 autoplay = true
+bus = &"Ambience"
 
 [node name="WindAmbience" type="AudioStreamPlayer" parent="." unique_id=354364169]
 stream = ExtResource("19_sta5p")
 volume_db = -6.0
 autoplay = true
+bus = &"Ambience"
 
-[connection signal="area_entered" from="Player/SwordArea" to="Player" method="_on_sword_area_area_entered"]
-[connection signal="body_entered" from="Player/SwordArea" to="Player" method="_on_sword_area_body_entered"]
-[connection signal="area_entered" from="Player/LeftKillZone" to="Player/LeftKillZone" method="_on_area_entered"]
-[connection signal="body_entered" from="Player/LeftKillZone" to="Player/LeftKillZone" method="_on_body_entered"]
-[connection signal="area_entered" from="Player/RightKillZone" to="Player/RightKillZone" method="_on_area_entered"]
-[connection signal="body_entered" from="Player/RightKillZone" to="Player/RightKillZone" method="_on_body_entered"]
-[connection signal="area_entered" from="BottomKillZone" to="BottomKillZone" method="_on_area_entered"]
-[connection signal="body_entered" from="BottomKillZone" to="BottomKillZone" method="_on_body_entered"]
-[connection signal="texture_updated" from="ParallaxCanvasLayer/Parallax2D/NoiseSprite" to="." method="_on_noise_sprite_texture_updated"]
+[node name="TempCamera" type="Camera2D" parent="." unique_id=1994962406]
+editor_description = "Exists so that the parallax background is zoomed in appropriately on startup."
+zoom = Vector2(4, 4)
+script = ExtResource("12_kqbth")
+
+[node name="LoadingScreen" type="CanvasLayer" parent="." unique_id=1763544850]
+layer = 2
+visible = false
+script = ExtResource("13_srxbw")
+
+[node name="ColorRect" type="ColorRect" parent="LoadingScreen" unique_id=437549011]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0, 0, 0, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="LoadingScreen" unique_id=640643271]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("13_d3u4l")
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="LoadingLabel" type="Label" parent="LoadingScreen/MarginContainer" unique_id=344886846]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "Loading..."
+
+[connection signal="play_pressed" from="UILayer/MainMenu" to="." method="_on_main_menu_play_pressed"]

@@ -1,0 +1,245 @@
+[gd_scene format=3 uid="uid://d2rlq5cmjnhf0"]
+
+[ext_resource type="Script" uid="uid://dknblu1g58win" path="res://src/world.gd" id="1_5xesp"]
+[ext_resource type="Script" uid="uid://ussa75mhy2qk" path="res://src/player.gd" id="2_a3wil"]
+[ext_resource type="Texture2D" uid="uid://cm7tqiur1h4e4" path="res://assets/images/player_idle_1.png" id="3_8kjpi"]
+[ext_resource type="Texture2D" uid="uid://b2kpxra4dxk2b" path="res://assets/images/player_idle_2.png" id="4_yyjdi"]
+[ext_resource type="Texture2D" uid="uid://b6kcdrbf4fnh2" path="res://assets/images/slash.png" id="5_vmuob"]
+[ext_resource type="AudioStream" uid="uid://sfrh6uqm4l6x" path="res://assets/sounds/swish.wav" id="6_00gdp"]
+[ext_resource type="Script" uid="uid://c64papim5fgn1" path="res://src/smart_sound.gd" id="7_th6lv"]
+[ext_resource type="AudioStream" uid="uid://cf5wkx8chpjt1" path="res://assets/sounds/jump.wav" id="8_wgoqa"]
+[ext_resource type="AudioStream" uid="uid://bqbcpjl5wrjf2" path="res://assets/sounds/death.wav" id="9_pk3eh"]
+[ext_resource type="PackedScene" uid="uid://2stt7v0hsnst" path="res://src/smart_particles.tscn" id="10_tvnmn"]
+[ext_resource type="Script" uid="uid://c841a3h3xkybc" path="res://src/shake_camera.gd" id="11_c3rv8"]
+[ext_resource type="PackedScene" uid="uid://c8yt3kcn7b6fs" path="res://src/enemy_spawner.tscn" id="12_m5hut"]
+[ext_resource type="Script" uid="uid://cxl8vpotvt0io" path="res://src/kill_zone.gd" id="13_7igba"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5q4o7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_8kjpi")
+}],
+"loop": true,
+"name": &"idle_0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_yyjdi")
+}],
+"loop": true,
+"name": &"idle_1",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ts572"]
+radius = 3.5
+height = 15.5
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e7lu8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_vmuob")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tb146"]
+radius = 11.5
+height = 49.5
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e7lu8"]
+radius = 15.75
+
+[sub_resource type="Curve" id="Curve_mlv6i"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.6256652, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_e7lu8"]
+curve = SubResource("Curve_mlv6i")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_e7lu8"]
+lifetime_randomness = 0.25
+particle_flag_disable_z = true
+spread = 30.0
+flatness = 1.0
+initial_velocity_min = -50.0
+initial_velocity_max = 50.0
+gravity = Vector3(0, 49, 0)
+scale_min = 2.0
+scale_max = 4.0
+scale_curve = SubResource("CurveTexture_e7lu8")
+
+[sub_resource type="Curve" id="Curve_liqmj"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.6256652, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_5ku1l"]
+curve = SubResource("Curve_liqmj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_okx7f"]
+lifetime_randomness = 0.25
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 25.0
+initial_velocity_max = 100.0
+gravity = Vector3(0, 98, 0)
+scale_min = 3.0
+scale_max = 6.0
+scale_curve = SubResource("CurveTexture_5ku1l")
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_mlv6i"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tb146"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_e7lu8"]
+
+[node name="World" type="Node2D" unique_id=842869675]
+script = ExtResource("1_5xesp")
+
+[node name="Player" type="CharacterBody2D" parent="." unique_id=113814185 node_paths=PackedStringArray("sprite", "sword_area", "camera", "attack_sound", "jump_sound", "death_sound", "jump_particles", "death_particles")]
+position = Vector2(1, -139)
+collision_mask = 2
+script = ExtResource("2_a3wil")
+max_speed = Vector2(162.5, 250)
+jump_speed = 162.5
+pogo_recoil_speed = 150.0
+non_pogo_recoil_speed = 100.0
+acceleration = 1250.0
+deceleration = 2500.0
+fast_fall_acceleration = 500.0
+attack_duration = 0.1
+attack_cooldown = 0.2
+air_jumps = 2
+sprite = NodePath("Sprite2D")
+sword_area = NodePath("SwordArea")
+camera = NodePath("ShakeCamera")
+attack_sound = NodePath("AttackSound")
+jump_sound = NodePath("JumpSound")
+death_sound = NodePath("DeathSound")
+jump_particles = NodePath("JumpParticles")
+death_particles = NodePath("DeathParticles")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="Player" unique_id=392880355]
+position = Vector2(0, 16)
+sprite_frames = SubResource("SpriteFrames_5q4o7")
+animation = &"idle_0"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=877644223]
+shape = SubResource("CapsuleShape2D_ts572")
+
+[node name="SwordArea" type="Area2D" parent="Player" unique_id=1898551588]
+visible = false
+collision_layer = 0
+collision_mask = 2
+monitoring = false
+monitorable = false
+
+[node name="SwordSprite" type="AnimatedSprite2D" parent="Player/SwordArea" unique_id=500308356]
+rotation = -1.5707964
+sprite_frames = SubResource("SpriteFrames_e7lu8")
+offset = Vector2(0, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/SwordArea" unique_id=246097330]
+position = Vector2(20.25, 0)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_tb146")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Player/SwordArea" unique_id=1331710042]
+position = Vector2(11.25, 0)
+shape = SubResource("CircleShape2D_e7lu8")
+
+[node name="AttackSound" type="AudioStreamPlayer2D" parent="Player" unique_id=794000608]
+stream = ExtResource("6_00gdp")
+script = ExtResource("7_th6lv")
+pitch_scale_range = 0.125
+
+[node name="JumpSound" type="AudioStreamPlayer2D" parent="Player" unique_id=959953712]
+stream = ExtResource("8_wgoqa")
+script = ExtResource("7_th6lv")
+pitch_scale_range = 0.125
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="Player" unique_id=456973342]
+stream = ExtResource("9_pk3eh")
+script = ExtResource("7_th6lv")
+
+[node name="JumpParticles" parent="Player" unique_id=1168632659 instance=ExtResource("10_tvnmn")]
+emitting = false
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_e7lu8")
+
+[node name="DeathParticles" parent="Player" unique_id=873689997 instance=ExtResource("10_tvnmn")]
+emitting = false
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_okx7f")
+
+[node name="ShakeCamera" type="Camera2D" parent="Player" unique_id=301187348]
+zoom = Vector2(4, 4)
+process_callback = 0
+limit_bottom = 0
+limit_smoothed = true
+position_smoothing_enabled = true
+script = ExtResource("11_c3rv8")
+shake_rate = 1.0
+max_offset = 32.0
+shake_reduction = 3.0
+
+[node name="LeftEnemySpawner" parent="Player" unique_id=431051513 instance=ExtResource("12_m5hut")]
+position = Vector2(-265.75, -207.75)
+scale = Vector2(0.5, 0.5)
+spawn_time = 0.5
+
+[node name="RightEnemySpawner" parent="Player" unique_id=1824005249 instance=ExtResource("12_m5hut")]
+position = Vector2(265.75, -208.75)
+scale = Vector2(0.5, 0.5)
+flip_h = true
+spawn_time = 0.5
+
+[node name="LeftKillZone" type="Area2D" parent="Player" unique_id=251295201]
+position = Vector2(-628.25, 0)
+collision_layer = 0
+collision_mask = 3
+monitorable = false
+script = ExtResource("13_7igba")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/LeftKillZone" unique_id=1597588989]
+shape = SubResource("WorldBoundaryShape2D_mlv6i")
+
+[node name="RightKillZone" type="Area2D" parent="Player" unique_id=45675392]
+position = Vector2(628.25, 0)
+collision_layer = 0
+collision_mask = 3
+monitorable = false
+script = ExtResource("13_7igba")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/RightKillZone" unique_id=1141606313]
+shape = SubResource("WorldBoundaryShape2D_tb146")
+
+[node name="BottomKillZone" type="Area2D" parent="." unique_id=394860110]
+position = Vector2(0, 64)
+collision_layer = 0
+collision_mask = 3
+monitorable = false
+script = ExtResource("13_7igba")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomKillZone" unique_id=521779064]
+shape = SubResource("WorldBoundaryShape2D_e7lu8")
+
+[connection signal="area_entered" from="Player/SwordArea" to="Player" method="_on_sword_area_area_entered"]
+[connection signal="body_entered" from="Player/SwordArea" to="Player" method="_on_sword_area_body_entered"]
+[connection signal="area_entered" from="Player/LeftKillZone" to="Player/LeftKillZone" method="_on_area_entered"]
+[connection signal="body_entered" from="Player/LeftKillZone" to="Player/LeftKillZone" method="_on_body_entered"]
+[connection signal="area_entered" from="Player/RightKillZone" to="Player/RightKillZone" method="_on_area_entered"]
+[connection signal="body_entered" from="Player/RightKillZone" to="Player/RightKillZone" method="_on_body_entered"]
+[connection signal="area_entered" from="BottomKillZone" to="BottomKillZone" method="_on_area_entered"]
+[connection signal="body_entered" from="BottomKillZone" to="BottomKillZone" method="_on_body_entered"]

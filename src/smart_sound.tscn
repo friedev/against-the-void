@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://c64papim5fgn1" path="res://src/smart_sound.gd" id="1_da7aj"]
 
 [node name="SmartSound" type="AudioStreamPlayer2D" unique_id=1182294992]
+bus = &"Sound"
 script = ExtResource("1_da7aj")
 
 [connection signal="finished" from="." to="." method="_on_finished"]

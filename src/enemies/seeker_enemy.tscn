@@ -1,27 +1,25 @@
-[gd_scene format=4 uid="uid://knesad6sab5t"]
+[gd_scene format=3 uid="uid://knesad6sab5t"]
 
 [ext_resource type="PackedScene" uid="uid://dcsjkgjjpmdst" path="res://src/enemies/enemy.tscn" id="1_1pe7x"]
-[ext_resource type="Texture2D" uid="uid://c4p6dss8bel25" path="res://assets/images/basic_enemy.png" id="2_6h5vx"]
 [ext_resource type="Script" uid="uid://dwaetcxmlccsq" path="res://src/enemies/seeker_enemy.gd" id="2_pv5kb"]
 [ext_resource type="PackedScene" uid="uid://2stt7v0hsnst" path="res://src/smart_particles.tscn" id="3_fflq5"]
+[ext_resource type="Texture2D" uid="uid://dn6ygvwqmkrh8" path="res://assets/images/seeker_enemy.png" id="3_pv5kb"]
+[ext_resource type="AudioStream" uid="uid://ops3lth2226i" path="res://assets/sounds/seeker_enemy_death.wav" id="4_svfy5"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_fflq5"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_svfy5"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_6h5vx")
+"texture": ExtResource("3_pv5kb")
 }],
 "loop": true,
 "name": &"default",
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_6h5vx"]
-radius = 8.5
-
-[sub_resource type="AudioStreamWAV" id="AudioStreamWAV_6h5vx"]
-data = PackedByteArray("cW9hZgAAKwgBAKxEFAAIGAAAAAAAAAAAAAAAAOAAQADxP9n0xVn9xvHOV0KAPuFy1dMs59d1hhvxhzqUQlxXjfXGfZYOUXEW7fc2pp4EcI//sR1TWjAUl/OiXVOqLWym/Be6c+o5c9/3j3k0Ax/nkvXGknBeMWkC88sl06d4AIfzTh+7P3owXvQSXfaqPHc68uM+lt4e5YX0zXl7lJ1lQPGnHf+MPSOP81pkbSdSJd//+3l7hBxX7vP+MnXO9fOf9+7+4JbbNV33zTp3rjFn7/DefNNbOjXd+us45hFYs1b0k5Vmx2GXrPKHQEfOAEVP+lwUoAM1/m73XgTTX63hl/DuvfPtOPfb955pJdgR087wg5Ewh2jiVPVUXTGEnVc486Jc0Nto4or0Ej2hgV5l7PJeQX5+PKWi+Uct5g8g4qf5pwxX7rp0xusiyWWXgTcJ85AEUbJJQk/13W3jmRgD2fOoMWH+wXOT/UJMZbGd1t7zzzTSTHkkIORCPrDoeLPW/CKQ9g48Uu72hFwDjzz7jPEVVWYNBftL8ZAqIEVBIs/2CaqS0gzh6/IbJDBAIOTH9M15gqAVYQfwzqDok0V6TvZPTecW2XIV8sYl9t+llgHxkXwjeSnSQvCbDUOZPTdo94gpBAEcAMnzhCkYUiT20fsrbABBIGRI9eAYJaFIAEHiiSR4EACTR/RGKMiAAHIT9g5xodBNok3yzXSwCSDiTLEKZAALKAOL8segG5EqcA33gDlwg3SQStYJAGJIHJLe8QJQepOskgjyCCQDkSkFUfRAPYNLIIJA8kIkkgYEhBHwAQCCR0QSSfJILAAJBBAO6NqNdMU8EAnxsxJB6g6WCfJILRAIKOjC9IcJFks1EAjCQQCCDmWCQfGQMCALFRBJxg4ghAAIAAjiCB2AWSSRiKMSSAEEZZBB8E9kNsgkkR6ensoEEQwAAKIIICOLpIII4gg+sO0kkgHiAnmSCAAQAfBHLLbIOMYSiRI1BEEEopnyASB2UW2GAfIBIIIIGTKS8AENEEAkEEf6g2ySCDgmhIOCAIKJBIII8gEepNskkgHi0U0000001vjCUKIIBBJHyovssEgggkaPeQQQCCQCCPOJIRAAIIBBiEEchAEAEEGgQQCCDjuWSTzJIIIIAJABcseBAAggggigSCAQQSARmY5BBBAJBBAJVFMEAggggkdMIACCCCCAQR0BaCIAARAA4EggEEkdNMF/2y2SQSSCCD4IBBAIIIBBHFEBEBAhFEBAQQQQCD118D0QAAIAIIBAFgooooAAAAABJllllllllgkkkWWWWWkkCRZZZZaSSRYFllpJJFlllgWkkkWWWWkkCRZZZaSSRZYFllpJJFlllgkkkWWWWkkkBZZZaSSRZZYFpJJFlllpJAkWWWWkkkWWQEEEEEAggERTnKWSCCQQQRDiICKIARRADbbbbbbbbaYNttttpptttg2m202222m2DTbbbabbaabgBggkgCCAQUzTABIAJAIIAbbbbTTbTTYNNNttNNNtNEBBBBAIIBGcTlgAgEEEEAgXGgiAEQAEQA2222222222Dbbbbbbbbbagx4gCCCCCCC5oQJBBAIJBGNNAFFFAFFEUUQiiiiiEUXCOpoIBIBIBJmAEEEAgkEAWAAAEQAAAEYBIBIBBBBBHoeBAgEEEAgg+igAQACACCBiRCACAAAQBgEEgEEEEEZhuGCQQSQCQCSyDABIIIBBIA4JJRJCCCCCwSCAQQTy0SW/bbLDBJBIILgggkAkEEAkNsAAkgkgkgoBIBIBHHwgIH7rEoooAAoABFlFlFlFllAWUWUWUWUWU4EggEEgaMiJlpEQQQQCCCC8AIIBIBIBIAB7TTTbTTTbgSCAQSAT6gc7oIIJBBBBBXMNEgEEEEEAuiiASCCCCARaAAAAKAAAAggalkAgkAgg+gCCAQCCCARgAKKKKKKKIFFFFEIooooryAQSCARmiEIyQIABIIBBIIRggEEEEEEESiiiiiiiiihKKKKKKKIRRQEEEAg9JAEgUGECiiEUUQhKKIRRRCKIRFFFEBAEIoogUUUQiiiEUUeBIIBBIBBPakX+lhgggkAlMQSCAQQQCCBKAKAKAKABQARZYYYYZRRYFFlhhhlFFlPBIIBBOTKCKf5wggEEAkAg+iACCAQQCCBQBCIRARRARFEBFEBEBFEAUUQEQEUQEUXBIBBBIBBGpP9NEEEEAggEc0QiiEUUUQhKKIRRRRCKKEhFFFEIoohEUUQiiiEUUURCKIRRRRCKIFFFEIoohFFEQiiiEUUQiiBRRRRCKIRRRFEIohFFEIooSEUUQiiEUURRCKIRRRRARFFFEBFFFEBEUUUQEUUUQERRRRARRRRARFFFEBFFFEBEUUUQEUUUQERRRRARRRRARFFFEBFFFEBEUUUQEUUUQERRRCKIRRCIRYEgEEEEEEeNNACAQCCCCARwAICIRARARDbbbbbbbbbYNtttttttttg2222222222DbbbbbbbbbYNtttttttttg2222222222DbTbbbbbbbYNtttttttttg2222222222DbTbbbbbbbYNtttttttttA2222222222DbbbbbTbbbYNtttttttttg0222222222DbbbbbTbbbYNttttttttNvBIIBPBDZIJXtEEEAkAgggqiiCCCCCCAQ4kWGUGGGUGAYZQYYZQYYYFBhhlBhlBhgGUGGGUGGGUAYZQYYZQYYYFBhlBhhlBhgGUGGUGGGUGAYZRRRRYYZQFFFFhhlFFFAEArEQUAAgY1OnU69Tr1O369gcc+CYlygWGGUUUUWGGBRRRRYZQYYYFBhlBhhlFFAUUUUUUUWGGBQYZQYYZRRQFFFFFFhhlBgGUGGUGGGUU8EggEEggEE6NTtokAACAQR0iRARARARREBEBEBEBFEAUQEQEQEQEQBRARARACICIEIgIgIgIgIgNtttttttttg2222222022DbbbbbTbbbYNtttNtttttg0222222202DbbbTbbbTbYNttNttttNtg2022220222DTbbbbTbbbQNtttNttttNg2202220222DbTbbbTbbbQNttttNtttNkBBBBGqqYIBEFAIhEBEBEAUUQAiEQEQERRACIRARARREAIhEBEBEBEUQAiEQEQEQBRARARARACIFEBEAIhEBEAQiAEUQAiEQBRARACIARARDbbbTbbbbTYNtttNttttNg2220222202DbbbTbbTbbQNttNttNttNg2022022022DTbbTbTbbTYNtNttNttNtg0202202202cEgEEEgEEEfx00ySSQQSCC1/5JIJIIJBFAgAogIogIoSAiiAiiAiiBCICKICKICKEgIogIogIogQiiAiAiiAihICKICICKICEogIgIogIogQiAiiAiiAihICICKICKICEgIogIogIogQiAiiAiiAihICICKICKICEgIogIogIogQiAiiAiiAihICICKICKICEogIgIogIogQiiAiiAiAinIBBBIHCAAIHZAIoooAoooSgCiiigCiihKKAKKKKAKKEooAooooAooSigCiiigCihKKAKKKKAKKEoAooooAoooSgCiigCiiigGUWGUWGUWGBRYZRYZRYZYBhlhhlhlFhgUWGWGGWGGWAZRYZYYZYZQFhlhhlhlFhgWGUWGWGGWGBYYZYZYYZYYFhhlhlhhlhgWGUWGWGWGGBYZYZYYZYZbxmiEAAQCCCE6IBAIBAIIIEIAAAAAAAAAMstMstMstMgy0yy0yy0ywDTLLLTLLTLANMsstMsNMsgw0yyw0yyw0DLLDLTLLDTIMMssssMtMMgyyywyyyw0yDDLLLDLLDLIMsMsMssMsMgwywyywywywDLLDLDLDLDIMsMsMsMsMsAywyywywywyDDLDLDLDLDIMMsMsMsMsMsBIIBBLHILLV+2slgkgkEEswSAQSAQSAQMWGGGGGGGGAYYYYYYYYYYBhhhhhhhBhgEGGEGGEGGGAYQYYQYYQYYBBhhhhBhhBgGEGGGGEGGEAYYYQYQYYQYBBhhBhBhBhgEGEGGEGEGGAQYYQYQYYQYBhBhBhhBhhAGGEGEGGEGGAQYYQYYQYYQBhhBhhhBhhAGGEGGEGGGEAYYQYYYQYYSQTmGCCQQSCD6YJBIJBBBAGgogAogAAAANplpJJJJlpAkkkmWWWkmWBZaSZZZaSZYFlpJllllplgWWWmWWWkkkCZZSSZZSSZYFJJllJllJJgWUmWUmWUkmBZSZZSZZSZYFJllJllJllAmWUmWWUkmWBSZZZSSZZZQJJlllJJlllAWWUWWWUWWUBZZZRZZZRZYFlFllFlllFpBIBBIBGBIANZaKRJQJIIAkoEEgEAAEQBSCAQAQAARRDbbbbbbbbbYNtNttttNttg0222022202DbbTbbTbbbQNtttNttNttg0220220202DTTbbbTTbLQNstNstNstNgy02y002y02DLTTbLTTbLQNNstNNNNNMg02y000y2y0DTLTTTTLTTQMtNNMtNMtNAy00yy00yy0DTLLLLLLLLJAR1wAAQCAQBaSggSSSCQSFBBBBBAIBAIQAgAgAEAAihKAAAQAAAARDbbbTTTbTTQNNtNNNtNNNA20y0000y00DLTTLTTTLTQMtMtNMtNMtA0kkky0y00kCSTLTLTSSSQJJMtJJJJMsgy0kkkkyykkCSSSSSSSSSQJJJJJJJJJJAkkkkiyiyiyCLKKLKLKKLIIsMosooooomBBBBBBBGAYPhskkkkkEkEN71599cM8sQ0yywyywywwDDDHTDLDLDAMsMMMcssMMBTRRTRRTRRRFONFFONFFOMUUU0UU40UUxRTRTjTjTTjFNOWWWVNVWUwSQQQw1V0QRQBIBBBBAIICoAgEAgEAgEACAQCAQCAQAIBAIBAIBAIAEAgEAgEAgEACAQCAQCAQAIBAIBAIBAIAEAAgAEAAgAAQACAAQACAABAAIABAAIAAEAAgAEAAgAAQACAAQACAABAAIABAAIAAEAAgAEAAgAAQACAAQACAABAAIABAAIAAEAAgAEAAgAAQACAAQACAABAAIABAAIAAEAAgAEAAgAAQACAAQACAABAAIABAAIAAEAAgAEAAgAAQACAAQACAABAAIABAAIAAEAAgAEAAgAAQACAAQACAABAAIABAAIAAEAAgAEAAgAAQACAAQACAABAAIABAAIAAEAAgAEAAgAAQACAAQACAABAAIABAAIAAEAAgAEAAgAAQACAAQACAABAAIABAAIAAEAAgAEAAgAAQACAAQACAABAAIABAAIAAEAAgAEAAgAAQACAAQACAABAAIABAAIAAEAAgAEAAgAAQACAAQACAABAAIABAAIAAEAAgAEAAgAAQACAAQACAABAAIABAAIAAEAAgAEAAgAAQACAAQACAABAAIABAAIAAEAAgAEAAgAAQACAAQACAABAAIABAAIAAEAAgAEAAgAAQACAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQCsRAMIAVAAAQABAAEAAfs3BB34oyM7AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
-format = 3
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yqskc"]
+radius = 8.0
+height = 24.0
 
 [sub_resource type="Curve" id="Curve_liqmj"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.6256652, 0.0, 0, 0]
@@ -33,16 +31,18 @@ curve = SubResource("Curve_liqmj")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6h5vx"]
 lifetime_randomness = 0.25
 particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 8.0
 spread = 180.0
 initial_velocity_min = 25.0
 initial_velocity_max = 100.0
 gravity = Vector3(0, 98, 0)
-scale_min = 3.0
-scale_max = 6.0
+scale_min = 4.0
+scale_max = 8.0
 scale_curve = SubResource("CurveTexture_5ku1l")
 
 [sub_resource type="Curve" id="Curve_vrbx1"]
-_data = [Vector2(0, 0.49438208), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.7268807, 0.0, 0, 0]
+_data = [Vector2(0, 0.75280905), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.7268807, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_6s2gs"]
@@ -61,41 +61,36 @@ particle_flag_disable_z = true
 emission_shape = 1
 emission_sphere_radius = 8.53
 direction = Vector3(-1, -1, 0)
-initial_velocity_min = 25.0
-initial_velocity_max = 50.0
-gravity = Vector3(0, -98, 0)
+initial_velocity_min = 12.5
+initial_velocity_max = 25.0
+gravity = Vector3(0, -49, 0)
 scale_min = 4.0
 scale_max = 8.0
 scale_curve = SubResource("CurveTexture_7lub6")
-color = Color(0.53333336, 0.53333336, 0.53333336, 1)
+color = Color(0.8, 0, 0, 1)
 alpha_curve = SubResource("CurveTexture_6s2gs")
 
 [node name="SeekerEnemy" unique_id=444889010 instance=ExtResource("1_1pe7x")]
 script = ExtResource("2_pv5kb")
-min_speed = 50.0
-max_speed = 100.0
-min_osc_amplitude = 0.0
-max_osc_amplitude = 8.0
-min_osc_period = 1.0
-max_osc_period = 2.0
-death_screen_shake = 0.75
+min_speed = 100.0
+max_speed = 125.0
+death_screen_shake = 0.5
 
 [node name="Sprite2D" parent="." index="0" unique_id=1721054349]
-modulate = Color(1, 0.53333336, 0.53333336, 1)
-sprite_frames = SubResource("SpriteFrames_fflq5")
+sprite_frames = SubResource("SpriteFrames_svfy5")
 
 [node name="CollisionShape2D" parent="." index="1" unique_id=336696788]
-shape = SubResource("CircleShape2D_6h5vx")
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_yqskc")
 
 [node name="DeathSound" parent="." index="2" unique_id=3373551]
-stream = SubResource("AudioStreamWAV_6h5vx")
+stream = ExtResource("4_svfy5")
 
 [node name="DeathParticles" parent="." index="3" unique_id=1168632659]
-modulate = Color(1, 0.53333336, 0.53333336, 1)
+modulate = Color(1, 0.26666668, 0.26666668, 1)
 process_material = SubResource("ParticleProcessMaterial_6h5vx")
 
 [node name="SmokeParticles" parent="." index="4" unique_id=1825255395 instance=ExtResource("3_fflq5")]
-modulate = Color(1, 0.53333336, 0.53333336, 1)
 amount = 12
 visibility_rect = Rect2(-300, -100, 600, 200)
 process_material = SubResource("ParticleProcessMaterial_pv5kb")

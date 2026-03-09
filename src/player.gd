@@ -3,6 +3,7 @@ class_name Player extends CharacterBody2D
 ## Singleton instance.
 static var instance: Player
 
+@export var initial_velocity: Vector2
 @export var max_speed: Vector2
 @export var jump_speed: float
 @export var pogo_recoil_speed: float
@@ -32,6 +33,7 @@ static var instance: Player
 @onready var jumps_left := air_jumps
 @onready var dashes_left := air_dashes
 
+var jumped := false
 var is_attack_buffered := false
 var is_attacking := false
 var last_input_direction := 1.0
@@ -46,13 +48,17 @@ func _exit_tree() -> void:
 	instance = null
 
 
+func _ready() -> void:
+	velocity = initial_velocity
+
+
 func _physics_process(delta: float) -> void:
 	# Add gravity
 	velocity += get_gravity() * delta
 	velocity.y = minf(velocity.y, max_speed.y)
 
 	# Variable jump height: quickly stop going up if jump is released
-	if not Input.is_action_pressed("jump") and velocity.y < 0:
+	if jumped and not Input.is_action_pressed("jump") and velocity.y < 0:
 		velocity.y += fast_fall_acceleration * delta
 
 	var input_direction := Input.get_axis("move_left", "move_right")
@@ -81,14 +87,14 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		die()
 
 
-func jump() -> bool:
+func jump() -> void:
 	if jumps_left == 0:
-		return false
+		return
+	jumped = true
 	jumps_left -= 1
 	velocity.y = - jump_speed
 	jump_sound.randomize_and_play()
 	jump_particles.restart()
-	return true
 
 
 func attack() -> void:
@@ -162,6 +168,7 @@ func hit(enemy: Enemy) -> void:
 	var recoil_direction := Vector2(1, 0).rotated(sword_area.rotation)
 	if recoil_direction.y > 0:
 		velocity.y = - pogo_recoil_speed
+		jumped = false
 		jumps_left = air_jumps
 		dashes_left = air_dashes
 	else:

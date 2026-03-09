@@ -76,10 +76,8 @@ alpha_curve = SubResource("CurveTexture_6s2gs")
 script = ExtResource("2_hp671")
 min_speed = 50.0
 max_speed = 150.0
-min_osc_amplitude = 0.0
-max_osc_amplitude = 16.0
-min_osc_period = 1.0
-max_osc_period = 4.0
+osc_period = 2.0
+osc_amplitude = 8.0
 death_screen_shake = 0.75
 
 [node name="Sprite2D" parent="." index="0" unique_id=1721054349]

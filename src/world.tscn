@@ -126,12 +126,13 @@ normal = Vector2(-1, 0)
 script = ExtResource("1_5xesp")
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=113814185 node_paths=PackedStringArray("sprite", "sword_area", "camera", "attack_sound", "jump_sound", "dash_sound", "death_sound", "jump_particles", "dash_particles", "death_particles")]
-position = Vector2(1, -139)
+position = Vector2(0, -50)
 collision_mask = 2
 script = ExtResource("2_a3wil")
+initial_velocity = Vector2(0, -300)
 max_speed = Vector2(162.5, 250)
-jump_speed = 162.5
-pogo_recoil_speed = 150.0
+jump_speed = 200.0
+pogo_recoil_speed = 100.0
 non_pogo_recoil_speed = 100.0
 dash_speed = 500.0
 acceleration = 1250.0

@@ -29,6 +29,7 @@ sprite_frames = SubResource("SpriteFrames_vrbx1")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=336696788]
 
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="." unique_id=3373551]
+bus = &"Sound"
 script = ExtResource("4_a17ok")
 
 [node name="DeathParticles" parent="." unique_id=1168632659 instance=ExtResource("5_a17ok")]

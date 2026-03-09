@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://bn1ebrx2tjwoi"]
+
+[ext_resource type="PackedScene" uid="uid://dcsjkgjjpmdst" path="res://src/enemies/enemy.tscn" id="1_h1m41"]
+[ext_resource type="Texture2D" uid="uid://d26v04a503o3b" path="res://assets/images/ranged_enemy.png" id="2_3sbw6"]
+[ext_resource type="Script" uid="uid://cg5g56wju6v13" path="res://src/enemies/ranged_enemy.gd" id="2_unnwf"]
+[ext_resource type="AudioStream" uid="uid://bnrgfixbvaftc" path="res://assets/sounds/ranged_enemy_death.wav" id="3_3sbw6"]
+[ext_resource type="PackedScene" uid="uid://bm143vr44dliw" path="res://src/enemies/projectile.tscn" id="3_th2jy"]
+[ext_resource type="PackedScene" uid="uid://dc6yhxt042ufq" path="res://src/smart_sound.tscn" id="6_puxrv"]
+[ext_resource type="AudioStream" uid="uid://corxvpkkpkc5w" path="res://assets/sounds/shoot.wav" id="7_mo7yn"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_unnwf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_3sbw6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_th2jy"]
+radius = 4.0
+
+[sub_resource type="Curve" id="Curve_3sbw6"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.6256652, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_unnwf"]
+curve = SubResource("Curve_3sbw6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_th2jy"]
+lifetime_randomness = 0.25
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(4, 14, 1)
+spread = 180.0
+initial_velocity_min = 25.0
+initial_velocity_max = 100.0
+gravity = Vector3(0, 98, 0)
+scale_min = 3.0
+scale_max = 6.0
+scale_curve = SubResource("CurveTexture_unnwf")
+
+[node name="RangedEnemy" unique_id=444889010 node_paths=PackedStringArray("shoot_sound") instance=ExtResource("1_h1m41")]
+script = ExtResource("2_unnwf")
+speed = 75.0
+min_distance = 200.0
+max_distance = 250.0
+osc_period = 3.0
+osc_amplitude = 8.0
+projectile_scene = ExtResource("3_th2jy")
+shoot_sound = NodePath("ShootSound")
+death_screen_shake = 0.75
+
+[node name="Sprite2D" parent="." index="0" unique_id=1721054349]
+position = Vector2(-1, 0)
+sprite_frames = SubResource("SpriteFrames_unnwf")
+flip_h = true
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=336696788]
+shape = SubResource("CapsuleShape2D_th2jy")
+
+[node name="DeathSound" parent="." index="2" unique_id=3373551]
+stream = ExtResource("3_3sbw6")
+
+[node name="DeathParticles" parent="." index="3" unique_id=1168632659]
+position = Vector2(1, 0)
+amount = 12
+process_material = SubResource("ParticleProcessMaterial_th2jy")
+
+[node name="ShootTimer" type="Timer" parent="." index="4" unique_id=1622846835]
+wait_time = 3.0
+autostart = true
+
+[node name="ShootSound" parent="." index="5" unique_id=1182294992 instance=ExtResource("6_puxrv")]
+stream = ExtResource("7_mo7yn")
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

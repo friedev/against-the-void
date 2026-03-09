@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://bm143vr44dliw"]
+
+[ext_resource type="PackedScene" uid="uid://dcsjkgjjpmdst" path="res://src/enemies/enemy.tscn" id="1_dm031"]
+[ext_resource type="Script" uid="uid://00yymjih2333" path="res://src/enemies/projectile.gd" id="2_j02k2"]
+[ext_resource type="Texture2D" uid="uid://ooyfumgj2qdq" path="res://assets/images/projectile.png" id="2_s6oge"]
+[ext_resource type="AudioStream" uid="uid://g06wdp2nfb3f" path="res://assets/sounds/projectile_death.wav" id="3_s6oge"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j02k2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_s6oge")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_73cso"]
+radius = 4.0
+
+[sub_resource type="Curve" id="Curve_liqmj"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.6256652, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_5ku1l"]
+curve = SubResource("Curve_liqmj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_j02k2"]
+lifetime_randomness = 0.25
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 12.5
+initial_velocity_max = 50.0
+gravity = Vector3(0, 98, 0)
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_5ku1l")
+
+[node name="Projectile" unique_id=444889010 instance=ExtResource("1_dm031")]
+script = ExtResource("2_j02k2")
+speed = 200.0
+death_screen_shake = 0.25
+
+[node name="Sprite2D" parent="." index="0" unique_id=1721054349]
+modulate = Color(1, 0.26666668, 0.26666668, 1)
+sprite_frames = SubResource("SpriteFrames_j02k2")
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=336696788]
+shape = SubResource("CircleShape2D_73cso")
+
+[node name="DeathSound" parent="." index="2" unique_id=3373551]
+stream = ExtResource("3_s6oge")
+
+[node name="DeathParticles" parent="." index="3" unique_id=1168632659]
+modulate = Color(1, 0.26666668, 0.26666668, 1)
+amount = 4
+process_material = SubResource("ParticleProcessMaterial_j02k2")

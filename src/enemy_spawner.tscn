@@ -3,10 +3,11 @@
 [ext_resource type="Script" uid="uid://e3kkgn3wnk4t" path="res://src/enemy_spawner.gd" id="1_n27sx"]
 [ext_resource type="PackedScene" uid="uid://btr2ewc6lv8ov" path="res://src/enemies/basic_enemy.tscn" id="2_ebymd"]
 [ext_resource type="PackedScene" uid="uid://knesad6sab5t" path="res://src/enemies/seeker_enemy.tscn" id="3_kmbul"]
+[ext_resource type="PackedScene" uid="uid://bn1ebrx2tjwoi" path="res://src/enemies/ranged_enemy.tscn" id="4_kmbul"]
 
 [node name="EnemySpawner" type="Node2D" unique_id=431051513 node_paths=PackedStringArray("spawn_timer")]
 script = ExtResource("1_n27sx")
-enemy_scenes = Array[PackedScene]([ExtResource("2_ebymd"), ExtResource("3_kmbul")])
+enemy_scenes = Array[PackedScene]([ExtResource("2_ebymd"), ExtResource("2_ebymd"), ExtResource("2_ebymd"), ExtResource("2_ebymd"), ExtResource("2_ebymd"), ExtResource("3_kmbul"), ExtResource("3_kmbul"), ExtResource("4_kmbul")])
 spawn_timer = NodePath("SpawnTimer")
 
 [node name="SpawnTimer" type="Timer" parent="." unique_id=1939794040]

@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://sfrh6uqm4l6x" path="res://assets/sounds/swish.wav" id="6_00gdp"]
 [ext_resource type="Script" uid="uid://c64papim5fgn1" path="res://src/smart_sound.gd" id="7_th6lv"]
 [ext_resource type="AudioStream" uid="uid://cf5wkx8chpjt1" path="res://assets/sounds/jump.wav" id="8_wgoqa"]
+[ext_resource type="AudioStream" uid="uid://lel8nsbodgoi" path="res://assets/sounds/dash.wav" id="9_5xesp"]
 [ext_resource type="AudioStream" uid="uid://bqbcpjl5wrjf2" path="res://assets/sounds/death.wav" id="9_pk3eh"]
 [ext_resource type="PackedScene" uid="uid://2stt7v0hsnst" path="res://src/smart_particles.tscn" id="10_tvnmn"]
 [ext_resource type="Script" uid="uid://c841a3h3xkybc" path="res://src/shake_camera.gd" id="11_c3rv8"]
@@ -74,6 +75,27 @@ scale_min = 2.0
 scale_max = 4.0
 scale_curve = SubResource("CurveTexture_e7lu8")
 
+[sub_resource type="Curve" id="Curve_5xesp"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.6256652, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_a3wil"]
+curve = SubResource("Curve_5xesp")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8kjpi"]
+lifetime_randomness = 0.25
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(8, 1, 1)
+direction = Vector3(-1, 0, 0)
+spread = 15.0
+initial_velocity_min = 50.0
+initial_velocity_max = 150.0
+gravity = Vector3(0, 49, 0)
+scale_min = 2.0
+scale_max = 4.0
+scale_curve = SubResource("CurveTexture_a3wil")
+
 [sub_resource type="Curve" id="Curve_liqmj"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.6256652, 0.0, 0, 0]
 point_count = 2
@@ -103,7 +125,7 @@ normal = Vector2(-1, 0)
 [node name="World" type="Node2D" unique_id=842869675]
 script = ExtResource("1_5xesp")
 
-[node name="Player" type="CharacterBody2D" parent="." unique_id=113814185 node_paths=PackedStringArray("sprite", "sword_area", "camera", "attack_sound", "jump_sound", "death_sound", "jump_particles", "death_particles")]
+[node name="Player" type="CharacterBody2D" parent="." unique_id=113814185 node_paths=PackedStringArray("sprite", "sword_area", "camera", "attack_sound", "jump_sound", "dash_sound", "death_sound", "jump_particles", "dash_particles", "death_particles")]
 position = Vector2(1, -139)
 collision_mask = 2
 script = ExtResource("2_a3wil")
@@ -111,19 +133,23 @@ max_speed = Vector2(162.5, 250)
 jump_speed = 162.5
 pogo_recoil_speed = 150.0
 non_pogo_recoil_speed = 100.0
+dash_speed = 500.0
 acceleration = 1250.0
 deceleration = 2500.0
 fast_fall_acceleration = 500.0
 attack_duration = 0.1
 attack_cooldown = 0.2
 air_jumps = 2
+air_dashes = 1
 sprite = NodePath("Sprite2D")
 sword_area = NodePath("SwordArea")
 camera = NodePath("ShakeCamera")
 attack_sound = NodePath("AttackSound")
 jump_sound = NodePath("JumpSound")
+dash_sound = NodePath("DashSound")
 death_sound = NodePath("DeathSound")
 jump_particles = NodePath("JumpParticles")
+dash_particles = NodePath("DashParticles")
 death_particles = NodePath("DeathParticles")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="Player" unique_id=392880355]
@@ -165,6 +191,11 @@ stream = ExtResource("8_wgoqa")
 script = ExtResource("7_th6lv")
 pitch_scale_range = 0.125
 
+[node name="DashSound" type="AudioStreamPlayer2D" parent="Player" unique_id=912154549]
+stream = ExtResource("9_5xesp")
+script = ExtResource("7_th6lv")
+pitch_scale_range = 0.125
+
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="Player" unique_id=456973342]
 stream = ExtResource("9_pk3eh")
 script = ExtResource("7_th6lv")
@@ -175,6 +206,13 @@ lifetime = 0.5
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_e7lu8")
+
+[node name="DashParticles" parent="Player" unique_id=2062388052 instance=ExtResource("10_tvnmn")]
+emitting = false
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_8kjpi")
 
 [node name="DeathParticles" parent="Player" unique_id=873689997 instance=ExtResource("10_tvnmn")]
 emitting = false

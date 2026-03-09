@@ -114,6 +114,7 @@ layout_mode = 2
 text = "Move:
 Jump:
 Attack:
+Dash:
 Restart:
 Quit:"
 horizontal_alignment = 2
@@ -123,6 +124,7 @@ layout_mode = 2
 text = "Arrows/WASD
 Z/Space
 X/J
+C/K
 R
 Exit"
 
@@ -262,6 +264,7 @@ text = "Sounds:
 [url=https://freesound.org/people/TheDweebMan/sounds/277213/]8-Bit Hit[/url] by [url=https://freesound.org/people/TheDweebMan/]TheDweebMan[/url] ([url=http://creativecommons.org/publicdomain/zero/1.0/]CC0[/url])
 [url=https://opengameart.org/content/rpg-sound-pack]RPG Sound Pack[/url] by [url=https://opengameart.org/users/artisticdude]artisticdude[/url] ([url=http://creativecommons.org/publicdomain/zero/1.0/]CC0[/url])
 [url=https://opengameart.org/content/8-bit-platformer-sfx]8-bit platformer SFX[/url] by [url=https://opengameart.org/users/bart]bart[/url] ([url=http://creativecommons.org/licenses/by/3.0/]CC-BY 3.0[/url])
+[url=https://opengameart.org/content/8-bit-sound-effect-pack-vol-001]8-Bit Sound Effect Pack (Vol. 001)[/url] by [url=https://soundcloud.com/noshades]@Shades[/url] ([url=http://creativecommons.org/publicdomain/zero/1.0/]CC0[/url])
 [url=https://freesound.org/people/PatrickLieberkind/sounds/244961/]Dark Ambience[/url] by [url=https://freesound.org/people/PatrickLieberkind/]PatrickLieberkind[/url] ([url=https://creativecommons.org/licenses/by/4.0/]CC-BY 4.0[/url])
 [url=https://freesound.org/people/InspectorJ/sounds/376415/]Wind, Synthesized, A.wav[/url] by [url=http://www.jshaw.co.uk/]InspectorJ[/url] ([url=https://creativecommons.org/licenses/by/4.0/]CC-BY 4.0[/url])[/ul]
 

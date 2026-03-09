@@ -172,10 +172,10 @@ func hit(enemy: Enemy) -> void:
 	if recoil_direction.y > 0:
 		velocity.y = - pogo_recoil_speed
 		jumped = false
-		jumps_left = air_jumps
-		dashes_left = air_dashes
 	else:
 		velocity -= recoil_direction * non_pogo_recoil_speed
+	jumps_left = air_jumps
+	dashes_left = air_dashes
 
 
 func _on_sword_area_area_entered(area: Area2D) -> void:

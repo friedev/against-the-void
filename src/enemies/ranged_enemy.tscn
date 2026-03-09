@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bm143vr44dliw" path="res://src/enemies/projectile.tscn" id="3_th2jy"]
 [ext_resource type="PackedScene" uid="uid://dc6yhxt042ufq" path="res://src/smart_sound.tscn" id="6_puxrv"]
 [ext_resource type="AudioStream" uid="uid://corxvpkkpkc5w" path="res://assets/sounds/shoot.wav" id="7_mo7yn"]
+[ext_resource type="Texture2D" uid="uid://ooyfumgj2qdq" path="res://assets/images/projectile.png" id="8_mo7yn"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_unnwf"]
 animations = [{
@@ -42,7 +43,7 @@ scale_min = 3.0
 scale_max = 6.0
 scale_curve = SubResource("CurveTexture_unnwf")
 
-[node name="RangedEnemy" unique_id=444889010 node_paths=PackedStringArray("shoot_sound") instance=ExtResource("1_h1m41")]
+[node name="RangedEnemy" unique_id=444889010 node_paths=PackedStringArray("shoot_timer", "shoot_sound", "telegraph_sprite") instance=ExtResource("1_h1m41")]
 script = ExtResource("2_unnwf")
 speed = 75.0
 min_distance = 200.0
@@ -50,7 +51,9 @@ max_distance = 250.0
 osc_period = 3.0
 osc_amplitude = 8.0
 projectile_scene = ExtResource("3_th2jy")
+shoot_timer = NodePath("ShootTimer")
 shoot_sound = NodePath("ShootSound")
+telegraph_sprite = NodePath("TelegraphSprite")
 death_screen_shake = 0.75
 
 [node name="Sprite2D" parent="." index="0" unique_id=1721054349]
@@ -75,5 +78,10 @@ autostart = true
 
 [node name="ShootSound" parent="." index="5" unique_id=1182294992 instance=ExtResource("6_puxrv")]
 stream = ExtResource("7_mo7yn")
+
+[node name="TelegraphSprite" type="Sprite2D" parent="." index="6" unique_id=1477928298]
+modulate = Color(1, 0.26666668, 0.26666668, 1)
+position = Vector2(11, -1)
+texture = ExtResource("8_mo7yn")
 
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

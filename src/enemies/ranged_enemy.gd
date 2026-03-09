@@ -8,9 +8,16 @@ class_name RangedEnemy extends Enemy
 @export var projectile_scene: PackedScene
 
 @export_group("Internal Nodes")
+@export var shoot_timer: Timer
 @export var shoot_sound: SmartSound
+@export var telegraph_sprite: Sprite2D
 
 var osc_input := randf()
+
+func _process(_delta: float) -> void:
+	if Player.instance != null:
+		telegraph_sprite.modulate.a = (1.0 - (shoot_timer.time_left / shoot_timer.wait_time)) ** 2
+
 
 func _physics_process(delta: float) -> void:
 	var prev_osc_input := osc_input
@@ -34,6 +41,6 @@ func _on_shoot_timer_timeout() -> void:
 
 func shoot() -> void:
 	var projectile: Node2D = projectile_scene.instantiate()
-	projectile.global_position = global_position
+	projectile.global_position = telegraph_sprite.global_position
 	SignalBus.node_spawned.emit(projectile)
 	shoot_sound.randomize_and_play()

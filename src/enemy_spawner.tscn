@@ -7,7 +7,7 @@
 
 [node name="EnemySpawner" type="Node2D" unique_id=431051513 node_paths=PackedStringArray("spawn_timer")]
 script = ExtResource("1_n27sx")
-enemy_scenes = Array[PackedScene]([ExtResource("2_ebymd"), ExtResource("2_ebymd"), ExtResource("2_ebymd"), ExtResource("2_ebymd"), ExtResource("2_ebymd"), ExtResource("3_kmbul"), ExtResource("3_kmbul"), ExtResource("4_kmbul")])
+enemy_scenes = Array[PackedScene]([ExtResource("2_ebymd"), ExtResource("2_ebymd"), ExtResource("2_ebymd"), ExtResource("2_ebymd"), ExtResource("2_ebymd"), ExtResource("2_ebymd"), ExtResource("2_ebymd"), ExtResource("3_kmbul"), ExtResource("3_kmbul"), ExtResource("4_kmbul")])
 spawn_timer = NodePath("SpawnTimer")
 
 [node name="SpawnTimer" type="Timer" parent="." unique_id=1939794040]

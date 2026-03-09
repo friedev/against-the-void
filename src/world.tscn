@@ -4,9 +4,11 @@
 [ext_resource type="Script" uid="uid://ussa75mhy2qk" path="res://src/player.gd" id="2_a3wil"]
 [ext_resource type="Texture2D" uid="uid://cm7tqiur1h4e4" path="res://assets/images/player_idle_1.png" id="3_8kjpi"]
 [ext_resource type="Texture2D" uid="uid://b2kpxra4dxk2b" path="res://assets/images/player_idle_2.png" id="4_yyjdi"]
-[ext_resource type="Texture2D" uid="uid://b6kcdrbf4fnh2" path="res://assets/images/slash.png" id="5_vmuob"]
+[ext_resource type="Texture2D" uid="uid://ydwgnf4p5gd6" path="res://assets/images/slash1.png" id="5_8kjpi"]
 [ext_resource type="AudioStream" uid="uid://sfrh6uqm4l6x" path="res://assets/sounds/swish.wav" id="6_00gdp"]
+[ext_resource type="Texture2D" uid="uid://bp6bn1rr3qim1" path="res://assets/images/slash2.png" id="6_yyjdi"]
 [ext_resource type="Script" uid="uid://c64papim5fgn1" path="res://src/smart_sound.gd" id="7_th6lv"]
+[ext_resource type="Texture2D" uid="uid://bydr88xygbdaw" path="res://assets/images/slash3.png" id="7_vmuob"]
 [ext_resource type="AudioStream" uid="uid://cf5wkx8chpjt1" path="res://assets/sounds/jump.wav" id="8_wgoqa"]
 [ext_resource type="AudioStream" uid="uid://lel8nsbodgoi" path="res://assets/sounds/dash.wav" id="9_5xesp"]
 [ext_resource type="AudioStream" uid="uid://bqbcpjl5wrjf2" path="res://assets/sounds/death.wav" id="9_pk3eh"]
@@ -42,11 +44,17 @@ height = 15.5
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("5_vmuob")
+"texture": ExtResource("5_8kjpi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_yyjdi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_vmuob")
 }],
-"loop": true,
-"name": &"default",
-"speed": 5.0
+"loop": false,
+"name": &"attack",
+"speed": 30.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tb146"]
@@ -125,7 +133,7 @@ normal = Vector2(-1, 0)
 [node name="World" type="Node2D" unique_id=842869675]
 script = ExtResource("1_5xesp")
 
-[node name="Player" type="CharacterBody2D" parent="." unique_id=113814185 node_paths=PackedStringArray("sprite", "sword_area", "camera", "attack_sound", "jump_sound", "dash_sound", "death_sound", "jump_particles", "dash_particles", "death_particles")]
+[node name="Player" type="CharacterBody2D" parent="." unique_id=113814185 node_paths=PackedStringArray("sprite", "sword_sprite", "sword_area", "camera", "attack_sound", "jump_sound", "dash_sound", "death_sound", "jump_particles", "dash_particles", "death_particles")]
 position = Vector2(0, -50)
 collision_mask = 2
 script = ExtResource("2_a3wil")
@@ -143,6 +151,7 @@ attack_cooldown = 0.2
 air_jumps = 2
 air_dashes = 1
 sprite = NodePath("Sprite2D")
+sword_sprite = NodePath("SwordArea/SwordSprite")
 sword_area = NodePath("SwordArea")
 camera = NodePath("ShakeCamera")
 attack_sound = NodePath("AttackSound")
@@ -171,6 +180,9 @@ monitorable = false
 [node name="SwordSprite" type="AnimatedSprite2D" parent="Player/SwordArea" unique_id=500308356]
 rotation = -1.5707964
 sprite_frames = SubResource("SpriteFrames_e7lu8")
+animation = &"attack"
+frame = 2
+frame_progress = 1.0
 offset = Vector2(0, 16)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/SwordArea" unique_id=246097330]

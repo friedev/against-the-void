@@ -19,6 +19,7 @@ static var instance: Player
 
 @export_group("Internal Nodes")
 @export var sprite: AnimatedSprite2D
+@export var sword_sprite: AnimatedSprite2D
 @export var sword_area: Area2D
 @export var camera: Camera2D
 @export var attack_sound: SmartSound
@@ -110,16 +111,18 @@ func attack() -> void:
 	if attack_direction == Vector2.ZERO:
 		attack_direction = Vector2(last_input_direction, 0)
 	attack_direction = attack_direction.normalized()
+	sword_sprite.scale.x = +1 if (animation_state == 0) == (last_input_direction > 0.0) else -1
 
 	sword_area.rotation = attack_direction.angle()
 	sword_area.show()
 	animation_state = (animation_state + 1) % 2
+	sword_sprite.play("attack")
 	sprite.play("idle_%d" % animation_state)
 
 	sword_area.monitoring = true
 	for body in sword_area.get_overlapping_areas():
 		try_hit(body)
-	await get_tree().create_timer(attack_duration).timeout
+	await sword_sprite.animation_finished
 	sword_area.monitoring = false
 	sword_area.hide()
 	await get_tree().create_timer(attack_cooldown).timeout

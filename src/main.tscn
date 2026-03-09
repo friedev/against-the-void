@@ -14,25 +14,49 @@
 [ext_resource type="AudioStream" uid="uid://cqf74nv8e4jhv" path="res://assets/sounds/ambience.ogg" id="18_okx7f"]
 [ext_resource type="AudioStream" uid="uid://bdlqf0u0m1wpy" path="res://assets/sounds/wind.ogg" id="19_sta5p"]
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_adv81"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_srxbw"]
 allow_unpress = true
 
-[sub_resource type="Gradient" id="Gradient_tb146"]
+[sub_resource type="Gradient" id="Gradient_d3u4l"]
 interpolation_mode = 1
-offsets = PackedFloat32Array(0, 0.38554215, 0.6927711)
-colors = PackedColorArray(0, 0, 0, 1, 0.09411765, 0.09411765, 0.09411765, 1, 0.1882353, 0.1882353, 0.1882353, 1)
+offsets = PackedFloat32Array(0, 0.36746988, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.06666667, 0.06666667, 0.06666667, 1, 0.09411765, 0.09411765, 0.09411765, 0)
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_e7lu8"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_mlv6i"]
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_okx7f"]
-noise = SubResource("FastNoiseLite_e7lu8")
-color_ramp = SubResource("Gradient_tb146")
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_tb146"]
+noise = SubResource("FastNoiseLite_mlv6i")
+color_ramp = SubResource("Gradient_d3u4l")
+seamless = true
+
+[sub_resource type="Gradient" id="Gradient_srxbw"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.46385542, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.13333334, 0.13333334, 0.13333334, 1, 0.09411765, 0.09411765, 0.09411765, 0)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_d3u4l"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_mlv6i"]
+noise = SubResource("FastNoiseLite_d3u4l")
+color_ramp = SubResource("Gradient_srxbw")
+seamless = true
+
+[sub_resource type="Gradient" id="Gradient_mlv6i"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.6566265, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.2, 0.2, 0.2, 1, 0.09411765, 0.09411765, 0.09411765, 0)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_tb146"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_e7lu8"]
+noise = SubResource("FastNoiseLite_tb146")
+color_ramp = SubResource("Gradient_mlv6i")
 seamless = true
 
 [node name="Main" type="Node" unique_id=943047039 node_paths=PackedStringArray("noise_sprite")]
 script = ExtResource("1_rlaii")
 world_scene = ExtResource("2_mgm53")
-noise_sprite = NodePath("ParallaxLayer/Parallax2D/NoiseSprite")
+noise_sprite = NodePath("ParallaxLayer/MiddleParallax/NoiseSprite")
 
 [node name="UILayer" type="CanvasLayer" parent="." unique_id=1593020530]
 
@@ -76,21 +100,46 @@ text = "FPS: 88"
 script = ExtResource("18_ocmcv")
 
 [node name="MainMenu" parent="UILayer" unique_id=654840502 instance=ExtResource("17_sif16")]
-submenu_button_group = SubResource("ButtonGroup_adv81")
+submenu_button_group = SubResource("ButtonGroup_srxbw")
 
 [node name="ParallaxLayer" type="CanvasLayer" parent="." unique_id=824432241]
 layer = -1
 follow_viewport_enabled = true
 
-[node name="Parallax2D" type="Parallax2D" parent="ParallaxLayer" unique_id=1226314995]
+[node name="FarParallax" type="Parallax2D" parent="ParallaxLayer" unique_id=1558102102]
 z_index = -5
+scroll_scale = Vector2(0.25, 0.25)
+repeat_size = Vector2(512, 512)
+autoscroll = Vector2(8, 0)
+repeat_times = 3
+
+[node name="NoiseSprite" type="Sprite2D" parent="ParallaxLayer/FarParallax" unique_id=1268473867]
+position = Vector2(768, 768)
+texture = SubResource("NoiseTexture2D_tb146")
+script = ExtResource("17_e7lu8")
+
+[node name="MiddleParallax" type="Parallax2D" parent="ParallaxLayer" unique_id=1226314995]
+z_index = -5
+scroll_scale = Vector2(0.5, 0.5)
+repeat_size = Vector2(512, 512)
+autoscroll = Vector2(16, 0)
+repeat_times = 3
+
+[node name="NoiseSprite" type="Sprite2D" parent="ParallaxLayer/MiddleParallax" unique_id=1053513239]
+position = Vector2(768, 768)
+texture = SubResource("NoiseTexture2D_mlv6i")
+script = ExtResource("17_e7lu8")
+
+[node name="NearParallax" type="Parallax2D" parent="ParallaxLayer" unique_id=452690333]
+z_index = -5
+scroll_offset = Vector2(0, -4)
 repeat_size = Vector2(512, 512)
 autoscroll = Vector2(32, 0)
 repeat_times = 3
 
-[node name="NoiseSprite" type="Sprite2D" parent="ParallaxLayer/Parallax2D" unique_id=1053513239]
+[node name="NoiseSprite" type="Sprite2D" parent="ParallaxLayer/NearParallax" unique_id=900084637]
 position = Vector2(768, 768)
-texture = SubResource("NoiseTexture2D_okx7f")
+texture = SubResource("NoiseTexture2D_e7lu8")
 script = ExtResource("17_e7lu8")
 
 [node name="DarkAmbience" type="AudioStreamPlayer" parent="." unique_id=402455208]

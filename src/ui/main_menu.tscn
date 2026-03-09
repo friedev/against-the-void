@@ -106,10 +106,13 @@ size_flags_vertical = 4
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer2/HBoxContainer/HelpMenu" unique_id=998186284]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2/HBoxContainer/HelpMenu/MarginContainer" unique_id=725947505]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/HBoxContainer/HelpMenu/MarginContainer" unique_id=24314884]
 layout_mode = 2
 
-[node name="ActionsLabel" type="Label" parent="VBoxContainer2/HBoxContainer/HelpMenu/MarginContainer/HBoxContainer" unique_id=1117019169]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2/HBoxContainer/HelpMenu/MarginContainer/VBoxContainer" unique_id=725947505]
+layout_mode = 2
+
+[node name="ActionsLabel" type="Label" parent="VBoxContainer2/HBoxContainer/HelpMenu/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1117019169]
 layout_mode = 2
 text = "Move:
 Jump:
@@ -119,7 +122,7 @@ Restart:
 Quit:"
 horizontal_alignment = 2
 
-[node name="KeysLabel" type="Label" parent="VBoxContainer2/HBoxContainer/HelpMenu/MarginContainer/HBoxContainer" unique_id=1848551836]
+[node name="KeysLabel" type="Label" parent="VBoxContainer2/HBoxContainer/HelpMenu/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1848551836]
 layout_mode = 2
 text = "Arrows/WASD
 Z/Space
@@ -127,6 +130,12 @@ X/J
 C/K
 R
 Exit"
+
+[node name="Label" type="Label" parent="VBoxContainer2/HBoxContainer/HelpMenu/MarginContainer/VBoxContainer" unique_id=80617817]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+text = "Hold up or down to attack in that direction. Killing enemies recharges jump and dash."
+autowrap_mode = 3
 
 [node name="OptionsMenu" type="VBoxContainer" parent="VBoxContainer2/HBoxContainer" unique_id=2042605787]
 visible = false

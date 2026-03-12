@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Against the Void"
-config/version="0.1.0"
+config/version="0.1.1-dev"
 run/main_scene="uid://px03diws0gc5"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="uid://cixyxs4ucu10t"
@@ -34,6 +34,7 @@ window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/size/mode=3
 window/stretch/aspect="expand"
+window/snap/snap_2d_vertices_to_pixel=true
 
 [dotnet]
 

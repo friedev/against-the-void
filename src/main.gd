@@ -3,12 +3,14 @@ class_name Main extends Node
 @export var world_scene: PackedScene
 
 @export_group("Internal Nodes")
-@export var noise_sprite: NoiseSprite
+@export var parallax_nodes: Array[Parallax2D]
+@export var temp_camera: Camera2D
 
 var world: World
 
 func _ready() -> void:
 	Options.setup()
+	randomize_parallax()
 	
 
 func _unhandled_key_input(event: InputEvent) -> void:
@@ -18,16 +20,21 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 func restart() -> void:
 	SignalBus.game_loading.emit()
+	temp_camera.enabled = false
 	if world != null:
 		SignalBus.node_spawned.disconnect(world._on_node_spawned)
 		world.queue_free()
 		await world.tree_exited
+	randomize_parallax()
 	world = world_scene.instantiate()
 	add_child(world)
-	if not noise_sprite.is_texture_updated:
-		await noise_sprite.texture_updated
 	SignalBus.game_loaded.emit()
 	Globals.start_ticks = Time.get_ticks_msec()
+
+
+func randomize_parallax() -> void:
+	for parallax in parallax_nodes:
+		parallax.scroll_offset = parallax.repeat_size * Vector2(randf(), randf())
 
 
 func _on_main_menu_play_pressed() -> void:

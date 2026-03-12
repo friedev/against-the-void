@@ -27,23 +27,23 @@ theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 script = ExtResource("2_wb0q5")
-default_focus = NodePath("VBoxContainer2/HBoxContainer/VBoxContainer/PlayButton")
+default_focus = NodePath("VBoxContainer/VBoxContainer2/Buttons/PlayButton")
 submenu_button_group = SubResource("ButtonGroup_h4dpu")
-help_menu = NodePath("VBoxContainer2/HBoxContainer/HelpMenu")
-options_menu = NodePath("VBoxContainer2/HBoxContainer/OptionsMenu")
-credits_menu = NodePath("VBoxContainer2/HBoxContainer/CreditsMenu")
+help_menu = NodePath("VBoxContainer/VBoxContainer2/HelpMenu")
+options_menu = NodePath("VBoxContainer/VBoxContainer2/OptionsMenu")
+credits_menu = NodePath("VBoxContainer/VBoxContainer2/CreditsMenu")
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="." unique_id=465010869]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=465010869]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2" unique_id=952473490]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer" unique_id=952473490]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 theme_override_constants/separation = -32
 alignment = 1
 
-[node name="TitleLabel" type="Label" parent="VBoxContainer2/VBoxContainer" unique_id=550764034]
+[node name="TitleLabel" type="Label" parent="VBoxContainer/VBoxContainer" unique_id=550764034]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(1, 0.26666668, 0.26666668, 1)
@@ -52,67 +52,44 @@ theme_override_font_sizes/font_size = 192
 text = "Against the Void"
 horizontal_alignment = 1
 
-[node name="VersionLabel" type="Label" parent="VBoxContainer2/VBoxContainer" unique_id=1631817745]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/VBoxContainer" unique_id=43529929]
 layout_mode = 2
-size_flags_vertical = 8
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="VersionLabel" type="Label" parent="VBoxContainer/VBoxContainer/MarginContainer" unique_id=1631817745]
+layout_mode = 2
+size_flags_vertical = 0
 text = "vX.X.X"
 horizontal_alignment = 2
 script = ExtResource("7_x8sms")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2" unique_id=1412496860]
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer" unique_id=701939020]
 layout_mode = 2
-size_flags_horizontal = 4
 size_flags_vertical = 3
-alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/HBoxContainer" unique_id=2108337521]
+[node name="Control" type="Control" parent="VBoxContainer/VBoxContainer2" unique_id=280908430]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+size_flags_vertical = 2
 
-[node name="PlayButton" type="Button" parent="VBoxContainer2/HBoxContainer/VBoxContainer" unique_id=1275283974]
-layout_mode = 2
-text = "Play"
-
-[node name="HelpButton" type="Button" parent="VBoxContainer2/HBoxContainer/VBoxContainer" unique_id=1253732577]
-layout_mode = 2
-toggle_mode = true
-button_group = SubResource("ButtonGroup_h4dpu")
-text = "How to Play"
-
-[node name="OptionsButton" type="Button" parent="VBoxContainer2/HBoxContainer/VBoxContainer" unique_id=1722604557]
-layout_mode = 2
-toggle_mode = true
-button_group = SubResource("ButtonGroup_h4dpu")
-text = "Options"
-
-[node name="CreditsButton" type="Button" parent="VBoxContainer2/HBoxContainer/VBoxContainer" unique_id=1763800558]
-layout_mode = 2
-toggle_mode = true
-button_group = SubResource("ButtonGroup_h4dpu")
-text = "Credits"
-
-[node name="QuitButton" type="Button" parent="VBoxContainer2/HBoxContainer/VBoxContainer" unique_id=1334271972]
-layout_mode = 2
-text = "Quit"
-script = ExtResource("5_8g5eo")
-
-[node name="HelpMenu" type="PanelContainer" parent="VBoxContainer2/HBoxContainer" unique_id=293156691]
+[node name="HelpMenu" type="PanelContainer" parent="VBoxContainer/VBoxContainer2" unique_id=293156691]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
+size_flags_vertical = 6
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer2/HBoxContainer/HelpMenu" unique_id=998186284]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/VBoxContainer2/HelpMenu" unique_id=998186284]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/HBoxContainer/HelpMenu/MarginContainer" unique_id=24314884]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/HelpMenu/MarginContainer" unique_id=24314884]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2/HBoxContainer/HelpMenu/MarginContainer/VBoxContainer" unique_id=725947505]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/HelpMenu/MarginContainer/VBoxContainer" unique_id=725947505]
 layout_mode = 2
 
-[node name="ActionsLabel" type="Label" parent="VBoxContainer2/HBoxContainer/HelpMenu/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1117019169]
+[node name="ActionsLabel" type="Label" parent="VBoxContainer/VBoxContainer2/HelpMenu/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1117019169]
 layout_mode = 2
 text = "Move:
 Jump:
@@ -122,7 +99,7 @@ Restart:
 Quit:"
 horizontal_alignment = 2
 
-[node name="KeysLabel" type="Label" parent="VBoxContainer2/HBoxContainer/HelpMenu/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1848551836]
+[node name="KeysLabel" type="Label" parent="VBoxContainer/VBoxContainer2/HelpMenu/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1848551836]
 layout_mode = 2
 text = "Arrows / WASD / Left Stick
 Z / J / Space / (A)
@@ -131,125 +108,125 @@ C / L / (RT)
 R / Start
 Esc / Back"
 
-[node name="Label" type="Label" parent="VBoxContainer2/HBoxContainer/HelpMenu/MarginContainer/VBoxContainer" unique_id=80617817]
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer2/HelpMenu/MarginContainer/VBoxContainer" unique_id=80617817]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 text = "Hold up or down to attack in that direction. Killing enemies recharges jump and dash."
 autowrap_mode = 3
 
-[node name="OptionsMenu" type="VBoxContainer" parent="VBoxContainer2/HBoxContainer" unique_id=2042605787]
+[node name="OptionsMenu" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2" unique_id=2042605787]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
+size_flags_vertical = 6
 script = ExtResource("6_8g5eo")
 
-[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer2/HBoxContainer/OptionsMenu" unique_id=1109654372]
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/VBoxContainer2/OptionsMenu" unique_id=1109654372]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer2/HBoxContainer/OptionsMenu/PanelContainer" unique_id=1700164413]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer" unique_id=1700164413]
 layout_mode = 2
 
-[node name="Options" type="GridContainer" parent="VBoxContainer2/HBoxContainer/OptionsMenu/PanelContainer/MarginContainer" unique_id=352666380]
+[node name="Options" type="GridContainer" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer" unique_id=352666380]
 layout_mode = 2
 theme_override_constants/h_separation = 8
 theme_override_constants/v_separation = 8
 columns = 2
 
-[node name="SoundOption" parent="VBoxContainer2/HBoxContainer/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=770892076 instance=ExtResource("7_otr3d")]
+[node name="SoundOption" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=770892076 instance=ExtResource("7_otr3d")]
 custom_minimum_size = Vector2(128, 32)
 layout_mode = 2
 size_flags_horizontal = 8
 bus_name = &"Sound"
 default = 0.5
 
-[node name="SoundLabel" type="Label" parent="VBoxContainer2/HBoxContainer/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=17116501]
+[node name="SoundLabel" type="Label" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=17116501]
 layout_mode = 2
 text = "Sound"
 
-[node name="AmbienceOption" parent="VBoxContainer2/HBoxContainer/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=1545334335 instance=ExtResource("7_otr3d")]
+[node name="AmbienceOption" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=1545334335 instance=ExtResource("7_otr3d")]
 custom_minimum_size = Vector2(128, 32)
 layout_mode = 2
 size_flags_horizontal = 8
 bus_name = &"Ambience"
 default = 0.5
 
-[node name="AmbienceLabel" type="Label" parent="VBoxContainer2/HBoxContainer/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=1704971698]
+[node name="AmbienceLabel" type="Label" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=1704971698]
 layout_mode = 2
 text = "Ambience"
 
-[node name="SliderOption" parent="VBoxContainer2/HBoxContainer/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=1147143404 instance=ExtResource("8_q85j6")]
+[node name="SliderOption" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=1147143404 instance=ExtResource("8_q85j6")]
 layout_mode = 2
 default = 0.3
 key = "screen_shake"
 
-[node name="ScreenShakeLabel" type="Label" parent="VBoxContainer2/HBoxContainer/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=1739501989]
+[node name="ScreenShakeLabel" type="Label" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=1739501989]
 layout_mode = 2
 text = "Screen Shake"
 
-[node name="FullscreenOption" parent="VBoxContainer2/HBoxContainer/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=1687234724 instance=ExtResource("4_qnfpr")]
+[node name="FullscreenOption" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=1687234724 instance=ExtResource("4_qnfpr")]
 layout_mode = 2
 size_flags_horizontal = 8
 default = true
 key = "fullscreen"
 
-[node name="FullscreenLabel" type="Label" parent="VBoxContainer2/HBoxContainer/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=1170520789]
+[node name="FullscreenLabel" type="Label" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=1170520789]
 layout_mode = 2
 text = "Fullscreen"
 
-[node name="ShowTimerOption" parent="VBoxContainer2/HBoxContainer/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=1866285198 instance=ExtResource("10_7suek")]
+[node name="ShowTimerOption" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=1866285198 instance=ExtResource("10_7suek")]
 layout_mode = 2
 size_flags_horizontal = 8
 default = true
 key = "show_timer"
 
-[node name="ShowTimerLabel" type="Label" parent="VBoxContainer2/HBoxContainer/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=1904113437]
+[node name="ShowTimerLabel" type="Label" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=1904113437]
 layout_mode = 2
 text = "Show Timer"
 
-[node name="ShowFPSOption" parent="VBoxContainer2/HBoxContainer/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=1648799832 instance=ExtResource("10_7suek")]
+[node name="ShowFPSOption" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=1648799832 instance=ExtResource("10_7suek")]
 layout_mode = 2
 size_flags_horizontal = 8
 key = "show_fps"
 
-[node name="ShowFPSLabel" type="Label" parent="VBoxContainer2/HBoxContainer/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=789901050]
+[node name="ShowFPSLabel" type="Label" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=789901050]
 layout_mode = 2
 text = "Show FPS"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2/HBoxContainer/OptionsMenu" unique_id=931134284]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/OptionsMenu" unique_id=931134284]
 layout_mode = 2
 alignment = 1
 
-[node name="SaveButton" type="Button" parent="VBoxContainer2/HBoxContainer/OptionsMenu/HBoxContainer" unique_id=268453669]
+[node name="SaveButton" type="Button" parent="VBoxContainer/VBoxContainer2/OptionsMenu/HBoxContainer" unique_id=268453669]
 layout_mode = 2
 text = "Save"
 
-[node name="UndoButton" type="Button" parent="VBoxContainer2/HBoxContainer/OptionsMenu/HBoxContainer" unique_id=1686717031]
+[node name="UndoButton" type="Button" parent="VBoxContainer/VBoxContainer2/OptionsMenu/HBoxContainer" unique_id=1686717031]
 layout_mode = 2
 text = "Undo"
 
-[node name="DefaultsButton" type="Button" parent="VBoxContainer2/HBoxContainer/OptionsMenu/HBoxContainer" unique_id=473304738]
+[node name="DefaultsButton" type="Button" parent="VBoxContainer/VBoxContainer2/OptionsMenu/HBoxContainer" unique_id=473304738]
 layout_mode = 2
 text = "Restore Defaults"
 
-[node name="CreditsMenu" type="PanelContainer" parent="VBoxContainer2/HBoxContainer" unique_id=1858878167]
+[node name="CreditsMenu" type="PanelContainer" parent="VBoxContainer/VBoxContainer2" unique_id=1858878167]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
+size_flags_vertical = 6
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer2/HBoxContainer/CreditsMenu" unique_id=555961281]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/VBoxContainer2/CreditsMenu" unique_id=555961281]
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/HBoxContainer/CreditsMenu/MarginContainer" unique_id=1340930056]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/CreditsMenu/MarginContainer" unique_id=1340930056]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer2/HBoxContainer/CreditsMenu/MarginContainer/VBoxContainer" unique_id=639864115]
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/VBoxContainer2/CreditsMenu/MarginContainer/VBoxContainer" unique_id=639864115]
 layout_mode = 2
 bbcode_enabled = true
 text = "Created by [url=https://frie.dev]Aaron Friesen[/url]
@@ -258,10 +235,10 @@ fit_content = true
 horizontal_alignment = 1
 script = ExtResource("11_h4dpu")
 
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer2/HBoxContainer/CreditsMenu/MarginContainer/VBoxContainer" unique_id=1004182480]
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/VBoxContainer2/CreditsMenu/MarginContainer/VBoxContainer" unique_id=1004182480]
 layout_mode = 2
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="VBoxContainer2/HBoxContainer/CreditsMenu/MarginContainer/VBoxContainer" unique_id=354376860]
+[node name="RichTextLabel2" type="RichTextLabel" parent="VBoxContainer/VBoxContainer2/CreditsMenu/MarginContainer/VBoxContainer" unique_id=354376860]
 custom_minimum_size = Vector2(620, 0)
 layout_mode = 2
 size_flags_vertical = 3
@@ -287,11 +264,43 @@ Fonts:
 fit_content = true
 script = ExtResource("11_h4dpu")
 
-[connection signal="pressed" from="VBoxContainer2/HBoxContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="toggled" from="VBoxContainer2/HBoxContainer/VBoxContainer/HelpButton" to="." method="_on_help_button_toggled"]
-[connection signal="toggled" from="VBoxContainer2/HBoxContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_toggled"]
-[connection signal="toggled" from="VBoxContainer2/HBoxContainer/VBoxContainer/CreditsButton" to="." method="_on_credits_button_toggled"]
-[connection signal="pressed" from="VBoxContainer2/HBoxContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
-[connection signal="pressed" from="VBoxContainer2/HBoxContainer/OptionsMenu/HBoxContainer/SaveButton" to="VBoxContainer2/HBoxContainer/OptionsMenu" method="_on_save_button_pressed"]
-[connection signal="pressed" from="VBoxContainer2/HBoxContainer/OptionsMenu/HBoxContainer/UndoButton" to="VBoxContainer2/HBoxContainer/OptionsMenu" method="_on_undo_button_pressed"]
-[connection signal="pressed" from="VBoxContainer2/HBoxContainer/OptionsMenu/HBoxContainer/DefaultsButton" to="VBoxContainer2/HBoxContainer/OptionsMenu" method="_on_defaults_button_pressed"]
+[node name="Buttons" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2" unique_id=909069800]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+
+[node name="PlayButton" type="Button" parent="VBoxContainer/VBoxContainer2/Buttons" unique_id=1275283974]
+layout_mode = 2
+text = "Play"
+
+[node name="HelpButton" type="Button" parent="VBoxContainer/VBoxContainer2/Buttons" unique_id=1253732577]
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_h4dpu")
+text = "How to Play"
+
+[node name="OptionsButton" type="Button" parent="VBoxContainer/VBoxContainer2/Buttons" unique_id=1722604557]
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_h4dpu")
+text = "Options"
+
+[node name="CreditsButton" type="Button" parent="VBoxContainer/VBoxContainer2/Buttons" unique_id=1763800558]
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_h4dpu")
+text = "Credits"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer/VBoxContainer2/Buttons" unique_id=1334271972]
+layout_mode = 2
+text = "Quit"
+script = ExtResource("5_8g5eo")
+
+[connection signal="pressed" from="VBoxContainer/VBoxContainer2/OptionsMenu/HBoxContainer/SaveButton" to="VBoxContainer/VBoxContainer2/OptionsMenu" method="_on_save_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer2/OptionsMenu/HBoxContainer/UndoButton" to="VBoxContainer/VBoxContainer2/OptionsMenu" method="_on_undo_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer2/OptionsMenu/HBoxContainer/DefaultsButton" to="VBoxContainer/VBoxContainer2/OptionsMenu" method="_on_defaults_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer2/Buttons/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="toggled" from="VBoxContainer/VBoxContainer2/Buttons/HelpButton" to="." method="_on_help_button_toggled"]
+[connection signal="toggled" from="VBoxContainer/VBoxContainer2/Buttons/OptionsButton" to="." method="_on_options_button_toggled"]
+[connection signal="toggled" from="VBoxContainer/VBoxContainer2/Buttons/CreditsButton" to="." method="_on_credits_button_toggled"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer2/Buttons/QuitButton" to="." method="_on_quit_button_pressed"]

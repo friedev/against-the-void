@@ -9,22 +9,26 @@ func _ready() -> void:
 
 
 func get_option() -> bool:
-	var window_mode := get_window().mode
-	return (
-		window_mode == Window.MODE_FULLSCREEN
-		or window_mode == Window.MODE_EXCLUSIVE_FULLSCREEN
-	)
-
+	return _is_fullscreen(get_window().mode)
 
 func set_option(value: Variant) -> bool:
 	if super.set_option(value):
-		get_window().mode = (
-			Window.MODE_FULLSCREEN
-			if value
-			else Window.MODE_WINDOWED
-		)
+		var window := get_window()
+		if value:
+			if not _is_fullscreen(window.mode):
+				window.mode = Window.MODE_FULLSCREEN
+		else:
+			if _is_fullscreen(window.mode):
+				window.mode = Window.MODE_WINDOWED
 		return true
 	return false
+
+
+func _is_fullscreen(mode: Window.Mode) -> bool:
+	return (
+		mode == Window.MODE_FULLSCREEN
+		or mode == Window.MODE_EXCLUSIVE_FULLSCREEN
+	)
 
 
 func _process(_delta: float) -> void:

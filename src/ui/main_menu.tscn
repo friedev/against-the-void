@@ -124,12 +124,12 @@ horizontal_alignment = 2
 
 [node name="KeysLabel" type="Label" parent="VBoxContainer2/HBoxContainer/HelpMenu/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1848551836]
 layout_mode = 2
-text = "Arrows/WASD
-Z/Space
-X/J
-C/K
-R
-Exit"
+text = "Arrows / WASD / Left Stick
+Z / J / Space / (A)
+X / K / (X)
+C / L / (RT)
+R / Start
+Esc / Back"
 
 [node name="Label" type="Label" parent="VBoxContainer2/HBoxContainer/HelpMenu/MarginContainer/VBoxContainer" unique_id=80617817]
 custom_minimum_size = Vector2(300, 0)

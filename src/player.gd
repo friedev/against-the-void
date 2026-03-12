@@ -77,7 +77,7 @@ func _physics_process(delta: float) -> void:
 		sprite.flip_h = input_direction < 0.0
 
 
-func _unhandled_key_input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
 		jump()
 	elif event.is_action_pressed("attack"):
@@ -106,7 +106,7 @@ func attack() -> void:
 	attack_sound.randomize_and_play()
 
 	var attack_direction := Input.get_vector("aim_left", "aim_right", "aim_up", "aim_down")
-	if attack_direction.y != 0.0:
+	if absf(attack_direction.y) >= 0.5:
 		attack_direction.x = 0.0
 	if attack_direction == Vector2.ZERO:
 		attack_direction = Vector2(last_input_direction, 0)

@@ -10,6 +10,8 @@
 [ext_resource type="Script" uid="uid://cvfji11bhhncx" path="res://src/ui/version_label.gd" id="7_x8sms"]
 [ext_resource type="PackedScene" uid="uid://dbbnhubut8hco" path="res://src/ui/options/slider_option.tscn" id="8_q85j6"]
 [ext_resource type="PackedScene" uid="uid://cgnmle83oa3at" path="res://src/ui/options/check_box_option.tscn" id="10_7suek"]
+[ext_resource type="Script" uid="uid://c0eg7la51qnwy" path="res://src/ui/controls_menu.gd" id="10_wdmux"]
+[ext_resource type="Script" uid="uid://b3cldwd8i68kk" path="res://addons/ActionIcon/ActionIcon.gd" id="10_yipxn"]
 [ext_resource type="Script" uid="uid://b6qdw17kc1ly0" path="res://src/ui/linked_label.gd" id="11_h4dpu"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_h4dpu"]
@@ -115,7 +117,6 @@ text = "Hold up or down to attack in that direction. Killing enemies recharges j
 autowrap_mode = 3
 
 [node name="OptionsMenu" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2" unique_id=2042605787]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
@@ -127,71 +128,199 @@ layout_mode = 2
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer" unique_id=1700164413]
 layout_mode = 2
 
-[node name="Options" type="GridContainer" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer" unique_id=352666380]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer" unique_id=488156643]
+layout_mode = 2
+
+[node name="Options" type="GridContainer" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer" unique_id=352666380]
 layout_mode = 2
 theme_override_constants/h_separation = 8
 theme_override_constants/v_separation = 8
 columns = 2
 
-[node name="SoundOption" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=770892076 instance=ExtResource("7_otr3d")]
+[node name="SoundOption" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/Options" unique_id=770892076 instance=ExtResource("7_otr3d")]
 custom_minimum_size = Vector2(128, 32)
 layout_mode = 2
 size_flags_horizontal = 8
 bus_name = &"Sound"
 default = 0.5
 
-[node name="SoundLabel" type="Label" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=17116501]
+[node name="SoundLabel" type="Label" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/Options" unique_id=17116501]
 layout_mode = 2
 text = "Sound"
 
-[node name="AmbienceOption" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=1545334335 instance=ExtResource("7_otr3d")]
+[node name="AmbienceOption" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/Options" unique_id=1545334335 instance=ExtResource("7_otr3d")]
 custom_minimum_size = Vector2(128, 32)
 layout_mode = 2
 size_flags_horizontal = 8
 bus_name = &"Ambience"
 default = 0.5
 
-[node name="AmbienceLabel" type="Label" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=1704971698]
+[node name="AmbienceLabel" type="Label" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/Options" unique_id=1704971698]
 layout_mode = 2
 text = "Ambience"
 
-[node name="SliderOption" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=1147143404 instance=ExtResource("8_q85j6")]
+[node name="SliderOption" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/Options" unique_id=1147143404 instance=ExtResource("8_q85j6")]
 layout_mode = 2
 default = 0.3
 key = "screen_shake"
 
-[node name="ScreenShakeLabel" type="Label" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=1739501989]
+[node name="ScreenShakeLabel" type="Label" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/Options" unique_id=1739501989]
 layout_mode = 2
 text = "Screen Shake"
 
-[node name="FullscreenOption" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=1687234724 instance=ExtResource("4_qnfpr")]
+[node name="FullscreenOption" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/Options" unique_id=1687234724 instance=ExtResource("4_qnfpr")]
 layout_mode = 2
 size_flags_horizontal = 8
 default = true
 key = "fullscreen"
 
-[node name="FullscreenLabel" type="Label" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=1170520789]
+[node name="FullscreenLabel" type="Label" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/Options" unique_id=1170520789]
 layout_mode = 2
 text = "Fullscreen"
 
-[node name="ShowTimerOption" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=1866285198 instance=ExtResource("10_7suek")]
+[node name="ShowTimerOption" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/Options" unique_id=1866285198 instance=ExtResource("10_7suek")]
 layout_mode = 2
 size_flags_horizontal = 8
 default = true
 key = "show_timer"
 
-[node name="ShowTimerLabel" type="Label" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=1904113437]
+[node name="ShowTimerLabel" type="Label" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/Options" unique_id=1904113437]
 layout_mode = 2
 text = "Show Timer"
 
-[node name="ShowFPSOption" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=1648799832 instance=ExtResource("10_7suek")]
+[node name="ShowFPSOption" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/Options" unique_id=1648799832 instance=ExtResource("10_7suek")]
 layout_mode = 2
 size_flags_horizontal = 8
 key = "show_fps"
 
-[node name="ShowFPSLabel" type="Label" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=789901050]
+[node name="ShowFPSLabel" type="Label" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/Options" unique_id=789901050]
 layout_mode = 2
 text = "Show FPS"
+
+[node name="VSeparator" type="VSeparator" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer" unique_id=1689841896]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer" unique_id=1900787254]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1426200677]
+layout_mode = 2
+text = "Controls"
+horizontal_alignment = 1
+
+[node name="Controls" type="GridContainer" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1518332268]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 4
+script = ExtResource("10_wdmux")
+controls_remap_path = "user://controls.tres"
+
+[node name="MoveLeftIcon" type="TextureRect" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Controls" unique_id=147958217]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+script = ExtResource("10_yipxn")
+action_name = &"move_left"
+fit_mode = 2
+
+[node name="MoveLeftLabel" type="Label" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Controls" unique_id=606494864]
+layout_mode = 2
+text = "Left"
+
+[node name="JumpIcon" type="TextureRect" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Controls" unique_id=391883137]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+script = ExtResource("10_yipxn")
+action_name = &"jump"
+fit_mode = 2
+
+[node name="JumpLabel" type="Label" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Controls" unique_id=2062276794]
+layout_mode = 2
+text = "Jump"
+
+[node name="MoveRightIcon" type="TextureRect" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Controls" unique_id=446054010]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+script = ExtResource("10_yipxn")
+action_name = &"move_right"
+fit_mode = 2
+
+[node name="MoveRightLabel" type="Label" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Controls" unique_id=76776405]
+layout_mode = 2
+text = "Right"
+
+[node name="AttackIcon" type="TextureRect" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Controls" unique_id=1492177965]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+script = ExtResource("10_yipxn")
+action_name = &"attack"
+fit_mode = 2
+
+[node name="AttackLabel" type="Label" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Controls" unique_id=1607771629]
+layout_mode = 2
+text = "Attack"
+
+[node name="MoveUpIcon" type="TextureRect" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Controls" unique_id=142845279]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+script = ExtResource("10_yipxn")
+action_name = &"aim_up"
+fit_mode = 2
+
+[node name="MoveUpLabel" type="Label" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Controls" unique_id=1363935723]
+layout_mode = 2
+text = "Up"
+
+[node name="DashIcon" type="TextureRect" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Controls" unique_id=1854704044]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+script = ExtResource("10_yipxn")
+action_name = &"dash"
+fit_mode = 2
+
+[node name="DashLabel" type="Label" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Controls" unique_id=1997654792]
+layout_mode = 2
+text = "Dash"
+
+[node name="MoveDownIcon" type="TextureRect" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Controls" unique_id=1643207988]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+script = ExtResource("10_yipxn")
+action_name = &"aim_down"
+fit_mode = 2
+
+[node name="MoveDownLabel" type="Label" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Controls" unique_id=853415962]
+layout_mode = 2
+text = "Down"
+
+[node name="Control" type="Control" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Controls" unique_id=379303448]
+layout_mode = 2
+
+[node name="Control2" type="Control" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Controls" unique_id=1903967761]
+layout_mode = 2
+
+[node name="RestartIcon" type="TextureRect" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Controls" unique_id=317502587]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+script = ExtResource("10_yipxn")
+action_name = &"restart"
+fit_mode = 2
+
+[node name="RestartLabel" type="Label" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Controls" unique_id=261944473]
+layout_mode = 2
+text = "Restart"
+
+[node name="QuitIcon" type="TextureRect" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Controls" unique_id=86821730]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+script = ExtResource("10_yipxn")
+action_name = &"die"
+fit_mode = 2
+
+[node name="QuitLabel" type="Label" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Controls" unique_id=509263913]
+layout_mode = 2
+text = "Quit"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/OptionsMenu" unique_id=931134284]
 layout_mode = 2
@@ -244,7 +373,12 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/normal_font_size = 16
 bbcode_enabled = true
-text = "Sounds:
+text = "Addons:
+
+[ul]
+[url=https://godotengine.org/asset-library/asset/1455]ControlsRemap resource[/url] by [url=https://github.com/KoBeWi]KoBeWi[/url] ([url=https://github.com/KoBeWi/Godot-Input-Remap/blob/38a8b0c16d628232a7d877acbbdc57be3b57982f/LICENSE.txt]MIT[/url])[/ul]
+
+Sounds:
 
 [ul]
 [url=https://freesound.org/people/TheDweebMan/sounds/277213/]8-Bit Hit[/url] by [url=https://freesound.org/people/TheDweebMan/]TheDweebMan[/url] ([url=http://creativecommons.org/publicdomain/zero/1.0/]CC0[/url])
@@ -259,8 +393,7 @@ Fonts:
 [ul]
 [url=https://www.1001fonts.com/so-font.html]So Narrow[/url] by [url=https://www.1001fonts.com/users/apostrophe/]Apostrophic Labs[/url] ([url=https://www.1001fonts.com/licenses/ffc.html]1001Fonts FFC License[/url])
 [url=https://www.1001fonts.com/pixelfj8pt1-font.html]pixelFJ8pt[/url] by [url=https://www.1001fonts.com/users/flashjunior/]MBommeli[/url] ([url=https://www.1001fonts.com/licenses/ffc.html]1001Fonts FFC License[/url])
-[url=https://github.com/kika/fixedsys]FixedSys Excelsior[/url] by [url=https://github.com/bathos]Darien Valentine[/url] ([url=http://creativecommons.org/publicdomain/zero/1.0/]CC0[/url])[/ul]
-"
+[url=https://github.com/kika/fixedsys]FixedSys Excelsior[/url] by [url=https://github.com/bathos]Darien Valentine[/url] ([url=http://creativecommons.org/publicdomain/zero/1.0/]CC0[/url])[/ul]"
 fit_content = true
 script = ExtResource("11_h4dpu")
 
@@ -296,6 +429,15 @@ layout_mode = 2
 text = "Quit"
 script = ExtResource("5_8g5eo")
 
+[connection signal="gui_input" from="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Controls/MoveLeftIcon" to="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Controls" method="_on_action_icon_gui_input" flags=18]
+[connection signal="gui_input" from="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Controls/MoveRightIcon" to="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Controls" method="_on_action_icon_gui_input" flags=18]
+[connection signal="gui_input" from="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Controls/MoveUpIcon" to="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Controls" method="_on_action_icon_gui_input" flags=18]
+[connection signal="gui_input" from="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Controls/MoveDownIcon" to="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Controls" method="_on_action_icon_gui_input" flags=18]
+[connection signal="gui_input" from="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Controls/JumpIcon" to="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Controls" method="_on_action_icon_gui_input" flags=18]
+[connection signal="gui_input" from="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Controls/AttackIcon" to="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Controls" method="_on_action_icon_gui_input" flags=18]
+[connection signal="gui_input" from="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Controls/DashIcon" to="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Controls" method="_on_action_icon_gui_input" flags=18]
+[connection signal="gui_input" from="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Controls/RestartIcon" to="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Controls" method="_on_action_icon_gui_input" flags=18]
+[connection signal="gui_input" from="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Controls/QuitIcon" to="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Controls" method="_on_action_icon_gui_input" flags=18]
 [connection signal="pressed" from="VBoxContainer/VBoxContainer2/OptionsMenu/HBoxContainer/SaveButton" to="VBoxContainer/VBoxContainer2/OptionsMenu" method="_on_save_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/VBoxContainer2/OptionsMenu/HBoxContainer/UndoButton" to="VBoxContainer/VBoxContainer2/OptionsMenu" method="_on_undo_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/VBoxContainer2/OptionsMenu/HBoxContainer/DefaultsButton" to="VBoxContainer/VBoxContainer2/OptionsMenu" method="_on_defaults_button_pressed"]

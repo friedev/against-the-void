@@ -105,7 +105,7 @@ func attack() -> void:
 	is_attacking = true
 	attack_sound.randomize_and_play()
 
-	var attack_direction := Input.get_vector("aim_left", "aim_right", "aim_up", "aim_down")
+	var attack_direction := Input.get_vector("move_left", "move_right", "aim_up", "aim_down")
 	if absf(attack_direction.y) >= 0.5:
 		attack_direction.x = 0.0
 	if attack_direction == Vector2.ZERO:

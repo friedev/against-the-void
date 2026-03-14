@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://2stt7v0hsnst"]
 
-[ext_resource type="Script" uid="uid://crygac3uabgdb" path="res://src/smart_particles.gd" id="1_81x1e"]
+[ext_resource type="Script" uid="uid://crygac3uabgdb" path="res://src/common/smart_particles.gd" id="1_81x1e"]
 
 [node name="SmartParticles" type="GPUParticles2D" unique_id=1168632659]
 z_index = -1

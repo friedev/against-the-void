@@ -2,9 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://dcsjkgjjpmdst" path="res://src/enemies/enemy.tscn" id="1_1pe7x"]
 [ext_resource type="Script" uid="uid://dwaetcxmlccsq" path="res://src/enemies/seeker_enemy.gd" id="2_pv5kb"]
-[ext_resource type="PackedScene" uid="uid://2stt7v0hsnst" path="res://src/smart_particles.tscn" id="3_fflq5"]
-[ext_resource type="Texture2D" uid="uid://dn6ygvwqmkrh8" path="res://assets/images/seeker_enemy.png" id="3_pv5kb"]
-[ext_resource type="AudioStream" uid="uid://ops3lth2226i" path="res://assets/sounds/seeker_enemy_death.wav" id="4_svfy5"]
+[ext_resource type="PackedScene" uid="uid://2stt7v0hsnst" path="res://src/common/smart_particles.tscn" id="3_fflq5"]
+[ext_resource type="Texture2D" uid="uid://dn6ygvwqmkrh8" path="res://assets/images/enemies/seeker_enemy.png" id="3_pv5kb"]
+[ext_resource type="AudioStream" uid="uid://ops3lth2226i" path="res://assets/sounds/enemies/seeker_enemy_death.wav" id="4_svfy5"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_svfy5"]
 animations = [{
@@ -74,6 +74,7 @@ alpha_curve = SubResource("CurveTexture_6s2gs")
 script = ExtResource("2_pv5kb")
 min_speed = 100.0
 max_speed = 125.0
+acceleration = 0.0
 death_screen_shake = 0.5
 
 [node name="Sprite2D" parent="." index="0" unique_id=1721054349]

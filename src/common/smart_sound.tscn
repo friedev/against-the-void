@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dc6yhxt042ufq"]
 
-[ext_resource type="Script" uid="uid://c64papim5fgn1" path="res://src/smart_sound.gd" id="1_da7aj"]
+[ext_resource type="Script" uid="uid://c64papim5fgn1" path="res://src/common/smart_sound.gd" id="1_da7aj"]
 
 [node name="SmartSound" type="AudioStreamPlayer2D" unique_id=1182294992]
 bus = &"Sound"

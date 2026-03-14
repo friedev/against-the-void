@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://dcsjkgjjpmdst" path="res://src/enemies/enemy.tscn" id="1_dm031"]
 [ext_resource type="Script" uid="uid://00yymjih2333" path="res://src/enemies/projectile.gd" id="2_j02k2"]
-[ext_resource type="Texture2D" uid="uid://ooyfumgj2qdq" path="res://assets/images/projectile.png" id="2_s6oge"]
-[ext_resource type="AudioStream" uid="uid://g06wdp2nfb3f" path="res://assets/sounds/projectile_death.wav" id="3_s6oge"]
+[ext_resource type="Texture2D" uid="uid://ooyfumgj2qdq" path="res://assets/images/enemies/projectile.png" id="2_s6oge"]
+[ext_resource type="AudioStream" uid="uid://g06wdp2nfb3f" path="res://assets/sounds/enemies/projectile_death.wav" id="3_s6oge"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_j02k2"]
 animations = [{

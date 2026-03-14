@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://dcsjkgjjpmdst" path="res://src/enemies/enemy.tscn" id="1_u7v80"]
 [ext_resource type="Script" uid="uid://bl5oee3tvbcbl" path="res://src/enemies/basic_enemy.gd" id="2_hp671"]
-[ext_resource type="Texture2D" uid="uid://c4p6dss8bel25" path="res://assets/images/basic_enemy.png" id="2_kmw7h"]
-[ext_resource type="PackedScene" uid="uid://2stt7v0hsnst" path="res://src/smart_particles.tscn" id="5_klnvb"]
+[ext_resource type="Texture2D" uid="uid://c4p6dss8bel25" path="res://assets/images/enemies/basic_enemy.png" id="2_kmw7h"]
+[ext_resource type="PackedScene" uid="uid://2stt7v0hsnst" path="res://src/common/smart_particles.tscn" id="5_klnvb"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0sdmo"]
 animations = [{

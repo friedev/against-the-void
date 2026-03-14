@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d26v04a503o3b"
-path="res://.godot/imported/ranged_enemy.png-773f5165ff837882451f79137f2f809c.ctex"
+uid="uid://ydwgnf4p5gd6"
+path="res://.godot/imported/slash1.png-577ea2b2215f1e16803550725701b4ba.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/ranged_enemy.png"
-dest_files=["res://.godot/imported/ranged_enemy.png-773f5165ff837882451f79137f2f809c.ctex"]
+source_file="res://assets/images/player/slash1.png"
+dest_files=["res://.godot/imported/slash1.png-577ea2b2215f1e16803550725701b4ba.ctex"]
 
 [params]
 

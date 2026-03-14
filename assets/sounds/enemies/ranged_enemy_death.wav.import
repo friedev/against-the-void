@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://bnrgfixbvaftc"
-path="res://.godot/imported/ranged_enemy_death.wav-676e7566093aa6a525a7807b4d7fef4e.sample"
+path="res://.godot/imported/ranged_enemy_death.wav-2fba3186837e5ea39211ddd54343b207.sample"
 
 [deps]
 
-source_file="res://assets/sounds/ranged_enemy_death.wav"
-dest_files=["res://.godot/imported/ranged_enemy_death.wav-676e7566093aa6a525a7807b4d7fef4e.sample"]
+source_file="res://assets/sounds/enemies/ranged_enemy_death.wav"
+dest_files=["res://.godot/imported/ranged_enemy_death.wav-2fba3186837e5ea39211ddd54343b207.sample"]
 
 [params]
 

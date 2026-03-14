@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://bn1ebrx2tjwoi"]
 
 [ext_resource type="PackedScene" uid="uid://dcsjkgjjpmdst" path="res://src/enemies/enemy.tscn" id="1_h1m41"]
-[ext_resource type="Texture2D" uid="uid://d26v04a503o3b" path="res://assets/images/ranged_enemy.png" id="2_3sbw6"]
+[ext_resource type="Texture2D" uid="uid://d26v04a503o3b" path="res://assets/images/enemies/ranged_enemy.png" id="2_3sbw6"]
 [ext_resource type="Script" uid="uid://cg5g56wju6v13" path="res://src/enemies/ranged_enemy.gd" id="2_unnwf"]
-[ext_resource type="AudioStream" uid="uid://bnrgfixbvaftc" path="res://assets/sounds/ranged_enemy_death.wav" id="3_3sbw6"]
+[ext_resource type="AudioStream" uid="uid://bnrgfixbvaftc" path="res://assets/sounds/enemies/ranged_enemy_death.wav" id="3_3sbw6"]
 [ext_resource type="PackedScene" uid="uid://bm143vr44dliw" path="res://src/enemies/projectile.tscn" id="3_th2jy"]
-[ext_resource type="PackedScene" uid="uid://dc6yhxt042ufq" path="res://src/smart_sound.tscn" id="6_puxrv"]
-[ext_resource type="AudioStream" uid="uid://corxvpkkpkc5w" path="res://assets/sounds/shoot.wav" id="7_mo7yn"]
-[ext_resource type="Texture2D" uid="uid://ooyfumgj2qdq" path="res://assets/images/projectile.png" id="8_mo7yn"]
+[ext_resource type="PackedScene" uid="uid://dc6yhxt042ufq" path="res://src/common/smart_sound.tscn" id="6_puxrv"]
+[ext_resource type="AudioStream" uid="uid://corxvpkkpkc5w" path="res://assets/sounds/enemies/shoot.wav" id="7_mo7yn"]
+[ext_resource type="Texture2D" uid="uid://ooyfumgj2qdq" path="res://assets/images/enemies/projectile.png" id="8_mo7yn"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_unnwf"]
 animations = [{

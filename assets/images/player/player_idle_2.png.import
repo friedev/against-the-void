@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://chw73scbrbx0o"
-path="res://.godot/imported/void_fog_far.png-af9c017bc9406ba72f00f4b380e68909.ctex"
+uid="uid://b2kpxra4dxk2b"
+path="res://.godot/imported/player_idle_2.png-778530f7a61b3da0650d625c1d24cf18.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/void_fog_far.png"
-dest_files=["res://.godot/imported/void_fog_far.png-af9c017bc9406ba72f00f4b380e68909.ctex"]
+source_file="res://assets/images/player/player_idle_2.png"
+dest_files=["res://.godot/imported/player_idle_2.png-778530f7a61b3da0650d625c1d24cf18.ctex"]
 
 [params]
 

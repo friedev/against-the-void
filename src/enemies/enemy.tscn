@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://crjitsgpjrp6e" path="res://src/enemies/enemy.gd" id="1_u7g3q"]
 [ext_resource type="Texture2D" uid="uid://k1hrvdi5770a" path="res://assets/images/placeholder_texture.tres" id="2_a17ok"]
-[ext_resource type="Script" uid="uid://c64papim5fgn1" path="res://src/smart_sound.gd" id="4_a17ok"]
-[ext_resource type="PackedScene" uid="uid://2stt7v0hsnst" path="res://src/smart_particles.tscn" id="5_a17ok"]
+[ext_resource type="Script" uid="uid://c64papim5fgn1" path="res://src/common/smart_sound.gd" id="4_a17ok"]
+[ext_resource type="PackedScene" uid="uid://2stt7v0hsnst" path="res://src/common/smart_particles.tscn" id="5_a17ok"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vrbx1"]
 animations = [{

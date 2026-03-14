@@ -2,16 +2,16 @@
 
 [ext_resource type="Script" uid="uid://c65yticfyxrkh" path="res://src/main.gd" id="1_rlaii"]
 [ext_resource type="PackedScene" uid="uid://d2rlq5cmjnhf0" path="res://src/world.tscn" id="2_mgm53"]
-[ext_resource type="Texture2D" uid="uid://chw73scbrbx0o" path="res://assets/images/void_fog_far.png" id="9_kqbth"]
-[ext_resource type="Texture2D" uid="uid://bp6mw3m42lthk" path="res://assets/images/void_fog_near.png" id="9_uewes"]
+[ext_resource type="Texture2D" uid="uid://chw73scbrbx0o" path="res://assets/images/environment/void_fog_far.png" id="9_kqbth"]
+[ext_resource type="Texture2D" uid="uid://bp6mw3m42lthk" path="res://assets/images/environment/void_fog_near.png" id="9_uewes"]
 [ext_resource type="Theme" uid="uid://cp2dw8jh1pmps" path="res://assets/styles/theme.tres" id="13_d3u4l"]
 [ext_resource type="FontFile" uid="uid://bu2eay6qumf2f" path="res://assets/fonts/FSEX302.ttf" id="14_mlv6i"]
 [ext_resource type="Script" uid="uid://c37wgkgvlryk5" path="res://src/ui/timer_label.gd" id="16_ib8ht"]
 [ext_resource type="Script" uid="uid://uje3c8avendi" path="res://src/ui/high_score_label.gd" id="17_43aqp"]
 [ext_resource type="PackedScene" uid="uid://bxjdf1p7ppmjr" path="res://src/ui/main_menu.tscn" id="17_sif16"]
 [ext_resource type="Script" uid="uid://dqmnuwy8dowof" path="res://src/ui/fps_label.gd" id="18_ocmcv"]
-[ext_resource type="AudioStream" uid="uid://cqf74nv8e4jhv" path="res://assets/sounds/ambience.ogg" id="18_okx7f"]
-[ext_resource type="AudioStream" uid="uid://bdlqf0u0m1wpy" path="res://assets/sounds/wind.ogg" id="19_sta5p"]
+[ext_resource type="AudioStream" uid="uid://cqf74nv8e4jhv" path="res://assets/sounds/ambience/ambience.ogg" id="18_okx7f"]
+[ext_resource type="AudioStream" uid="uid://bdlqf0u0m1wpy" path="res://assets/sounds/ambience/wind.ogg" id="19_sta5p"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_kqbth"]
 allow_unpress = true
@@ -69,10 +69,9 @@ gradient = SubResource("Gradient_kqbth")
 width = 1
 height = 1
 
-[node name="Main" type="Node" unique_id=943047039 node_paths=PackedStringArray("parallax_nodes", "temp_camera")]
+[node name="Main" type="Node" unique_id=943047039 node_paths=PackedStringArray("temp_camera")]
 script = ExtResource("1_rlaii")
 world_scene = ExtResource("2_mgm53")
-parallax_nodes = [NodePath("ParallaxLayer/BackgroundFogFar"), NodePath("ParallaxLayer/BackgroundFogMiddle"), NodePath("ParallaxLayer/BackgroundFogNear"), NodePath("VoidFogFar"), NodePath("VoidFarNear")]
 temp_camera = NodePath("TempCamera")
 
 [node name="UILayer" type="CanvasLayer" parent="." unique_id=1593020530]

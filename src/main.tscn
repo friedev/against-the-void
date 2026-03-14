@@ -221,4 +221,28 @@ bus = &"Ambience"
 editor_description = "Exists so that the parallax background is zoomed in appropriately on startup."
 zoom = Vector2(4, 4)
 
+[node name="PillarboxLayer" type="CanvasLayer" parent="." unique_id=963906024]
+layer = 2
+
+[node name="LeftPillarbox" type="ColorRect" parent="PillarboxLayer" unique_id=491166635]
+anchors_preset = -1
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -2429.0
+offset_right = -960.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="RightPillarbox" type="ColorRect" parent="PillarboxLayer" unique_id=2014011252]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 960.0
+offset_right = 2543.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
 [connection signal="play_pressed" from="UILayer/MainMenu" to="." method="_on_main_menu_play_pressed"]

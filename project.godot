@@ -23,6 +23,7 @@ config/icon="uid://cixyxs4ucu10t"
 [autoload]
 
 SignalBus="*uid://dyo2y5wj5twlo"
+Save="*uid://co65ybopv4dxp"
 
 [debug]
 

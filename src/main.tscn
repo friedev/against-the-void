@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c65yticfyxrkh" path="res://src/main.gd" id="1_rlaii"]
 [ext_resource type="PackedScene" uid="uid://d2rlq5cmjnhf0" path="res://src/world.tscn" id="2_mgm53"]
+[ext_resource type="Script" uid="uid://dhua4f1j3c105" path="res://src/ui/death_count_label.gd" id="7_srxbw"]
 [ext_resource type="Texture2D" uid="uid://chw73scbrbx0o" path="res://assets/images/environment/void_fog_far.png" id="9_kqbth"]
 [ext_resource type="Texture2D" uid="uid://bp6mw3m42lthk" path="res://assets/images/environment/void_fog_near.png" id="9_uewes"]
 [ext_resource type="Theme" uid="uid://cp2dw8jh1pmps" path="res://assets/styles/theme.tres" id="13_d3u4l"]
@@ -13,7 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://cqf74nv8e4jhv" path="res://assets/sounds/ambience/ambience.ogg" id="18_okx7f"]
 [ext_resource type="AudioStream" uid="uid://bdlqf0u0m1wpy" path="res://assets/sounds/ambience/wind.ogg" id="19_sta5p"]
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_kqbth"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_d3u4l"]
 allow_unpress = true
 
 [sub_resource type="Gradient" id="Gradient_d3u4l"]
@@ -106,6 +107,16 @@ theme_override_font_sizes/font_size = 32
 text = "Best: 88:88.888"
 script = ExtResource("17_43aqp")
 
+[node name="DeathCountLabel" type="Label" parent="UILayer/MarginContainer" unique_id=763814663]
+modulate = Color(0.53333336, 0.53333336, 0.53333336, 1)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("14_mlv6i")
+theme_override_font_sizes/font_size = 32
+text = "Deaths: 888"
+script = ExtResource("7_srxbw")
+
 [node name="FPSLabel" type="Label" parent="UILayer/MarginContainer" unique_id=761692777]
 layout_mode = 2
 size_flags_horizontal = 4
@@ -116,7 +127,7 @@ text = "FPS: 88"
 script = ExtResource("18_ocmcv")
 
 [node name="MainMenu" parent="UILayer" unique_id=654840502 instance=ExtResource("17_sif16")]
-submenu_button_group = SubResource("ButtonGroup_kqbth")
+submenu_button_group = SubResource("ButtonGroup_d3u4l")
 
 [node name="ParallaxLayer" type="CanvasLayer" parent="." unique_id=824432241]
 layer = -1

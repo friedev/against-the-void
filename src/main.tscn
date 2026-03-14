@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://dhua4f1j3c105" path="res://src/ui/death_count_label.gd" id="7_srxbw"]
 [ext_resource type="Texture2D" uid="uid://chw73scbrbx0o" path="res://assets/images/environment/void_fog_far.png" id="9_kqbth"]
 [ext_resource type="Texture2D" uid="uid://bp6mw3m42lthk" path="res://assets/images/environment/void_fog_near.png" id="9_uewes"]
+[ext_resource type="Script" uid="uid://tynpo11veat6" path="res://src/void_parallax.gd" id="10_d3u4l"]
 [ext_resource type="Theme" uid="uid://cp2dw8jh1pmps" path="res://assets/styles/theme.tres" id="13_d3u4l"]
 [ext_resource type="FontFile" uid="uid://bu2eay6qumf2f" path="res://assets/fonts/FSEX302.ttf" id="14_mlv6i"]
 [ext_resource type="Script" uid="uid://c37wgkgvlryk5" path="res://src/ui/timer_label.gd" id="16_ib8ht"]
@@ -174,6 +175,7 @@ repeat_size = Vector2(960, 0)
 autoscroll = Vector2(-32, 0)
 repeat_times = 4
 follow_viewport = false
+script = ExtResource("10_d3u4l")
 
 [node name="Sprite2D" type="Sprite2D" parent="VoidFogFar" unique_id=520640537]
 texture = ExtResource("9_kqbth")
@@ -186,6 +188,7 @@ repeat_size = Vector2(960, 0)
 autoscroll = Vector2(-64, 0)
 repeat_times = 4
 follow_viewport = false
+script = ExtResource("10_d3u4l")
 
 [node name="Sprite2D" type="Sprite2D" parent="VoidFarNear" unique_id=370060158]
 texture = ExtResource("9_uewes")
@@ -196,6 +199,7 @@ scroll_scale = Vector2(1, 0)
 repeat_size = Vector2(960, 0)
 repeat_times = 4
 follow_viewport = false
+script = ExtResource("10_d3u4l")
 
 [node name="Sprite2D" type="Sprite2D" parent="Void" unique_id=261902629]
 position = Vector2(0, 480.00003)

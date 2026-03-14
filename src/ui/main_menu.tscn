@@ -5,7 +5,6 @@
 [ext_resource type="FontFile" uid="uid://cbcnlfeucl3vd" path="res://assets/fonts/SONARR__.ttf" id="3_0prml"]
 [ext_resource type="PackedScene" uid="uid://rasjftexmjht" path="res://src/ui/options/fullscreen_option.tscn" id="4_qnfpr"]
 [ext_resource type="Script" uid="uid://50onjg31221w" path="res://src/ui/quit_button.gd" id="5_8g5eo"]
-[ext_resource type="Script" uid="uid://5cl8to4dtw3o" path="res://src/ui/options_menu.gd" id="6_8g5eo"]
 [ext_resource type="PackedScene" uid="uid://c2ycrcbab4t57" path="res://src/ui/options/volume_option.tscn" id="7_otr3d"]
 [ext_resource type="Script" uid="uid://cvfji11bhhncx" path="res://src/ui/version_label.gd" id="7_x8sms"]
 [ext_resource type="PackedScene" uid="uid://dbbnhubut8hco" path="res://src/ui/options/slider_option.tscn" id="8_q85j6"]
@@ -18,7 +17,7 @@
 [sub_resource type="ButtonGroup" id="ButtonGroup_h4dpu"]
 allow_unpress = true
 
-[node name="MainMenu" type="MarginContainer" unique_id=654840502 node_paths=PackedStringArray("default_focus", "help_menu", "options_menu", "credits_menu")]
+[node name="MainMenu" type="MarginContainer" unique_id=654840502 node_paths=PackedStringArray("default_focus", "controls_menu", "options_menu", "credits_menu")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -32,7 +31,7 @@ theme_override_constants/margin_bottom = 32
 script = ExtResource("2_wb0q5")
 default_focus = NodePath("VBoxContainer/VBoxContainer2/Buttons/PlayButton")
 submenu_button_group = SubResource("ButtonGroup_h4dpu")
-help_menu = NodePath("VBoxContainer/VBoxContainer2/HelpMenu")
+controls_menu = NodePath("VBoxContainer/VBoxContainer2/ControlsMenu")
 options_menu = NodePath("VBoxContainer/VBoxContainer2/OptionsMenu")
 credits_menu = NodePath("VBoxContainer/VBoxContainer2/CreditsMenu")
 
@@ -77,51 +76,108 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_vertical = 2
 
-[node name="HelpMenu" type="PanelContainer" parent="VBoxContainer/VBoxContainer2" unique_id=293156691]
+[node name="ControlsMenu" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2" unique_id=1237806908]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/VBoxContainer2/ControlsMenu" unique_id=663467435]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/VBoxContainer2/ControlsMenu/PanelContainer" unique_id=998186284]
+layout_mode = 2
+
+[node name="VBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/ControlsMenu/PanelContainer/MarginContainer" unique_id=430789823]
+layout_mode = 2
+
+[node name="HelpLabel" type="Label" parent="VBoxContainer/VBoxContainer2/ControlsMenu/PanelContainer/MarginContainer/VBoxContainer" unique_id=80617817]
+custom_minimum_size = Vector2(234.485, 0)
+layout_mode = 2
+text = "Select a control on the right to change it.
+
+Hold up or down to attack in that direction.
+
+Hitting an enemy restores your jump and dash.
+
+Survive as long as you can."
+autowrap_mode = 3
+
+[node name="Controls" type="GridContainer" parent="VBoxContainer/VBoxContainer2/ControlsMenu/PanelContainer/MarginContainer/VBoxContainer" unique_id=1518332268]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 2
+
+[node name="MoveLeftActionButton" parent="VBoxContainer/VBoxContainer2/ControlsMenu/PanelContainer/MarginContainer/VBoxContainer/Controls" unique_id=2061725276 instance=ExtResource("11_wdmux")]
+layout_mode = 2
+text = "Left"
+action = "move_left"
+
+[node name="JumpActionButton2" parent="VBoxContainer/VBoxContainer2/ControlsMenu/PanelContainer/MarginContainer/VBoxContainer/Controls" unique_id=583672698 instance=ExtResource("11_wdmux")]
+layout_mode = 2
+text = "Jump"
+action = "jump"
+
+[node name="MoveRightActionButton" parent="VBoxContainer/VBoxContainer2/ControlsMenu/PanelContainer/MarginContainer/VBoxContainer/Controls" unique_id=685035349 instance=ExtResource("11_wdmux")]
+layout_mode = 2
+text = "Right"
+action = "move_right"
+
+[node name="AttackActionButton" parent="VBoxContainer/VBoxContainer2/ControlsMenu/PanelContainer/MarginContainer/VBoxContainer/Controls" unique_id=348696472 instance=ExtResource("11_wdmux")]
+layout_mode = 2
+text = "Attack"
+action = "attack"
+
+[node name="AimUpActionButton" parent="VBoxContainer/VBoxContainer2/ControlsMenu/PanelContainer/MarginContainer/VBoxContainer/Controls" unique_id=1369982969 instance=ExtResource("11_wdmux")]
+layout_mode = 2
+text = "Up"
+action = "aim_up"
+
+[node name="DashActionButton" parent="VBoxContainer/VBoxContainer2/ControlsMenu/PanelContainer/MarginContainer/VBoxContainer/Controls" unique_id=2079483144 instance=ExtResource("11_wdmux")]
+layout_mode = 2
+text = "Dash"
+action = "dash"
+
+[node name="AimDownActionButton" parent="VBoxContainer/VBoxContainer2/ControlsMenu/PanelContainer/MarginContainer/VBoxContainer/Controls" unique_id=613174098 instance=ExtResource("11_wdmux")]
+layout_mode = 2
+text = "Down"
+action = "aim_down"
+
+[node name="Control" type="Control" parent="VBoxContainer/VBoxContainer2/ControlsMenu/PanelContainer/MarginContainer/VBoxContainer/Controls" unique_id=379303448]
+layout_mode = 2
+
+[node name="RestartActionButton" parent="VBoxContainer/VBoxContainer2/ControlsMenu/PanelContainer/MarginContainer/VBoxContainer/Controls" unique_id=1135958463 instance=ExtResource("11_wdmux")]
+layout_mode = 2
+text = "Restart"
+action = "restart"
+
+[node name="QuitActionButton" parent="VBoxContainer/VBoxContainer2/ControlsMenu/PanelContainer/MarginContainer/VBoxContainer/Controls" unique_id=904516692 instance=ExtResource("11_wdmux")]
+layout_mode = 2
+text = "Quit"
+action = "die"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/ControlsMenu" unique_id=2028363952]
+layout_mode = 2
+alignment = 1
+
+[node name="SaveControlsButton" type="Button" parent="VBoxContainer/VBoxContainer2/ControlsMenu/HBoxContainer" unique_id=633891095]
+layout_mode = 2
+text = "Save"
+
+[node name="LoadControlsButton" type="Button" parent="VBoxContainer/VBoxContainer2/ControlsMenu/HBoxContainer" unique_id=1507136705]
+layout_mode = 2
+text = "Undo"
+
+[node name="RestoreDefaultControlsButton" type="Button" parent="VBoxContainer/VBoxContainer2/ControlsMenu/HBoxContainer" unique_id=1822254409]
+layout_mode = 2
+text = "Restore Defaults"
+
+[node name="OptionsMenu" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2" unique_id=2042605787]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
-
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/VBoxContainer2/HelpMenu" unique_id=998186284]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/HelpMenu/MarginContainer" unique_id=24314884]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/HelpMenu/MarginContainer/VBoxContainer" unique_id=725947505]
-layout_mode = 2
-
-[node name="ActionsLabel" type="Label" parent="VBoxContainer/VBoxContainer2/HelpMenu/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1117019169]
-layout_mode = 2
-text = "Move:
-Jump:
-Attack:
-Dash:
-Restart:
-Quit:"
-horizontal_alignment = 2
-
-[node name="KeysLabel" type="Label" parent="VBoxContainer/VBoxContainer2/HelpMenu/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1848551836]
-layout_mode = 2
-text = "Arrows / WASD / Left Stick
-Z / J / Space / (A)
-X / K / (X)
-C / L / (RT)
-R / Start
-Esc / Back"
-
-[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer2/HelpMenu/MarginContainer/VBoxContainer" unique_id=80617817]
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-text = "Hold up or down to attack in that direction. Killing enemies recharges jump and dash."
-autowrap_mode = 3
-
-[node name="OptionsMenu" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2" unique_id=2042605787]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
-script = ExtResource("6_8g5eo")
 
 [node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/VBoxContainer2/OptionsMenu" unique_id=1109654372]
 layout_mode = 2
@@ -129,180 +185,103 @@ layout_mode = 2
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer" unique_id=1700164413]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer" unique_id=488156643]
-layout_mode = 2
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer" unique_id=115522150]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=725908230]
-layout_mode = 2
-text = "Options"
-horizontal_alignment = 1
-
-[node name="Options" type="GridContainer" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=352666380]
+[node name="Options" type="GridContainer" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer" unique_id=352666380]
 layout_mode = 2
 size_flags_vertical = 6
 theme_override_constants/h_separation = 8
 theme_override_constants/v_separation = 8
 columns = 2
 
-[node name="SoundOption" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2/Options" unique_id=770892076 instance=ExtResource("7_otr3d")]
+[node name="SoundOption" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=770892076 instance=ExtResource("7_otr3d")]
 custom_minimum_size = Vector2(128, 32)
 layout_mode = 2
 size_flags_horizontal = 8
 bus_name = &"Sound"
 default = 0.5
 
-[node name="SoundLabel" type="Label" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2/Options" unique_id=17116501]
+[node name="SoundLabel" type="Label" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=17116501]
 layout_mode = 2
 text = "Sound"
 
-[node name="AmbienceOption" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2/Options" unique_id=1545334335 instance=ExtResource("7_otr3d")]
+[node name="AmbienceOption" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=1545334335 instance=ExtResource("7_otr3d")]
 custom_minimum_size = Vector2(128, 32)
 layout_mode = 2
 size_flags_horizontal = 8
 bus_name = &"Ambience"
 default = 0.5
 
-[node name="AmbienceLabel" type="Label" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2/Options" unique_id=1704971698]
+[node name="AmbienceLabel" type="Label" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=1704971698]
 layout_mode = 2
 text = "Ambience"
 
-[node name="ScreenShakeOption" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2/Options" unique_id=1147143404 instance=ExtResource("8_q85j6")]
+[node name="ScreenShakeOption" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=1147143404 instance=ExtResource("8_q85j6")]
 layout_mode = 2
 default = 0.3
 key = "screen_shake"
 
-[node name="ScreenShakeLabel" type="Label" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2/Options" unique_id=1739501989]
+[node name="ScreenShakeLabel" type="Label" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=1739501989]
 layout_mode = 2
 text = "Screen Shake"
 
-[node name="DisplayScaleOption" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2/Options" unique_id=1202145524 instance=ExtResource("8_wdmux")]
+[node name="DisplayScaleOption" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=1202145524 instance=ExtResource("8_wdmux")]
 layout_mode = 2
 script = ExtResource("11_4fdh4")
 pixel_size = 4
 default = 4.0
 key = "display_scale"
 
-[node name="SpinBox" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2/Options/DisplayScaleOption" index="0" unique_id=1496550118]
+[node name="SpinBox" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/Options/DisplayScaleOption" index="0" unique_id=1496550118]
 min_value = 1.0
 max_value = 8.0
 value = 4.0
 alignment = 2
 
-[node name="DisplayScaleLabel" type="Label" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2/Options" unique_id=1529739940]
+[node name="DisplayScaleLabel" type="Label" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=1529739940]
 layout_mode = 2
 text = "Display Scale"
 
-[node name="FullscreenOption" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2/Options" unique_id=1687234724 instance=ExtResource("4_qnfpr")]
+[node name="FullscreenOption" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=1687234724 instance=ExtResource("4_qnfpr")]
 layout_mode = 2
 size_flags_horizontal = 8
 default = true
 key = "fullscreen"
 
-[node name="FullscreenLabel" type="Label" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2/Options" unique_id=1170520789]
+[node name="FullscreenLabel" type="Label" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=1170520789]
 layout_mode = 2
 text = "Fullscreen"
 
-[node name="ShowTimerOption" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2/Options" unique_id=1866285198 instance=ExtResource("10_7suek")]
+[node name="ShowTimerOption" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=1866285198 instance=ExtResource("10_7suek")]
 layout_mode = 2
 size_flags_horizontal = 8
 default = true
 key = "show_timer"
 
-[node name="ShowTimerLabel" type="Label" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2/Options" unique_id=1904113437]
+[node name="ShowTimerLabel" type="Label" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=1904113437]
 layout_mode = 2
 text = "Show Timer"
 
-[node name="ShowFPSOption" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2/Options" unique_id=1648799832 instance=ExtResource("10_7suek")]
+[node name="ShowFPSOption" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=1648799832 instance=ExtResource("10_7suek")]
 layout_mode = 2
 size_flags_horizontal = 8
 key = "show_fps"
 
-[node name="ShowFPSLabel" type="Label" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2/Options" unique_id=789901050]
+[node name="ShowFPSLabel" type="Label" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=789901050]
 layout_mode = 2
 text = "Show FPS"
-
-[node name="VSeparator" type="VSeparator" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer" unique_id=1689841896]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer" unique_id=1900787254]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1426200677]
-layout_mode = 2
-text = "Controls"
-horizontal_alignment = 1
-
-[node name="Controls" type="GridContainer" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1518332268]
-layout_mode = 2
-size_flags_vertical = 6
-theme_override_constants/h_separation = 8
-theme_override_constants/v_separation = 8
-columns = 2
-
-[node name="MoveLeftActionButton" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Controls" unique_id=2061725276 instance=ExtResource("11_wdmux")]
-layout_mode = 2
-text = "Left"
-action = "move_left"
-
-[node name="JumpActionButton2" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Controls" unique_id=583672698 instance=ExtResource("11_wdmux")]
-layout_mode = 2
-text = "Jump"
-action = "jump"
-
-[node name="MoveRightActionButton" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Controls" unique_id=685035349 instance=ExtResource("11_wdmux")]
-layout_mode = 2
-text = "Right"
-action = "move_right"
-
-[node name="AttackActionButton" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Controls" unique_id=348696472 instance=ExtResource("11_wdmux")]
-layout_mode = 2
-text = "Attack"
-action = "attack"
-
-[node name="AimUpActionButton" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Controls" unique_id=1369982969 instance=ExtResource("11_wdmux")]
-layout_mode = 2
-text = "Up"
-action = "aim_up"
-
-[node name="DashActionButton" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Controls" unique_id=2079483144 instance=ExtResource("11_wdmux")]
-layout_mode = 2
-text = "Dash"
-action = "dash"
-
-[node name="AimDownActionButton" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Controls" unique_id=613174098 instance=ExtResource("11_wdmux")]
-layout_mode = 2
-text = "Down"
-action = "aim_down"
-
-[node name="Control" type="Control" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Controls" unique_id=379303448]
-layout_mode = 2
-
-[node name="RestartActionButton" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Controls" unique_id=1135958463 instance=ExtResource("11_wdmux")]
-layout_mode = 2
-text = "Restart"
-action = "restart"
-
-[node name="QuitActionButton" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Controls" unique_id=904516692 instance=ExtResource("11_wdmux")]
-layout_mode = 2
-text = "Quit"
-action = "die"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/OptionsMenu" unique_id=931134284]
 layout_mode = 2
 alignment = 1
 
-[node name="SaveButton" type="Button" parent="VBoxContainer/VBoxContainer2/OptionsMenu/HBoxContainer" unique_id=268453669]
+[node name="SaveOptionsButton" type="Button" parent="VBoxContainer/VBoxContainer2/OptionsMenu/HBoxContainer" unique_id=268453669]
 layout_mode = 2
 text = "Save"
 
-[node name="UndoButton" type="Button" parent="VBoxContainer/VBoxContainer2/OptionsMenu/HBoxContainer" unique_id=1686717031]
+[node name="LoadOptionsButton" type="Button" parent="VBoxContainer/VBoxContainer2/OptionsMenu/HBoxContainer" unique_id=1686717031]
 layout_mode = 2
 text = "Undo"
 
-[node name="DefaultsButton" type="Button" parent="VBoxContainer/VBoxContainer2/OptionsMenu/HBoxContainer" unique_id=473304738]
+[node name="RestoreDefaultOptionsButton" type="Button" parent="VBoxContainer/VBoxContainer2/OptionsMenu/HBoxContainer" unique_id=473304738]
 layout_mode = 2
 text = "Restore Defaults"
 
@@ -380,11 +359,11 @@ size_flags_vertical = 10
 layout_mode = 2
 text = "Play"
 
-[node name="HelpButton" type="Button" parent="VBoxContainer/VBoxContainer2/Buttons" unique_id=1253732577]
+[node name="ControlsButton" type="Button" parent="VBoxContainer/VBoxContainer2/Buttons" unique_id=1253732577]
 layout_mode = 2
 toggle_mode = true
 button_group = SubResource("ButtonGroup_h4dpu")
-text = "How to Play"
+text = "Controls"
 
 [node name="OptionsButton" type="Button" parent="VBoxContainer/VBoxContainer2/Buttons" unique_id=1722604557]
 layout_mode = 2
@@ -403,13 +382,16 @@ layout_mode = 2
 text = "Quit"
 script = ExtResource("5_8g5eo")
 
-[connection signal="pressed" from="VBoxContainer/VBoxContainer2/OptionsMenu/HBoxContainer/SaveButton" to="VBoxContainer/VBoxContainer2/OptionsMenu" method="_on_save_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/VBoxContainer2/OptionsMenu/HBoxContainer/UndoButton" to="VBoxContainer/VBoxContainer2/OptionsMenu" method="_on_undo_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/VBoxContainer2/OptionsMenu/HBoxContainer/DefaultsButton" to="VBoxContainer/VBoxContainer2/OptionsMenu" method="_on_defaults_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer2/ControlsMenu/HBoxContainer/SaveControlsButton" to="." method="_on_save_controls_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer2/ControlsMenu/HBoxContainer/LoadControlsButton" to="." method="_on_load_controls_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer2/ControlsMenu/HBoxContainer/RestoreDefaultControlsButton" to="." method="_on_restore_default_controls_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer2/OptionsMenu/HBoxContainer/SaveOptionsButton" to="." method="_on_save_options_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer2/OptionsMenu/HBoxContainer/LoadOptionsButton" to="." method="_on_load_options_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer2/OptionsMenu/HBoxContainer/RestoreDefaultOptionsButton" to="." method="_on_restore_default_options_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/VBoxContainer2/Buttons/PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="toggled" from="VBoxContainer/VBoxContainer2/Buttons/HelpButton" to="." method="_on_help_button_toggled"]
+[connection signal="toggled" from="VBoxContainer/VBoxContainer2/Buttons/ControlsButton" to="." method="_on_help_button_toggled"]
 [connection signal="toggled" from="VBoxContainer/VBoxContainer2/Buttons/OptionsButton" to="." method="_on_options_button_toggled"]
 [connection signal="toggled" from="VBoxContainer/VBoxContainer2/Buttons/CreditsButton" to="." method="_on_credits_button_toggled"]
 [connection signal="pressed" from="VBoxContainer/VBoxContainer2/Buttons/QuitButton" to="." method="_on_quit_button_pressed"]
 
-[editable path="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2/Options/DisplayScaleOption"]
+[editable path="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/Options/DisplayScaleOption"]

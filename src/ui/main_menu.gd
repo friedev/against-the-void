@@ -6,7 +6,7 @@ signal play_pressed
 @export var submenu_button_group: ButtonGroup
 
 @export_group("Internal Nodes")
-@export var help_menu: Control
+@export var controls_menu: Control
 @export var options_menu: Control
 @export var credits_menu: Control
 
@@ -19,7 +19,7 @@ func _ready() -> void:
 
 func open_menu() -> void:
 	show()
-	help_menu.hide()
+	controls_menu.hide()
 	options_menu.hide()
 	credits_menu.hide()
 	default_focus.grab_focus()
@@ -38,7 +38,7 @@ func _on_play_button_pressed() -> void:
 	
 
 func _on_help_button_toggled(toggled_on: bool) -> void:
-	help_menu.visible = toggled_on
+	controls_menu.visible = toggled_on
 	
 
 func _on_options_button_toggled(toggled_on: bool) -> void:
@@ -59,3 +59,27 @@ func _input(event: InputEvent) -> void:
 		if pressed_button != null:
 			pressed_button.button_pressed = false
 			pressed_button.grab_focus()
+
+
+func _on_save_controls_button_pressed() -> void:
+	Options.save_controls()
+
+
+func _on_load_controls_button_pressed() -> void:
+	Options.load_controls()
+
+
+func _on_restore_default_controls_button_pressed() -> void:
+	Options.restore_default_controls()
+
+
+func _on_save_options_button_pressed() -> void:
+	Options.save_options()
+
+
+func _on_load_options_button_pressed() -> void:
+	Options.load_options()
+
+
+func _on_restore_default_options_button_pressed() -> void:
+	Options.restore_default_options()

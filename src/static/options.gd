@@ -14,9 +14,8 @@ static var tree: SceneTree
 static var options := {}
 static var controls_remap := ControlsRemap.new()
 
-
 ## Set each option to its value read from the config file.
-static func load_config() -> void:
+static func load_options() -> void:
 	var config := ConfigFile.new()
 	var err := config.load(CONFIG_PATH)
 	if err == OK:
@@ -26,6 +25,10 @@ static func load_config() -> void:
 				option.set_option(
 					config.get_value(OPTIONS_SECTION, option.key)
 				)
+
+
+## Load the controls remap resource from its resource file and apply it.
+static func load_controls() -> void:
 	if ResourceLoader.exists(controls_remap_path):
 		controls_remap = load(controls_remap_path)
 		controls_remap.apply_remap()
@@ -33,22 +36,29 @@ static func load_config() -> void:
 
 
 ## Save the currently loaded options to the config file.
-static func save_config() -> bool:
+static func save_options() -> bool:
 	var config := ConfigFile.new()
 	for option_node in tree.get_nodes_in_group(OPTIONS_GROUP):
 		var option := option_node as Option
 		config.set_value(OPTIONS_SECTION, option.key, option.get_option())
+	return config.save(CONFIG_PATH)
+
+
+## Apply the remapped controls to the resource and save it.
+static func save_controls() -> void:
 	controls_remap.create_remap()
-	var controls_save_result := ResourceSaver.save(controls_remap, controls_remap_path)
-	var config_save_result := config.save(CONFIG_PATH)
-	return controls_save_result == OK and config_save_result == OK
+	return ResourceSaver.save(controls_remap, controls_remap_path)
 
 
 ## Set each option to its default value.
-static func apply_defaults() -> void:
+static func restore_default_options() -> void:
 	for option_node in tree.get_nodes_in_group(OPTIONS_GROUP):
 		var option := option_node as Option
 		option.set_option(option.get_default())
+
+
+## Set controls to their default values.
+static func restore_default_controls() -> void:
 	controls_remap.restore_default_controls()
 	ActionIcon.refresh_all()
 
@@ -70,8 +80,11 @@ static func setup(scene_tree: SceneTree) -> void:
 	assert(options.is_empty())
 	tree = scene_tree
 	# Apply defaults to ensure every option is set
-	Options.apply_defaults()
+	Options.restore_default_options()
+	Options.restore_default_controls()
 	# Load from config file, overwriting default options
-	Options.load_config()
+	Options.load_options()
+	Options.load_controls()
 	# Re-save the config, including the default values for any unset options
-	Options.save_config()
+	Options.save_options()
+	Options.save_controls()

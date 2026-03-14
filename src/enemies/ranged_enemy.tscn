@@ -46,8 +46,8 @@ scale_curve = SubResource("CurveTexture_unnwf")
 [node name="RangedEnemy" unique_id=444889010 node_paths=PackedStringArray("shoot_timer", "shoot_sound", "telegraph_sprite") instance=ExtResource("1_h1m41")]
 script = ExtResource("2_unnwf")
 speed = 75.0
-min_distance = 200.0
-max_distance = 250.0
+min_distance = Vector2(200, 100)
+max_distance = Vector2(250, 150)
 osc_period = 3.0
 osc_amplitude = 8.0
 projectile_scene = ExtResource("3_th2jy")
@@ -62,6 +62,7 @@ sprite_frames = SubResource("SpriteFrames_unnwf")
 flip_h = true
 
 [node name="CollisionShape2D" parent="." index="1" unique_id=336696788]
+position = Vector2(0, -1)
 shape = SubResource("CapsuleShape2D_th2jy")
 
 [node name="DeathSound" parent="." index="2" unique_id=3373551]
@@ -80,7 +81,6 @@ autostart = true
 stream = ExtResource("7_mo7yn")
 
 [node name="TelegraphSprite" type="Sprite2D" parent="." index="6" unique_id=1477928298]
-modulate = Color(1, 0.26666668, 0.26666668, 1)
 position = Vector2(11, -1)
 texture = ExtResource("8_mo7yn")
 

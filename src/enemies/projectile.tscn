@@ -38,11 +38,10 @@ scale_curve = SubResource("CurveTexture_5ku1l")
 
 [node name="Projectile" unique_id=444889010 instance=ExtResource("1_dm031")]
 script = ExtResource("2_j02k2")
-speed = 200.0
+speed = 300.0
 death_screen_shake = 0.25
 
 [node name="Sprite2D" parent="." index="0" unique_id=1721054349]
-modulate = Color(1, 0.26666668, 0.26666668, 1)
 sprite_frames = SubResource("SpriteFrames_j02k2")
 
 [node name="CollisionShape2D" parent="." index="1" unique_id=336696788]

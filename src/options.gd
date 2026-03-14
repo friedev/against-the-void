@@ -1,4 +1,4 @@
-extends Node
+class_name Options
 
 ## Config file path.
 const CONFIG_PATH := "user://options.cfg"
@@ -10,16 +10,17 @@ const OPTIONS_GROUP := &"options"
 const controls_remap_path := "user://controls.tres"
 
 ## Currently loaded options.
-var options := {}
-var controls_remap := ControlsRemap.new()
+static var tree: SceneTree
+static var options := {}
+static var controls_remap := ControlsRemap.new()
 
 
 ## Set each option to its value read from the config file.
-func load_config() -> void:
+static func load_config() -> void:
 	var config := ConfigFile.new()
 	var err := config.load(CONFIG_PATH)
 	if err == OK:
-		for option_node in get_tree().get_nodes_in_group(OPTIONS_GROUP):
+		for option_node in tree.get_nodes_in_group(OPTIONS_GROUP):
 			var option := option_node as Option
 			if config.has_section_key(OPTIONS_SECTION, option.key):
 				option.set_option(
@@ -32,9 +33,9 @@ func load_config() -> void:
 
 
 ## Save the currently loaded options to the config file.
-func save_config() -> bool:
+static func save_config() -> bool:
 	var config := ConfigFile.new()
-	for option_node in get_tree().get_nodes_in_group(OPTIONS_GROUP):
+	for option_node in tree.get_nodes_in_group(OPTIONS_GROUP):
 		var option := option_node as Option
 		config.set_value(OPTIONS_SECTION, option.key, option.get_option())
 	controls_remap.create_remap()
@@ -44,8 +45,8 @@ func save_config() -> bool:
 
 
 ## Set each option to its default value.
-func apply_defaults() -> void:
-	for option_node in get_tree().get_nodes_in_group(OPTIONS_GROUP):
+static func apply_defaults() -> void:
+	for option_node in tree.get_nodes_in_group(OPTIONS_GROUP):
 		var option := option_node as Option
 		option.set_option(option.get_default())
 	controls_remap.restore_default_controls()
@@ -53,8 +54,8 @@ func apply_defaults() -> void:
 
 
 ## Set the options to their currently loaded values.
-func apply_options() -> void:
-	for option_node in get_tree().get_nodes_in_group(OPTIONS_GROUP):
+static func apply_options() -> void:
+	for option_node in tree.get_nodes_in_group(OPTIONS_GROUP):
 		var option := option_node as Option
 		if option.key in options:
 			option.set_option(options[option.key])
@@ -64,11 +65,13 @@ func apply_options() -> void:
 ## Perform initial options setup on game start. To be called by the root node of
 ## the startup scene to ensure that all Option nodes have entered the tree.
 # (The Option nodes should be present in the startup scene.)
-func setup() -> void:
-	if options.is_empty():
-		# Apply defaults to ensure every option is set
-		Options.apply_defaults()
-		# Load from config file, overwriting default options
-		Options.load_config()
-		# Re-save the config, including the default values for any unset options
-		Options.save_config()
+static func setup(scene_tree: SceneTree) -> void:
+	assert(tree == null)
+	assert(options.is_empty())
+	tree = scene_tree
+	# Apply defaults to ensure every option is set
+	Options.apply_defaults()
+	# Load from config file, overwriting default options
+	Options.load_config()
+	# Re-save the config, including the default values for any unset options
+	Options.save_config()

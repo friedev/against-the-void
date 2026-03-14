@@ -9,7 +9,7 @@ class_name Main extends Node
 var world: World
 
 func _ready() -> void:
-	Options.setup()
+	Options.setup(get_tree())
 	randomize_parallax()
 	
 

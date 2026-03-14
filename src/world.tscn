@@ -134,10 +134,9 @@ normal = Vector2(-1, 0)
 script = ExtResource("1_5xesp")
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=113814185 node_paths=PackedStringArray("sprite", "sword_sprite", "sword_area", "camera", "attack_sound", "jump_sound", "dash_sound", "death_sound", "jump_particles", "dash_particles", "death_particles")]
-position = Vector2(0, -50)
 collision_mask = 2
 script = ExtResource("2_a3wil")
-initial_velocity = Vector2(0, -400)
+initial_velocity = Vector2(0, -500)
 max_speed = Vector2(162.5, 250)
 jump_speed = 225.0
 pogo_recoil_speed = 125.0
@@ -237,7 +236,7 @@ process_material = SubResource("ParticleProcessMaterial_okx7f")
 [node name="ShakeCamera" type="Camera2D" parent="Player" unique_id=301187348]
 zoom = Vector2(4, 4)
 process_callback = 0
-limit_bottom = 0
+limit_bottom = 32
 limit_smoothed = true
 position_smoothing_enabled = true
 script = ExtResource("11_c3rv8")
@@ -277,7 +276,7 @@ script = ExtResource("13_7igba")
 shape = SubResource("WorldBoundaryShape2D_tb146")
 
 [node name="BottomKillZone" type="Area2D" parent="." unique_id=394860110]
-position = Vector2(0, 64)
+position = Vector2(0, 16)
 collision_layer = 0
 collision_mask = 3
 monitorable = false

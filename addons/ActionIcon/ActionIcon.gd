@@ -285,18 +285,52 @@ func _get_keyboard(key: int) -> Texture2D:
 			return _get_image(KEYBOARD, "Down")
 		KEY_QUOTELEFT:
 			return _get_image(KEYBOARD, "Tilde")
+		KEY_ASCIITILDE:
+			return _get_image(KEYBOARD, "Tilde")
+		KEY_EXCLAM:
+			return _get_image(KEYBOARD, "ExclamationMark")
+		KEY_AT:
+			return _get_image(KEYBOARD, "At")
+		KEY_NUMBERSIGN:
+			return _get_image(KEYBOARD, "NumberSign")
+		KEY_DOLLAR:
+			return _get_image(KEYBOARD, "Dollar")
+		KEY_PERCENT:
+			return _get_image(KEYBOARD, "Percent")
+		KEY_ASCIICIRCUM:
+			return _get_image(KEYBOARD, "Caret")
+		KEY_AMPERSAND:
+			return _get_image(KEYBOARD, "Ampersand")
+		KEY_ASTERISK:
+			return _get_image(KEYBOARD, "Asterisk")
+		KEY_PARENLEFT:
+			return _get_image(KEYBOARD, "ParenLeft")
+		KEY_PARENRIGHT:
+			return _get_image(KEYBOARD, "ParenRight")
 		KEY_MINUS:
 			return _get_image(KEYBOARD, "Minus")
+		KEY_UNDERSCORE:
+			return _get_image(KEYBOARD, "Underscore")
+		KEY_EQUAL:
+			return _get_image(KEYBOARD, "Equal")
 		KEY_PLUS:
 			return _get_image(KEYBOARD, "Plus")
 		KEY_BACKSPACE:
 			return _get_image(KEYBOARD, "Backspace")
-		KEY_BRACELEFT:
+		KEY_BRACKETLEFT:
 			return _get_image(KEYBOARD, "BracketLeft")
-		KEY_BRACERIGHT:
+		KEY_BRACELEFT:
+			return _get_image(KEYBOARD, "BraceLeft")
+		KEY_BRACKETRIGHT:
 			return _get_image(KEYBOARD, "BracketRight")
+		KEY_BRACERIGHT:
+			return _get_image(KEYBOARD, "BraceRight")
+		KEY_BAR:
+			return _get_image(KEYBOARD, "Bar")
 		KEY_SEMICOLON:
 			return _get_image(KEYBOARD, "Semicolon")
+		KEY_COLON:
+			return _get_image(KEYBOARD, "Colon")
 		KEY_QUOTEDBL:
 			return _get_image(KEYBOARD, "Quote")
 		KEY_BACKSLASH:
@@ -305,10 +339,16 @@ func _get_keyboard(key: int) -> Texture2D:
 			return _get_image(KEYBOARD, "Enter")
 		KEY_ESCAPE:
 			return _get_image(KEYBOARD, "Esc")
+		KEY_COMMA:
+			return _get_image(KEYBOARD, "Comma")
 		KEY_LESS:
 			return _get_image(KEYBOARD, "LT")
+		KEY_PERIOD:
+			return _get_image(KEYBOARD, "Period")
 		KEY_GREATER:
 			return _get_image(KEYBOARD, "GT")
+		KEY_SLASH:
+			return _get_image(KEYBOARD, "Slash")
 		KEY_QUESTION:
 			return _get_image(KEYBOARD, "Question")
 		KEY_CTRL:
@@ -323,6 +363,10 @@ func _get_keyboard(key: int) -> Texture2D:
 			return _get_image(KEYBOARD, "Win")
 		KEY_CAPSLOCK:
 			return _get_image(KEYBOARD, "CapsLock")
+		KEY_NUMLOCK:
+			return _get_image(KEYBOARD, "NumLock")
+		KEY_SCROLLLOCK:
+			return _get_image(KEYBOARD, "ScrollLock")
 		KEY_TAB:
 			return _get_image(KEYBOARD, "Tab")
 		KEY_PRINT:
@@ -339,6 +383,59 @@ func _get_keyboard(key: int) -> Texture2D:
 			return _get_image(KEYBOARD, "End")
 		KEY_PAGEDOWN:
 			return _get_image(KEYBOARD, "PageDown")
+		KEY_PAUSE:
+			return _get_image(KEYBOARD, "Pause")
+		KEY_MENU:
+			return _get_image(KEYBOARD, "Menu")
+		KEY_HELP:
+			return _get_image(KEYBOARD, "Question")
+		KEY_BACK:
+			return _get_image(KEYBOARD, "Back")
+		KEY_FORWARD:
+			return _get_image(KEYBOARD, "Forward")
+		KEY_STOP:
+			return _get_image(KEYBOARD, "Stop")
+		KEY_MEDIAPLAY:
+			return _get_image(KEYBOARD, "Play")
+		KEY_MEDIANEXT:
+			return _get_image(KEYBOARD, "Next")
+		KEY_MEDIARECORD:
+			return _get_image(KEYBOARD, "Record")
+		KEY_MEDIARECORD:
+			return _get_image(KEYBOARD, "Record")
+		KEY_KP_0:
+			return _get_image(KEYBOARD, "0")
+		KEY_KP_1:
+			return _get_image(KEYBOARD, "1")
+		KEY_KP_2:
+			return _get_image(KEYBOARD, "2")
+		KEY_KP_3:
+			return _get_image(KEYBOARD, "3")
+		KEY_KP_4:
+			return _get_image(KEYBOARD, "4")
+		KEY_KP_5:
+			return _get_image(KEYBOARD, "5")
+		KEY_KP_6:
+			return _get_image(KEYBOARD, "6")
+		KEY_KP_7:
+			return _get_image(KEYBOARD, "7")
+		KEY_KP_8:
+			return _get_image(KEYBOARD, "8")
+		KEY_KP_9:
+			return _get_image(KEYBOARD, "9")
+		KEY_KP_ADD:
+			return _get_image(KEYBOARD, "Plus")
+		KEY_KP_SUBTRACT:
+			return _get_image(KEYBOARD, "Minus")
+		KEY_KP_MULTIPLY:
+			return _get_image(KEYBOARD, "Asterisk")
+		KEY_KP_DIVIDE:
+			return _get_image(KEYBOARD, "Slash")
+		KEY_KP_PERIOD:
+			return _get_image(KEYBOARD, "Period")
+		KEY_KP_ENTER:
+			return _get_image(KEYBOARD, "Enter")
+	return _get_image(KEYBOARD, "Blank")
 	return null
 
 func _get_joypad_model(device: int) -> String:

@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://pewnh8iub5k5"]
+
+[ext_resource type="Theme" uid="uid://cp2dw8jh1pmps" path="res://assets/styles/theme.tres" id="1_gn2ic"]
+[ext_resource type="Script" uid="uid://b3cldwd8i68kk" path="res://addons/ActionIcon/ActionIcon.gd" id="1_xmvip"]
+[ext_resource type="Script" uid="uid://c0eg7la51qnwy" path="res://src/ui/action_button.gd" id="2_2fy4p"]
+
+[node name="ActionButton" type="MarginContainer" unique_id=2061725276 node_paths=PackedStringArray("icon", "label", "button")]
+theme = ExtResource("1_gn2ic")
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+script = ExtResource("2_2fy4p")
+icon = NodePath("MarginContainer/HBoxContainer/ActionIcon")
+label = NodePath("MarginContainer/HBoxContainer/Label")
+button = NodePath("Button")
+
+[node name="Button" type="Button" parent="." unique_id=139345433]
+layout_mode = 2
+toggle_mode = true
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1708624995]
+layout_mode = 2
+mouse_filter = 2
+mouse_behavior_recursive = 1
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=42490476]
+layout_mode = 2
+
+[node name="ActionIcon" type="TextureRect" parent="MarginContainer/HBoxContainer" unique_id=1913758839]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 8
+script = ExtResource("1_xmvip")
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer" unique_id=626689825]
+layout_mode = 2
+
+[connection signal="toggled" from="Button" to="." method="_on_button_toggled"]

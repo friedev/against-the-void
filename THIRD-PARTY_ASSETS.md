@@ -1,5 +1,10 @@
 # Third-Party Assets
 
+## Addons
+
+- [ControlsRemap resource](https://godotengine.org/asset-library/asset/1455) by [KoBeWi](https://github.com/KoBeWi) ([MIT](https://github.com/KoBeWi/Godot-Input-Remap/blob/38a8b0c16d628232a7d877acbbdc57be3b57982f/LICENSE.txt))
+- [Action Icon](https://godotengine.org/asset-library/asset/1431) by [KoBeWi](https://github.com/KoBeWi) ([MIT](https://github.com/KoBeWi/Godot-Action-Icon/blob/ff7080f4839859563bbfc431035fa3579206dab5/LICENSE.txt))
+
 ## Sounds
 
 - [8-Bit Hit](https://freesound.org/people/TheDweebMan/sounds/277213/) by [TheDweebMan](https://freesound.org/people/TheDweebMan/) ([CC0](http://creativecommons.org/publicdomain/zero/1.0/))
@@ -14,3 +19,7 @@
 - [So Narrow](https://www.1001fonts.com/so-font.html) by [Apostrophic Labs](https://www.1001fonts.com/users/apostrophe/) ([1001Fonts FFC License](https://www.1001fonts.com/licenses/ffc.html))
 - [pixelFJ8pt](https://www.1001fonts.com/pixelfj8pt1-font.html) by [MBommeli](https://www.1001fonts.com/users/flashjunior/) ([1001Fonts FFC License](https://www.1001fonts.com/licenses/ffc.html))
 - [FixedSys Excelsior](https://github.com/kika/fixedsys) by [Darien Valentine](https://github.com/bathos) ([CC0](http://creativecommons.org/publicdomain/zero/1.0/))
+
+## Icons
+
+- [1-Bit Input Prompts Pixel 16×](https://kenney.nl/assets/1-bit-input-prompts-pixel-16) by [Kenney](https://kenney.nl/) ([CC0](https://creativecommons.org/publicdomain/zero/1.0/))

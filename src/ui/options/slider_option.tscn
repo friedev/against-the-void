@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://dbbnhubut8hco"]
+[gd_scene format=3 uid="uid://dbbnhubut8hco"]
 
-[ext_resource type="Script" uid="uid://jktj0ot6rtii" path="res://scenes/ui/options/slider_option.gd" id="1_4v8vh"]
+[ext_resource type="Script" uid="uid://jktj0ot6rtii" path="res://src/ui/options/range_option.gd" id="1_4v8vh"]
 
-[node name="SliderOption" type="MarginContainer" node_paths=PackedStringArray("slider") groups=["options"]]
+[node name="SliderOption" type="MarginContainer" unique_id=1371362804 node_paths=PackedStringArray("range_control") groups=["options"]]
 custom_minimum_size = Vector2(0, 32)
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,12 +14,12 @@ theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 0
 script = ExtResource("1_4v8vh")
-slider = NodePath("Slider")
+range_control = NodePath("Slider")
 
-[node name="Slider" type="HSlider" parent="."]
+[node name="Slider" type="HSlider" parent="." unique_id=1199250359]
 layout_mode = 2
 size_flags_vertical = 1
 max_value = 1.0
-step = 0.1
+step = 0.05
 
-[connection signal="value_changed" from="Slider" to="." method="_on_slider_value_changed"]
+[connection signal="value_changed" from="Slider" to="." method="_on_range_control_value_changed"]

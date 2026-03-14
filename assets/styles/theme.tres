@@ -12,6 +12,8 @@
 [ext_resource type="StyleBox" uid="uid://yeek54kfb5mv" path="res://assets/styles/stylebox_vscroll_grabber.tres" id="9"]
 [ext_resource type="StyleBox" uid="uid://bqs0i23qp3cnc" path="res://assets/styles/stylebox_hscroll_grabber.tres" id="10"]
 [ext_resource type="StyleBox" uid="uid://ddthpa11i723l" path="res://assets/styles/stylebox_hscroll.tres" id="11"]
+[ext_resource type="Texture2D" uid="uid://cdsoyu6b55uio" path="res://assets/styles/spin_box_arrow_down.png" id="11_bryvq"]
+[ext_resource type="Texture2D" uid="uid://cou5j38drqgep" path="res://assets/styles/spin_box_arrow_up.png" id="12_giu7f"]
 [ext_resource type="FontFile" uid="uid://b2pveisjesshw" path="res://assets/fonts/pixelFJ8pt1.ttf" id="13_thv0v"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_oebey"]
@@ -127,6 +129,14 @@ ProgressBar/colors/font_outline_color = Color(1, 1, 1, 1)
 ProgressBar/constants/outline_size = 4
 ProgressBar/styles/background = ExtResource("4")
 ProgressBar/styles/fill = ExtResource("3")
+SpinBox/icons/down = ExtResource("11_bryvq")
+SpinBox/icons/down_disabled = ExtResource("11_bryvq")
+SpinBox/icons/down_hover = ExtResource("11_bryvq")
+SpinBox/icons/down_pressed = ExtResource("11_bryvq")
+SpinBox/icons/up = ExtResource("12_giu7f")
+SpinBox/icons/up_disabled = ExtResource("12_giu7f")
+SpinBox/icons/up_hover = ExtResource("12_giu7f")
+SpinBox/icons/up_pressed = ExtResource("12_giu7f")
 TextEdit/colors/background_color = Color(0, 0, 0, 1)
 TextEdit/colors/caret_color = Color(1, 1, 1, 1)
 TextEdit/colors/font_color = Color(1, 1, 1, 1)

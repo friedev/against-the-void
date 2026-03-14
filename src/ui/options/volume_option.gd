@@ -1,4 +1,4 @@
-class_name VolumeOption extends SliderOption
+class_name VolumeOption extends RangeOption
 
 @export var bus_name: StringName
 

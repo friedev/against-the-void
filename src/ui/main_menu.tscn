@@ -9,7 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://c2ycrcbab4t57" path="res://src/ui/options/volume_option.tscn" id="7_otr3d"]
 [ext_resource type="Script" uid="uid://cvfji11bhhncx" path="res://src/ui/version_label.gd" id="7_x8sms"]
 [ext_resource type="PackedScene" uid="uid://dbbnhubut8hco" path="res://src/ui/options/slider_option.tscn" id="8_q85j6"]
+[ext_resource type="PackedScene" uid="uid://ci42phpk3rnxo" path="res://src/ui/options/spin_box_option.tscn" id="8_wdmux"]
 [ext_resource type="PackedScene" uid="uid://cgnmle83oa3at" path="res://src/ui/options/check_box_option.tscn" id="10_7suek"]
+[ext_resource type="Script" uid="uid://wal1eamc5aln" path="res://src/ui/options/display_scale_option.gd" id="11_4fdh4"]
 [ext_resource type="Script" uid="uid://b6qdw17kc1ly0" path="res://src/ui/linked_label.gd" id="11_h4dpu"]
 [ext_resource type="PackedScene" uid="uid://pewnh8iub5k5" path="res://src/ui/action_button.tscn" id="11_wdmux"]
 
@@ -116,7 +118,6 @@ text = "Hold up or down to attack in that direction. Killing enemies recharges j
 autowrap_mode = 3
 
 [node name="OptionsMenu" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2" unique_id=2042605787]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
@@ -168,7 +169,7 @@ default = 0.5
 layout_mode = 2
 text = "Ambience"
 
-[node name="SliderOption" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2/Options" unique_id=1147143404 instance=ExtResource("8_q85j6")]
+[node name="ScreenShakeOption" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2/Options" unique_id=1147143404 instance=ExtResource("8_q85j6")]
 layout_mode = 2
 default = 0.3
 key = "screen_shake"
@@ -176,6 +177,23 @@ key = "screen_shake"
 [node name="ScreenShakeLabel" type="Label" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2/Options" unique_id=1739501989]
 layout_mode = 2
 text = "Screen Shake"
+
+[node name="DisplayScaleOption" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2/Options" unique_id=1202145524 instance=ExtResource("8_wdmux")]
+layout_mode = 2
+script = ExtResource("11_4fdh4")
+pixel_size = 4
+default = 4.0
+key = "display_scale"
+
+[node name="SpinBox" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2/Options/DisplayScaleOption" index="0" unique_id=1496550118]
+min_value = 1.0
+max_value = 8.0
+value = 4.0
+alignment = 2
+
+[node name="DisplayScaleLabel" type="Label" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2/Options" unique_id=1529739940]
+layout_mode = 2
+text = "Display Scale"
 
 [node name="FullscreenOption" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2/Options" unique_id=1687234724 instance=ExtResource("4_qnfpr")]
 layout_mode = 2
@@ -289,6 +307,7 @@ layout_mode = 2
 text = "Restore Defaults"
 
 [node name="CreditsMenu" type="PanelContainer" parent="VBoxContainer/VBoxContainer2" unique_id=1858878167]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
@@ -392,3 +411,5 @@ script = ExtResource("5_8g5eo")
 [connection signal="toggled" from="VBoxContainer/VBoxContainer2/Buttons/OptionsButton" to="." method="_on_options_button_toggled"]
 [connection signal="toggled" from="VBoxContainer/VBoxContainer2/Buttons/CreditsButton" to="." method="_on_credits_button_toggled"]
 [connection signal="pressed" from="VBoxContainer/VBoxContainer2/Buttons/QuitButton" to="." method="_on_quit_button_pressed"]
+
+[editable path="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2/Options/DisplayScaleOption"]

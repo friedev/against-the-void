@@ -1,8 +1,8 @@
-class_name SliderOption extends Option
+class_name RangeOption extends Option
 
 @export var default: float
 
-@export var slider: Slider
+@export var range_control: Range
 
 
 func get_default() -> Variant:
@@ -10,16 +10,16 @@ func get_default() -> Variant:
 
 
 func get_option() -> float:
-	return slider.value
+	return range_control.value
 
 
 func set_option(value: Variant) -> bool:
 	if not value is float:
 		assert(false)
 		return false
-	slider.set_value_no_signal(value as float)
+	range_control.set_value_no_signal(value as float)
 	return super.set_option(value)
 
 
-func _on_slider_value_changed(value: float) -> void:
+func _on_range_control_value_changed(value: float) -> void:
 	set_option(value)

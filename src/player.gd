@@ -34,6 +34,7 @@ static var instance: Player
 @onready var jumps_left := air_jumps
 @onready var dashes_left := air_dashes
 
+var dashed := false
 var jumped := false
 var is_attack_buffered := false
 var is_attacking := false
@@ -66,9 +67,12 @@ func _physics_process(delta: float) -> void:
 	var target_speed := input_direction * max_speed.x
 	var current_acceleration := deceleration
 	if input_direction != 0.0:
+		dashed = false
 		last_input_direction = input_direction
-		if signf(target_speed) == signf(velocity.x) and absf(target_speed) > absf(velocity.x):
+		if signf(target_speed) == signf(velocity.x):
 			current_acceleration = acceleration
+	elif dashed:
+		current_acceleration = acceleration
 	velocity.x = move_toward(velocity.x, target_speed, current_acceleration * delta)
 
 	move_and_slide()
@@ -135,6 +139,7 @@ func attack() -> void:
 func dash() -> void:
 	if dashes_left == 0:
 		return
+	dashed = true
 	dashes_left -= 1
 	velocity.x += last_input_direction * dash_speed
 	velocity.y = 0

@@ -272,13 +272,13 @@ max_offset = 32.0
 shake_reduction = 3.0
 
 [node name="LeftEnemySpawner" type="Node2D" parent="Player" unique_id=431051513]
-position = Vector2(-265.75, -207.75)
+position = Vector2(-304, -240)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("15_yyjdi")
 min_void_distance = 64.0
 
 [node name="RightEnemySpawner" type="Node2D" parent="Player" unique_id=1824005249]
-position = Vector2(265.75, -208.75)
+position = Vector2(304, -240)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("15_yyjdi")
 flip_h = true

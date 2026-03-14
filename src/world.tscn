@@ -14,8 +14,12 @@
 [ext_resource type="AudioStream" uid="uid://bqbcpjl5wrjf2" path="res://assets/sounds/player/death.wav" id="9_pk3eh"]
 [ext_resource type="PackedScene" uid="uid://2stt7v0hsnst" path="res://src/common/smart_particles.tscn" id="10_tvnmn"]
 [ext_resource type="Script" uid="uid://c841a3h3xkybc" path="res://src/common/shake_camera.gd" id="11_c3rv8"]
-[ext_resource type="PackedScene" uid="uid://c8yt3kcn7b6fs" path="res://src/enemy_spawner.tscn" id="12_m5hut"]
 [ext_resource type="Script" uid="uid://cxl8vpotvt0io" path="res://src/kill_zone.gd" id="13_7igba"]
+[ext_resource type="Script" uid="uid://e3kkgn3wnk4t" path="res://src/enemy_spawner.gd" id="15_yyjdi"]
+[ext_resource type="Script" uid="uid://cpdhl75qmu0s0" path="res://src/spawn_timer.gd" id="17_vmuob"]
+[ext_resource type="PackedScene" uid="uid://btr2ewc6lv8ov" path="res://src/enemies/basic_enemy.tscn" id="18_th6lv"]
+[ext_resource type="PackedScene" uid="uid://knesad6sab5t" path="res://src/enemies/seeker_enemy.tscn" id="19_wgoqa"]
+[ext_resource type="PackedScene" uid="uid://bn1ebrx2tjwoi" path="res://src/enemies/ranged_enemy.tscn" id="20_pk3eh"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5q4o7"]
 animations = [{
@@ -129,6 +133,21 @@ normal = Vector2(1, 0)
 normal = Vector2(-1, 0)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_e7lu8"]
+
+[sub_resource type="Curve" id="Curve_tvnmn"]
+_limits = [0.0, 1.0, 0.0, 90.0]
+_data = [Vector2(0, 0.1460675), 0.0, -0.0015605491, 0, 0, Vector2(3.1500006, 0.20224726), 0.0, 0.0, 0, 0, Vector2(45, 0.21348321), 0.0, 0.0, 0, 0, Vector2(90, 0.75280905), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Curve" id="Curve_c3rv8"]
+_limits = [0.0, 5.0, 0.0, 60.0]
+_data = [Vector2(0, 5), 0.0, -0.08739072, 0, 0, Vector2(60, 0.5112989), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_th6lv"]
+_limits = [0.0, 10.0, 0.0, 90.0]
+_data = [Vector2(0, 10), 0.0, -0.07490636, 0, 0, Vector2(90, 1.0112362), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [node name="World" type="Node2D" unique_id=842869675]
 script = ExtResource("1_5xesp")
@@ -244,16 +263,16 @@ shake_rate = 1.0
 max_offset = 32.0
 shake_reduction = 3.0
 
-[node name="LeftEnemySpawner" parent="Player" unique_id=431051513 instance=ExtResource("12_m5hut")]
+[node name="LeftEnemySpawner" type="Node2D" parent="Player" unique_id=431051513]
 position = Vector2(-265.75, -207.75)
 scale = Vector2(0.5, 0.5)
-spawn_time = 0.5
+script = ExtResource("15_yyjdi")
 
-[node name="RightEnemySpawner" parent="Player" unique_id=1824005249 instance=ExtResource("12_m5hut")]
+[node name="RightEnemySpawner" type="Node2D" parent="Player" unique_id=1824005249]
 position = Vector2(265.75, -208.75)
 scale = Vector2(0.5, 0.5)
+script = ExtResource("15_yyjdi")
 flip_h = true
-spawn_time = 0.5
 
 [node name="LeftKillZone" type="Area2D" parent="Player" unique_id=251295201]
 position = Vector2(-628.25, 0)
@@ -285,6 +304,29 @@ script = ExtResource("13_7igba")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BottomKillZone" unique_id=521779064]
 shape = SubResource("WorldBoundaryShape2D_e7lu8")
 
+[node name="BasicEnemySpawnTimer" type="Timer" parent="." unique_id=2089010426 node_paths=PackedStringArray("spawners")]
+one_shot = true
+script = ExtResource("17_vmuob")
+enemy_scene = ExtResource("18_th6lv")
+wait_time_curve = SubResource("Curve_tvnmn")
+spawners = [NodePath("../Player/LeftEnemySpawner"), NodePath("../Player/RightEnemySpawner")]
+
+[node name="SeekerEnemySpawnTimer" type="Timer" parent="." unique_id=152902833 node_paths=PackedStringArray("spawners")]
+one_shot = true
+script = ExtResource("17_vmuob")
+enemy_scene = ExtResource("19_wgoqa")
+wait_time_curve = SubResource("Curve_c3rv8")
+random_spawner = true
+spawners = [NodePath("../Player/LeftEnemySpawner"), NodePath("../Player/RightEnemySpawner")]
+
+[node name="RangedEnemySpawnTimer" type="Timer" parent="." unique_id=1422862404 node_paths=PackedStringArray("spawners")]
+one_shot = true
+script = ExtResource("17_vmuob")
+enemy_scene = ExtResource("20_pk3eh")
+wait_time_curve = SubResource("Curve_th6lv")
+random_spawner = true
+spawners = [NodePath("../Player/LeftEnemySpawner"), NodePath("../Player/RightEnemySpawner")]
+
 [connection signal="area_entered" from="Player/SwordArea" to="Player" method="_on_sword_area_area_entered"]
 [connection signal="body_entered" from="Player/SwordArea" to="Player" method="_on_sword_area_body_entered"]
 [connection signal="area_entered" from="Player/LeftKillZone" to="Player/LeftKillZone" method="_on_area_entered"]
@@ -293,3 +335,6 @@ shape = SubResource("WorldBoundaryShape2D_e7lu8")
 [connection signal="body_entered" from="Player/RightKillZone" to="Player/RightKillZone" method="_on_body_entered"]
 [connection signal="area_entered" from="BottomKillZone" to="BottomKillZone" method="_on_area_entered"]
 [connection signal="body_entered" from="BottomKillZone" to="BottomKillZone" method="_on_body_entered"]
+[connection signal="timeout" from="BasicEnemySpawnTimer" to="BasicEnemySpawnTimer" method="_on_timeout"]
+[connection signal="timeout" from="SeekerEnemySpawnTimer" to="SeekerEnemySpawnTimer" method="_on_timeout"]
+[connection signal="timeout" from="RangedEnemySpawnTimer" to="RangedEnemySpawnTimer" method="_on_timeout"]

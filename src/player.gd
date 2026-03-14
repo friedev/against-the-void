@@ -5,9 +5,14 @@ static var instance: Player
 
 @export var initial_velocity: Vector2
 @export var max_speed: Vector2
+## The player's upward speed is *set* to this value when jumping.
 @export var jump_speed: float
-@export var pogo_recoil_speed: float
-@export var non_pogo_recoil_speed: float
+## The player's upward speed is *set* to this value when hitting downward.
+@export var recoil_speed_up: float
+## Downward speed added to the player's velocity when hitting upward.
+@export var recoil_speed_down: float
+## Horizontal speed added to the player's velocity when hitting horizontally.
+@export var recoil_speed_horizontal: float
 @export var dash_speed: float
 @export var acceleration: float
 @export var deceleration: float
@@ -97,7 +102,7 @@ func jump() -> void:
 		return
 	jumped = true
 	jumps_left -= 1
-	velocity.y = - jump_speed
+	velocity.y = minf(-jump_speed, velocity.y)
 	jump_sound.randomize_and_play()
 	jump_particles.restart()
 
@@ -175,10 +180,12 @@ func hit(enemy: Enemy) -> void:
 	enemy.die()
 	var recoil_direction := Vector2(1, 0).rotated(sword_area.rotation)
 	if recoil_direction.y > 0:
-		velocity.y = - pogo_recoil_speed
+		velocity.y = minf(-recoil_speed_up, velocity.y)
 		jumped = false
+	elif recoil_direction.y < 0:
+		velocity.y += recoil_speed_down
 	else:
-		velocity -= recoil_direction * non_pogo_recoil_speed
+		velocity.x -= recoil_direction.x * recoil_speed_horizontal
 	jumps_left = air_jumps
 	dashes_left = air_dashes
 

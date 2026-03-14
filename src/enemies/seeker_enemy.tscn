@@ -72,9 +72,8 @@ alpha_curve = SubResource("CurveTexture_6s2gs")
 
 [node name="SeekerEnemy" unique_id=444889010 instance=ExtResource("1_1pe7x")]
 script = ExtResource("2_pv5kb")
-min_speed = 100.0
-max_speed = 125.0
-acceleration = 0.0
+max_speed = 175.0
+acceleration = 300.0
 death_screen_shake = 0.5
 
 [node name="Sprite2D" parent="." index="0" unique_id=1721054349]

@@ -5,5 +5,3 @@
 [node name="SmartParticles" type="GPUParticles2D" unique_id=1168632659]
 z_index = -1
 script = ExtResource("1_81x1e")
-
-[connection signal="finished" from="." to="." method="_on_finished"]

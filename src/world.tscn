@@ -337,6 +337,13 @@ wait_time_curve = SubResource("Curve_th6lv")
 random_spawner = true
 spawners = [NodePath("../Player/LeftEnemySpawner"), NodePath("../Player/RightEnemySpawner")]
 
+[connection signal="died" from="Player" to="Player/AttackSound" method="finish_and_free"]
+[connection signal="died" from="Player" to="Player/JumpSound" method="finish_and_free"]
+[connection signal="died" from="Player" to="Player/DashSound" method="finish_and_free"]
+[connection signal="died" from="Player" to="Player/DeathSound" method="finish_and_free"]
+[connection signal="died" from="Player" to="Player/JumpParticles" method="finish_and_free"]
+[connection signal="died" from="Player" to="Player/DashParticles" method="finish_and_free"]
+[connection signal="died" from="Player" to="Player/DeathParticles" method="finish_and_free"]
 [connection signal="area_entered" from="Player/SwordArea" to="Player" method="_on_sword_area_area_entered"]
 [connection signal="body_entered" from="Player/SwordArea" to="Player" method="_on_sword_area_body_entered"]
 [connection signal="area_entered" from="Player/LeftKillZone" to="Player/LeftKillZone" method="_on_area_entered"]

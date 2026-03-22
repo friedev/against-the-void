@@ -96,3 +96,5 @@ process_material = SubResource("ParticleProcessMaterial_0sdmo")
 amount = 12
 visibility_rect = Rect2(-300, -100, 600, 200)
 process_material = SubResource("ParticleProcessMaterial_5ku1l")
+
+[connection signal="died" from="." to="SmokeParticles" method="finish_and_free"]

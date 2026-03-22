@@ -39,3 +39,5 @@ one_shot = true
 explosiveness = 1.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="died" from="." to="DeathSound" method="finish_and_free"]
+[connection signal="died" from="." to="DeathParticles" method="finish_and_free"]

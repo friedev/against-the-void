@@ -1,5 +1,7 @@
 class_name Enemy extends Area2D
 
+signal died
+
 @export var death_screen_shake: float
 
 @export_group("Internal Nodes")
@@ -11,6 +13,7 @@ func die() -> void:
 	death_sound.randomize_and_play()
 	death_particles.restart()
 	SignalBus.screen_shake.emit(death_screen_shake)
+	died.emit()
 	queue_free()
 
 

@@ -11,4 +11,5 @@ func _on_game_loaded() -> void:
 
 
 func _on_node_spawned(node: Node) -> void:
+	assert(node.get_parent() == null)
 	add_child(node)

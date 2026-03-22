@@ -1,5 +1,7 @@
 class_name Player extends CharacterBody2D
 
+signal died
+
 ## Singleton instance.
 static var instance: Player
 
@@ -159,6 +161,7 @@ func die() -> void:
 	SignalBus.screen_shake.emit(1.0)
 	reparent_child(camera, camera.get_screen_center_position())
 	camera.reset_smoothing()
+	died.emit()
 	queue_free()
 	SignalBus.game_over.emit()
 

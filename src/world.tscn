@@ -139,7 +139,6 @@ _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(120, -85.39326), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_e7lu8"]
-distance = -16.0
 
 [sub_resource type="Curve" id="Curve_tvnmn"]
 _limits = [0.0, 1.0, 0.0, 90.0]
@@ -160,6 +159,7 @@ point_count = 2
 script = ExtResource("1_5xesp")
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=113814185 node_paths=PackedStringArray("sprite", "sword_sprite", "sword_area", "camera", "attack_sound", "jump_sound", "dash_sound", "death_sound", "jump_particles", "dash_particles", "death_particles")]
+position = Vector2(0, -8)
 collision_mask = 2
 script = ExtResource("2_a3wil")
 initial_velocity = Vector2(0, -500)

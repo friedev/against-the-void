@@ -167,7 +167,6 @@ position = Vector2(1440, 810)
 texture = SubResource("NoiseTexture2D_e7lu8")
 
 [node name="VoidFogFar" type="Parallax2D" parent="." unique_id=634355209]
-modulate = Color(1, 1, 1, 0.7529412)
 z_index = 5
 scroll_scale = Vector2(1, 0)
 scroll_offset = Vector2(0, -32)
@@ -178,6 +177,7 @@ follow_viewport = false
 script = ExtResource("10_d3u4l")
 
 [node name="Sprite2D" type="Sprite2D" parent="VoidFogFar" unique_id=520640537]
+modulate = Color(0.09411765, 0.09411765, 0.09411765, 1)
 texture = ExtResource("9_kqbth")
 
 [node name="VoidFarNear" type="Parallax2D" parent="." unique_id=59835650]
@@ -191,6 +191,7 @@ follow_viewport = false
 script = ExtResource("10_d3u4l")
 
 [node name="Sprite2D" type="Sprite2D" parent="VoidFarNear" unique_id=370060158]
+modulate = Color(0, 0, 0, 1)
 texture = ExtResource("9_uewes")
 
 [node name="Void" type="Parallax2D" parent="." unique_id=1799693805]

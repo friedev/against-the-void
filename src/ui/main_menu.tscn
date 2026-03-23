@@ -227,7 +227,6 @@ text = "Screen Shake"
 layout_mode = 2
 script = ExtResource("11_4fdh4")
 pixel_size = 4
-default = 4.0
 key = "display_scale"
 
 [node name="SpinBox" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/Options/DisplayScaleOption" index="0" unique_id=1496550118]
@@ -243,7 +242,6 @@ text = "Display Scale"
 [node name="FullscreenOption" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=1687234724 instance=ExtResource("4_qnfpr")]
 layout_mode = 2
 size_flags_horizontal = 8
-default = true
 key = "fullscreen"
 
 [node name="FullscreenLabel" type="Label" parent="VBoxContainer/VBoxContainer2/OptionsMenu/PanelContainer/MarginContainer/Options" unique_id=1170520789]

@@ -2,6 +2,13 @@ class_name DisplayScaleOption extends RangeOption
 
 @export var pixel_size: int
 
+func _ready() -> void:
+	# Source the default value from Project Settings (allows custom settings
+	# for web, editor, etc.)
+	default = get_option()
+	super._ready()
+
+
 func get_option() -> float:
 	return get_tree().root.content_scale_factor * pixel_size
 

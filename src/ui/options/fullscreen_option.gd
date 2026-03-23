@@ -4,6 +4,9 @@ var previous_value: bool
 
 
 func _ready() -> void:
+	# Source the default value from Project Settings (allows custom settings
+	# for web, editor, etc.)
+	default = get_option()
 	super._ready()
 	previous_value = default
 

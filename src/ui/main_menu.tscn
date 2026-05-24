@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://bxjdf1p7ppmjr"]
 
-[ext_resource type="Theme" uid="uid://cp2dw8jh1pmps" path="res://assets/styles/theme.tres" id="1_0sglw"]
 [ext_resource type="Script" uid="uid://bjf4uvk2ono4a" path="res://src/ui/main_menu.gd" id="2_wb0q5"]
 [ext_resource type="FontFile" uid="uid://cbcnlfeucl3vd" path="res://assets/fonts/SONARR__.ttf" id="3_0prml"]
 [ext_resource type="PackedScene" uid="uid://rasjftexmjht" path="res://src/ui/options/fullscreen_option.tscn" id="4_qnfpr"]
@@ -23,7 +22,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_0sglw")
 theme_override_constants/margin_left = 32
 theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 32

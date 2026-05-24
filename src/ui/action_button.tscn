@@ -1,11 +1,9 @@
 [gd_scene format=3 uid="uid://pewnh8iub5k5"]
 
-[ext_resource type="Theme" uid="uid://cp2dw8jh1pmps" path="res://assets/styles/theme.tres" id="1_gn2ic"]
 [ext_resource type="Script" uid="uid://b3cldwd8i68kk" path="res://addons/ActionIcon/ActionIcon.gd" id="1_xmvip"]
 [ext_resource type="Script" uid="uid://c0eg7la51qnwy" path="res://src/ui/action_button.gd" id="2_2fy4p"]
 
 [node name="ActionButton" type="MarginContainer" unique_id=2061725276 node_paths=PackedStringArray("icon", "label", "button")]
-theme = ExtResource("1_gn2ic")
 theme_override_constants/margin_left = 0
 theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 0

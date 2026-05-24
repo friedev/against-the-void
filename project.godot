@@ -52,6 +52,11 @@ project/assembly_name="Against the Void"
 
 enabled=PackedStringArray("res://addons/ActionIcon/plugin.cfg", "res://addons/ControlsRemap/plugin.cfg")
 
+[gui]
+
+theme/custom="uid://cp2dw8jh1pmps"
+theme/custom_font="uid://b2pveisjesshw"
+
 [input]
 
 ui_accept={

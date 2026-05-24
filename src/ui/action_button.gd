@@ -1,5 +1,6 @@
 @tool
-class_name ActionButton extends Control
+class_name ActionButton
+extends Control
 
 @export var text: String
 @export var action: String
@@ -16,6 +17,7 @@ var listening: bool:
 		var content_modulate := Color.BLACK if listening else Color.WHITE
 		label.modulate = content_modulate
 		icon.modulate = content_modulate
+
 
 func _ready() -> void:
 	refresh()

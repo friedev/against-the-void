@@ -1,4 +1,5 @@
-class_name DeathCountLabel extends Label
+class_name DeathCountLabel
+extends Label
 
 func _ready() -> void:
 	Save.death_count.changed.connect(_on_death_count_changed)

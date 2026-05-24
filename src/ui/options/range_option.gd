@@ -1,4 +1,5 @@
-class_name RangeOption extends Option
+class_name RangeOption
+extends Option
 
 @export var default: float
 

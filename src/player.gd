@@ -1,4 +1,5 @@
-class_name Player extends CharacterBody2D
+class_name Player
+extends CharacterBody2D
 
 signal died
 
@@ -47,6 +48,7 @@ var is_attack_buffered := false
 var is_attacking := false
 var last_input_direction := 1.0
 var animation_state := 0
+
 
 func _enter_tree() -> void:
 	assert(instance == null)

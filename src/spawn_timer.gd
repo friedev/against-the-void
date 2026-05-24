@@ -1,4 +1,5 @@
-class_name SpawnTimer extends Timer
+class_name SpawnTimer
+extends Timer
 
 @export var enemy_scene: PackedScene
 ## Curve determining the wait time of the spawner over time. Sampling the curve
@@ -16,6 +17,7 @@ class_name SpawnTimer extends Timer
 var time_elapsed: float
 
 @onready var spawner_index := randi() % len(spawners)
+
 
 func _ready() -> void:
 	if spawn_on_ready:

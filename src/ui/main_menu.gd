@@ -31,23 +31,23 @@ func _on_game_loading() -> void:
 
 func _on_game_over() -> void:
 	open_menu()
-	
+
 
 func _on_play_button_pressed() -> void:
 	play_pressed.emit()
-	
+
 
 func _on_help_button_toggled(toggled_on: bool) -> void:
 	controls_menu.visible = toggled_on
-	
+
 
 func _on_options_button_toggled(toggled_on: bool) -> void:
 	options_menu.visible = toggled_on
-	
+
 
 func _on_credits_button_toggled(toggled_on: bool) -> void:
 	credits_menu.visible = toggled_on
-	
+
 
 func _on_quit_button_pressed() -> void:
 	get_tree().quit()

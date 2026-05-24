@@ -1,4 +1,5 @@
-class_name FullscreenOption extends CheckBoxOption
+class_name FullscreenOption
+extends CheckBoxOption
 
 var previous_value: bool
 
@@ -13,6 +14,7 @@ func _ready() -> void:
 
 func get_option() -> bool:
 	return _is_fullscreen(get_window().mode)
+
 
 func set_option(value: Variant) -> bool:
 	if super.set_option(value):

@@ -1,8 +1,10 @@
-class_name Projectile extends Enemy
+class_name Projectile
+extends Enemy
 
 @export var speed: float
 
 var angle: float
+
 
 func _ready() -> void:
 	if Player.instance != null:

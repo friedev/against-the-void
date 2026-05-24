@@ -1,4 +1,5 @@
-class_name HighScoreLabel extends Label
+class_name HighScoreLabel
+extends Label
 
 func _ready() -> void:
 	Save.best_time.changed.connect(_on_best_time_changed)

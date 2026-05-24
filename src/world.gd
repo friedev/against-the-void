@@ -1,4 +1,5 @@
-class_name World extends Node2D
+class_name World
+extends Node2D
 
 func _ready() -> void:
 	SignalBus.game_loaded.connect(_on_game_loaded)

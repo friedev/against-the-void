@@ -1,4 +1,5 @@
-class_name Main extends Node
+class_name Main
+extends Node
 
 @export var world_scene: PackedScene
 
@@ -8,17 +9,18 @@ class_name Main extends Node
 
 var world: World
 
+
 func _ready() -> void:
 	Options.setup(get_tree())
 	randomize_parallax()
-	
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("restart"):
 		if Player.instance != null:
 			SignalBus.game_over.emit()
 		restart()
-	
+
 
 func restart() -> void:
 	SignalBus.game_loading.emit()

@@ -1,4 +1,5 @@
-class_name RangedEnemy extends Enemy
+class_name RangedEnemy
+extends Enemy
 
 @export var speed: float
 @export var min_distance: Vector2
@@ -13,6 +14,7 @@ class_name RangedEnemy extends Enemy
 @export var telegraph_sprite: Sprite2D
 
 var osc_input := randf()
+
 
 func _process(_delta: float) -> void:
 	if Player.instance != null:
@@ -39,6 +41,7 @@ func _on_shoot_timer_timeout() -> void:
 func is_in_range(target_position: Vector2, target_range: Vector2) -> bool:
 	var to_target := (global_position - target_position).abs()
 	return to_target.x <= target_range.x and to_target.y <= target_range.y
+
 
 func shoot() -> void:
 	var projectile: Node2D = projectile_scene.instantiate()

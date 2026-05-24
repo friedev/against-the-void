@@ -1,4 +1,5 @@
-class_name Stat extends Node
+class_name Stat
+extends Node
 
 signal changed
 
@@ -6,11 +7,12 @@ var section: String
 var key: String
 var default: Variant
 
+
 func _init(section_: String, key_: String, default_: Variant = null) -> void:
 	section = section_
 	key = key_
 	default = default_
-	Save.stats.append(self )
+	Save.stats.append(self)
 
 
 func get_value() -> Variant:

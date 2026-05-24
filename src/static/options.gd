@@ -11,8 +11,9 @@ const controls_remap_path := "user://controls.tres"
 
 ## Currently loaded options.
 static var tree: SceneTree
-static var options := {}
+static var options := { }
 static var controls_remap := ControlsRemap.new()
+
 
 ## Set each option to its value read from the config file.
 static func load_options() -> void:
@@ -23,7 +24,7 @@ static func load_options() -> void:
 			var option := option_node as Option
 			if config.has_section_key(OPTIONS_SECTION, option.key):
 				option.set_option(
-					config.get_value(OPTIONS_SECTION, option.key)
+					config.get_value(OPTIONS_SECTION, option.key),
 				)
 
 

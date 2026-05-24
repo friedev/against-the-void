@@ -1,6 +1,8 @@
-class_name DisplayScaleOption extends RangeOption
+class_name DisplayScaleOption
+extends RangeOption
 
 @export var pixel_size: int
+
 
 func _ready() -> void:
 	# Source the default value from Project Settings (allows custom settings

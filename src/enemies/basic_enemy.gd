@@ -1,4 +1,5 @@
-class_name BasicEnemy extends Enemy
+class_name BasicEnemy
+extends Enemy
 
 @export var min_speed: float
 @export var max_speed: float
@@ -8,6 +9,7 @@ class_name BasicEnemy extends Enemy
 @onready var speed := randf_range(min_speed, max_speed)
 @onready var initial_y := position.y
 var osc_input := randf()
+
 
 func _ready() -> void:
 	var speed_mod := signf(scale.x)

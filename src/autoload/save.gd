@@ -11,6 +11,7 @@ var stats: Array[Stat]
 ## Total number of deaths and restarts.
 @onready var death_count := Stat.new(STATS_SECTION, "death_count", 0)
 
+
 func _ready() -> void:
 	config.load(CONFIG_PATH)
 	SignalBus.game_over.connect(_on_game_over)

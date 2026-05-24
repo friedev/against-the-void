@@ -1,9 +1,11 @@
-class_name SeekerEnemy extends Enemy
+class_name SeekerEnemy
+extends Enemy
 
 @export var max_speed: float
 @export var acceleration: float
 
 var velocity: Vector2
+
 
 func _physics_process(delta: float) -> void:
 	if Player.instance != null:

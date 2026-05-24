@@ -1,4 +1,5 @@
-class_name Enemy extends Area2D
+class_name Enemy
+extends Area2D
 
 signal died
 
@@ -8,6 +9,7 @@ signal died
 @export var sprite: AnimatedSprite2D
 @export var death_sound: SmartSound
 @export var death_particles: GPUParticles2D
+
 
 func die() -> void:
 	death_sound.randomize_and_play()

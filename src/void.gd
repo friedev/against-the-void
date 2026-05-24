@@ -1,10 +1,12 @@
-class_name Void extends KillZone
+class_name Void
+extends KillZone
 
 ## Singleton instance.
 static var instance: Void
 
 ## Speed at which the void rises over time.
 @export var speed_curve: Curve
+
 
 func _enter_tree() -> void:
 	assert(instance == null)

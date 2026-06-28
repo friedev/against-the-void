@@ -20,6 +20,7 @@ config/version="1.0.0"
 run/main_scene="uid://px03diws0gc5"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="uid://cixyxs4ucu10t"
+config/tags=PackedStringArray("2d", "game_jam", "published", "real_time", "singleplayer")
 
 [autoload]
 
